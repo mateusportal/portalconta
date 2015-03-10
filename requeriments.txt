@@ -1,7 +1,0 @@
-Django==1.6.10
-dj-database-url==0.3.0
-dj-static==0.0.5
-gunicorn==18.0
-static==1.0.2
-unipath==1.0
-
