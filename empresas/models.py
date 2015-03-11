@@ -46,7 +46,7 @@ class Usuario(models.Model):
 
 class Pessoa(models.Model):
 	tipo = models.CharField(max_length=50, blank=True, null=True)
-	nome models.CharField(max_lenght=150, blank=True, null=False)
+	nome = models.CharField(max_lenght=150, blank=True, null=False)
 	cpf = models.CharField(max_length=50, blank=True, null=True)
 	rg = models.CharField(max_length=50, blank=True, null=True)
 	conta_banco = models.CharField(max_length=50, blank=True, null=True)
