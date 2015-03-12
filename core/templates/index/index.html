@@ -1,0 +1,21 @@
+{% extends "index/template.html" %}
+{% block titulo %}Sistema de Gestão Financeira{% endblock %}
+
+{% block container %}
+<section id="one">
+    <header class="major">
+        <h2>Entre, participe da votação e ganhe prêmios!</h2>
+    </header>
+    <form method="POST" action="/valida_login/">
+        {% csrf_token %}
+        <input type="email" name="email" placeholder="E-mail portal" id="email" value="{{ email|default:'' }}" title="Entre com seu email" required><br />
+        <input type="password" name="cpf" placeholder="Digite seu Cpf" id="cpf" value="{{ cpf|default:'' }}" title="Digite sua senha" required><br />
+        <input type="submit" value="Login" title="Login">
+    </form>
+
+    <div style="text-align:center">
+    	<a href="/premios/" class="icon fa-gift" title="Ver Prêmios">&nbsp&nbspVer prêmios</a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        <a href="/vencedores/" class="icon fa-trophy" title="Ver Vencedores">&nbsp&nbspVer Vencedores</a>
+    </div>
+</section>
+{% endblock %}
