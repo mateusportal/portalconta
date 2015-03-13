@@ -74,7 +74,7 @@ class Usuario(AbstractUser):
 
 class Pessoa(models.Model):
     tipo = models.CharField(max_length=50, blank=True, null=True)
-    nome = models.CharField(db_index=True,max_length=150, blank=True, null=False) 
+    nome = models.CharField(db_index=True,max_length=150, blank=True, null=False)
     cpf = models.CharField(max_length=50, blank=True, null=True)
     rg = models.CharField(max_length=50, blank=True, null=True)
     conta_banco = models.CharField(max_length=50, blank=True, null=True)
@@ -92,17 +92,15 @@ class Pessoa(models.Model):
     telefone_celular = models.CharField(max_length=50, blank=True, null=True)
     email_pessoal = models.CharField(max_length=250, blank=True, null=True)
     email_empresarial = models.CharField(max_length=250, blank=True, null=True)
-    facebook = models.CharField(db_index=True,max_length=150, blank=True, null=False) 
-    googleplus = models.CharField(db_index=True,max_length=150, blank=True, null=False) 
-    skype = models.CharField(db_index=True,max_length=150, blank=True, null=False) 
-    twitter = models.CharField(db_index=True,max_length=150, blank=True, null=False) 
+    facebook = models.CharField(db_index=True,max_length=150, blank=True, null=False)
+    googleplus = models.CharField(db_index=True,max_length=150, blank=True, null=False)
+    skype = models.CharField(db_index=True,max_length=150, blank=True, null=False)
+    twitter = models.CharField(db_index=True,max_length=150, blank=True, null=False)
     empresa = models.ForeignKey(Empresa,related_name="pessoa_empresa_id")
     usuario = models.ForeignKey(Usuario,related_name="pessoa_usuario_id")
     data_cadastro = models.DateTimeField(auto_now=False, auto_now_add=True)
     data_alteracao = models.DateTimeField(auto_now=True, auto_now_add=True)
     ativo = models.CharField(default="SIM", max_length=50, blank=False, null=False)
     anotacacoes = models.CharField(max_length=250, blank=True, null=True)
-    grupo_pessoa = models.CharField(db_index=True,max_length=150, blank=True, null=False) 
+    grupo_pessoa = models.CharField(db_index=True,max_length=150, blank=True, null=False)
     tags = models.CharField(max_length=250, blank=True, null=True)
-
-
