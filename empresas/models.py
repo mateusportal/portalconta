@@ -62,7 +62,7 @@ class Usuario(AbstractUser):
 	telefone_celular = models.CharField(_(u'Telefone Celular'), max_length=50, blank=True, null=True)
 	foto = CloudinaryField(_(u'foto'), blank=True, null=True)
 	idioma = models.CharField(_(u'Idioma'), max_length=50, blank=True, null=False)
-	empresa_id = models.ForeignKey(Empresa, related_name="usuaro_empresa_id")
+	empresa = models.ForeignKey(Empresa, related_name="usuario_empresa_id", null=True)
 
 	class Meta:
 		verbose_name = _(u'Usuário')
@@ -72,7 +72,7 @@ class Usuario(AbstractUser):
 	def __unicode__(self):
 		return u'{username} ({email})'.format(username=self.username, email=self.email)
 
-class Pessoa(models.Model)
+class Pessoa(models.Model):
 	tipo = models.CharField(max_length=50, blank=True, null=True)
 	nome = models.CharField(db_index=True,max_length=150, blank=True, null=False) 
 	cpf = models.CharField(max_length=50, blank=True, null=True)
@@ -96,8 +96,8 @@ class Pessoa(models.Model)
 	googleplus = models.CharField(db_index=True,max_length=150, blank=True, null=False) 
 	skype = models.CharField(db_index=True,max_length=150, blank=True, null=False) 
 	twitter = models.CharField(db_index=True,max_length=150, blank=True, null=False) 
-	empresa_id = models.ForeignKey(Empresa,related_name="pessoa_empresa_id")
-	usuario_id = models.ForeignKey(Usuario,related_name="pessoa_usuario_id")
+	empresa = models.ForeignKey(Empresa,related_name="pessoa_empresa_id")
+	usuario = models.ForeignKey(Usuario,related_name="pessoa_usuario_id")
 	data_cadastro = models.DateTimeField(auto_now=False, auto_now_add=True)
 	data_alteracao = models.DateTimeField(auto_now=True, auto_now_add=True)
 	ativo = models.CharField(default="SIM", max_length=50, blank=False, null=False)

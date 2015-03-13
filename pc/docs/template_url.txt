@@ -1,1 +1,12 @@
 http://almsaeedstudio.com/preview
+
+INDEX:
+http://www.bootply.com/render/129806
+http://bootstrapzero.com/bootstrap-template/sectionalize
+
+
+LOGO:
+http://www.flaticon.com/free-icon/card-wallet_67026
+
+MODELAGEM DIAGRAMA_DE_OBJETO.XML
+https://www.draw.io/

@@ -1,0 +1,103 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<title>{% block titulo %}{% endblock %} - PortalVota</title>
+    <meta name="description" content="Sistema financeiro gratuito!" />
+    <meta name="keywords" content="Financeiro, Finanças, Contabilidade, Dinheiro, Controle, Controle Pessoal, Micro empresas, Empresas, Finanças" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link href="/static/index/css/bootstrap.min.css" rel="stylesheet">
+		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+		<!--[if lt IE 9]>
+			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<link href="/static/index/css/styles.css" rel="stylesheet">
+	</head>
+	<body>
+
+<nav class="navbar navbar-trans navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapsible">
+        <span class="sr-only">Navegação Móvel</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#"><img src="/static/index/img/logo_topo_pequeno_branco.png"></a>
+    </div>
+    <div class="navbar-collapse collapse" id="navbar-collapsible">
+      <ul class="nav navbar-nav navbar-left">
+        <li><a href="#section2">O melhor sistema de gestão para micro empresas e autônomos.</a></li>
+        <li><a href="#section2">Cadastrar</a></li>
+        <li><a href="/login/">Entrar</a></li>
+        <li>&nbsp;</li>
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+<section class="container-fluid" id="section1">
+    <img src="/static/index/img/logo_central.png" class="img-responsive center-block ">
+    {% block section1 %}
+    {% endblock %}
+</section>
+
+{% block section4 %}
+{% endblock %}
+
+{% block section5 %}
+{% endblock %}
+
+{% block section6 %}
+{% endblock %}
+
+<footer id="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-6 col-sm-6 col-md-3 column">
+          <h4>Informações</h4>
+          <ul class="nav">
+            <li><a href="about-us.html">Benefícios</a></li>
+            <li><a href="about-us.html">Serviços</a></li>
+            <li><a href="about-us.html">Ajuda</a></li>
+            <li><a href="elements.html">Sobre Nós</a></li>
+          </ul>
+        </div>
+      <div class="col-xs-6 col-md-3 column">
+          <h4>Siga-nos</h4>
+          <ul class="nav">
+            <li><a href="#">Twitter</a></li>
+            <li><a href="#">Facebook</a></li>
+            <li><a href="#">Google+</a></li>
+            <li><a href="#">Github</a></li>
+          </ul>
+      </div>
+      <div class="col-xs-6 col-md-3 column">
+          <h4>Fale Conosco</h4>
+          <ul class="nav">
+            <li><a href="#">Nossa Empresa</a></li>
+            <li><a href="#">Contato</a></li>
+          </ul>
+      </div>
+      <div class="col-xs-6 col-md-3 column">
+          <h4>Política</h4>
+          <ul class="nav">
+            <li><a href="#">Sobre o PortalConta</a></li>
+            <li><a href="#">Termos de Uso</a></li>
+            <li><a href="#">Política de Privacidade</a></li>
+          </ul>
+      </div>
+    </div><!--/row-->
+  </div>
+</footer>
+
+<!-- JS -->
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+		<script src="/static/index/js/bootstrap.min.js"></script>
+		<script src="/static/index/js/scripts.js"></script>
+	</body>
+</html>
