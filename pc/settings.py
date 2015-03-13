@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 import cloudinary
-from dj_database_url import parse as db_url
+from dj_database_url import *
 from unipath import Path
 from settings_conf import *
 
@@ -95,8 +95,8 @@ WSGI_APPLICATION = 'pc.wsgi.application'
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
 if 'PRODUCTION' in os.environ:
-    DEBUG = True
-    TEMPLATE_DEBUG = True
+    DEBUG = False
+    TEMPLATE_DEBUG = False
     DATABASES = { 'default': dj_database_url.config() }
 else:
     DEBUG = True
