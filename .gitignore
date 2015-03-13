@@ -1,6 +1,8 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
+*.sqlite3
+settings_conf.py #CUIDADO AO RETIRAR ESTA LINHA DO GITIGNORE
 
 # C extensions
 *.so
