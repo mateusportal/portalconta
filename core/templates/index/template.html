@@ -1,4 +1,5 @@
 {% load staticfiles %}
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="pt-br">
 	<head>
@@ -26,12 +27,11 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#"><img src="/static/index/img/logo_topo_pequeno_branco.png"></a>
+      <a class="navbar-brand" href="/"><img src="/static/index/img/logo_topo_pequeno_branco.png"></a>
     </div>
     <div class="navbar-collapse collapse" id="navbar-collapsible">
       <ul class="nav navbar-nav navbar-left">
-        <li><a href="#section2">O melhor sistema de gestão para micro empresas e autônomos.</a></li>
-        <li><a href="#section2">Cadastrar</a></li>
+        <li><a href="/cadastro/">Cadastrar</a></li>
         <li><a href="/login/">Entrar</a></li>
         <li>&nbsp;</li>
       </ul>
@@ -61,10 +61,10 @@
       <div class="col-xs-6 col-sm-6 col-md-3 column">
           <h4>Informações</h4>
           <ul class="nav">
-            <li><a href="about-us.html">Benefícios</a></li>
-            <li><a href="about-us.html">Serviços</a></li>
-            <li><a href="about-us.html">Ajuda</a></li>
-            <li><a href="elements.html">Sobre Nós</a></li>
+            <li><a href="/cadastro/">Como me cadastrar?</a></li>
+            <li><a href="/login/">Já tenho cadastro, como entrar?</a></li>
+            <li><a href="#">Ajuda</a></li>
+            <li><a href="#">Sobre Nós</a></li>
           </ul>
         </div>
       <div class="col-xs-6 col-md-3 column">
