@@ -34,14 +34,26 @@ class Vinculo(models.Model):
 	observacao = models.CharField(max_length=250, blank=True, null=True)
 	rastreador = models.CharField(max_length=250, blank=True, null=True)
 	tags = models.CharField(max_length=250, blank=True, null=True)
-	empresa_id = models.ForeignKey(Caixa,related_name="vinculo_empresa_id")
+	empresa_id = models.ForeignKey(Empresa,related_name="vinculo_empresa_id")
 
 class Sistema(models.Model):
 	tipo = models.CharField(max_length=50, blank=True, null=True)
 	nome = models.CharField(max_length=150, blank=True, null=True)
-	empresa_id = models.ForeignKey(Caixa,related_name="sistema_empresa_id")
+	empresa_id = models.ForeignKey(Empresa,related_name="sistema_empresa_id")
 	tags = models.CharField(max_length=250, blank=True, null=True)
 	descricao = models.CharField(max_length=250, blank=True, null=True)
 	data_cadastro = models.DateTimeField(auto_now=False, auto_now_add=True)
 	ativo = models.CharField(default="SIM", max_length=50, blank=False, null=False)
+
+class Cheque(models.Model):
+	banco = models.CharField(max_length=50, blank=True, null=True)
+	agencia = models.CharField(max_length=50, blank=True, null=True)
+	numero_cheque = models.CharField(max_length=50, blank=True, null=True)
+	valor = models.DecimalField(max_digits=7, decimal_places=2)
+	nome = models.CharField(max_length=150, blank=True, null=True)
+	data_recebido = models.DateTimeField(auto_now=False, auto_now_add=False)
+	data_compensar = models.DateTimeField(auto_now=False, auto_now_add=False)
+	data_compensado = models.DateTimeField(auto_now=False, auto_now_add=False)
+	caixa_id  = models.ForeignKey(Caixa,related_name="cheque_caixa_id")
+
 
