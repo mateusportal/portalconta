@@ -1,0 +1,29 @@
+{% extends "index/template.html" %}
+{% load i18n %}
+{% block titulo %}Cadastrar{% endblock %}
+
+{% block section1 %}
+<div class="container">
+<div class="row">
+  <div class="col-sm-4 col-sm-offset-4">
+        <div class="list-group text-center">
+        <form action="/valida_cadastro/" method="POST">
+          <a href="#" class="list-group-item">
+            <h2 class="list-group-item-heading">Cadastro</h2>
+          </a>
+          <a href="#" class="list-group-item">
+            <p class="list-group-item-text"><input required type="text" class="form-control" name="" placeholder="NOME DE USUÁRIO"></p>
+          </a>
+          <a href="#" class="list-group-item">
+            <p class="list-group-item-text"><input required type="password" class="form-control" name="" placeholder="SENHA"></p>
+          </a>
+          <a href="#" class="list-group-item">
+            <input type="submit" class="btn btn-warning btn-lg btn-block" value="CADASTRAR">
+          </a>
+          <h6>Clicando no botão acima você concorda com nossos <a href="#" style="color:#ffffff;">Termos de Uso</a>.</h6>
+        <form>
+        </div>
+  </div><!--/centro-->
+</div><!--/row-->
+</div><!--/container-->
+{% endblock %}

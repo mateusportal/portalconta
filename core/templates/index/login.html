@@ -1,0 +1,29 @@
+{% extends "index/template.html" %}
+{% load i18n %}
+{% block titulo %}Login{% endblock %}
+
+{% block section1 %}
+<div class="container">
+<div class="row">
+  <div class="col-sm-4 col-sm-offset-4">
+        <div class="list-group text-center">
+        <form action="/valida_login/" method="POST">
+          <a href="#" class="list-group-item">
+            <h2 class="list-group-item-heading">Entrar no Sistema</h2>
+          </a>
+          <a href="#" class="list-group-item">
+            <p class="list-group-item-text"><input required type="text" class="form-control" name="" placeholder="NOME DE USUÁRIO"></p>
+          </a>
+          <a href="#" class="list-group-item">
+            <p class="list-group-item-text"><input required type="password" class="form-control" name="" placeholder="SENHA"></p>
+          </a>
+          <a href="#" class="list-group-item">
+            <input type="submit" class="btn btn-success btn-lg btn-block" value="ENTRAR">
+          </a>
+          <h6><a href="#" style="color:#ffffff;">Quero me cadastrar</a> | <a href="#" style="color:#ffffff;">Não me lembro da senha</a></h6>
+        <form>
+        </div>
+  </div><!--/centro-->
+</div><!--/row-->
+</div><!--/container-->
+{% endblock %}
