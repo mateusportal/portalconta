@@ -62,7 +62,7 @@ class Usuario(AbstractUser):
 	telefone_celular = models.CharField(_(u'Telefone Celular'), max_length=50, blank=True, null=True)
 	foto = CloudinaryField(_(u'foto'), blank=True, null=True)
 	idioma = models.CharField(_(u'Idioma'), max_length=50, blank=True, null=False)
-	empresa_id = models.ForeignKey(Empresa, related_name="empresa_id")
+	empresa_id = models.ForeignKey(Empresa, related_name="usuario_empresa_id")
 
 	class Meta:
 		verbose_name = _(u'Usuário')
