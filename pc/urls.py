@@ -9,6 +9,8 @@ urlpatterns = patterns('',
     url(r'^valida_login/$', 'core.views.valida_login', name='valida_login'),
     url(r'^cadastro/$', 'core.views.cadastro', name='cadastro'),
     url(r'^valida_cadastro/$', 'core.views.valida_cadastro', name='valida_cadastro'),
+    url(r'^sistema/$', 'core.views.sistema', name='sistema'),
+    url(r'^calendar/$', 'core.views.calendar', name='sistema'),   
 
 
     #url(r'^admin/', include(admin.site.urls)),
