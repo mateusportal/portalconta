@@ -12,9 +12,8 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 import cloudinary
-from dj_database_url import parse as db_url
+from dj_database_url import *
 from unipath import Path
-from settings_conf import *
 
 BASE_DIR = Path(__file__).parent
 
@@ -22,7 +21,7 @@ BASE_DIR = Path(__file__).parent
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = CONF_SECRET_KEY
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 ALLOWED_HOSTS = ['*']
@@ -35,13 +34,6 @@ LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/central/'
 
 AUTH_USER_MODEL = 'empresas.Usuario'
-
-# Tutorial: http://cloudinary.com/documentation/django_integration#getting_started_guide
-cloudinary.config(
-    cloud_name = CLOUDINARY_CLOUD_NAME,
-    api_key = CLOUDINARY_API_KEY,
-    api_secret = CLOUDINARY_API_SECRET
-)
 
 INSTALLED_APPS = (
     'django.contrib.admin',
@@ -81,9 +73,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 
 MAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
-EMAIL_HOST = CONF_EMAIL_HOST
-EMAIL_HOST_USER = CONF_EMAIL_HOST_USER
-EMAIL_HOST_PASSWORD = CONF_EMAIL_HOST_PASSWORD
+
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
@@ -95,16 +85,37 @@ WSGI_APPLICATION = 'pc.wsgi.application'
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
 if 'PRODUCTION' in os.environ:
-    DEBUG = True
-    TEMPLATE_DEBUG = True
+    DEBUG = False
+    TEMPLATE_DEBUG = False
     DATABASES = { 'default': dj_database_url.config() }
+    SECRET_KEY = os.environ.get('CONF_SECRET_KEY')
+    EMAIL_HOST = os.environ.get('CONF_EMAIL_HOST')
+    EMAIL_HOST_USER = os.environ.get('CONF_EMAIL_HOST_USER')
+    EMAIL_HOST_PASSWORD = os.environ.get('CONF_EMAIL_HOST_PASSWORD')
+    # Tutorial: http://cloudinary.com/documentation/django_integration#getting_started_guide
+    cloudinary.config(
+        cloud_name = os.environ.get('CLOUDINARY_CLOUD_NAME'),
+        api_key = CLOUDINARY_API_KEY,
+        api_secret = CLOUDINARY_API_SECRET
+    )
+
 else:
+    from settings_conf import *
+    SECRET_KEY = CONF_SECRET_KEY
+    EMAIL_HOST = CONF_EMAIL_HOST
+    EMAIL_HOST_USER = CONF_EMAIL_HOST_USER
+    EMAIL_HOST_PASSWORD = CONF_EMAIL_HOST_PASSWORD
     DEBUG = True
     TEMPLATE_DEBUG = True
     DATABASES = { 'default': {
     'ENGINE': 'django.db.backends.sqlite3',
     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),}
     }
+    cloudinary.config(
+        cloud_name = CLOUDINARY_CLOUD_NAME,
+        api_key = CLOUDINARY_API_KEY,
+        api_secret = CLOUDINARY_API_SECRET
+    )
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/

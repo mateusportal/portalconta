@@ -2,7 +2,8 @@
 __pycache__/
 *.py[cod]
 *.sqlite3
-settings_conf.py #CUIDADO AO RETIRAR ESTA LINHA DO GITIGNORE
+.DS_Store
+settings_conf.py
 
 # C extensions
 *.so

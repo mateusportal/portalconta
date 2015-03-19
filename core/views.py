@@ -1,10 +1,12 @@
 from django.shortcuts import render
+from empresas.forms import LoginForm
 
 def index(request):
     return render(request,'index/index.html')
 
 def login(request):
-    return render(request,'index/login.html')
+    form = LoginForm()
+    return render(request,'index/login.html', {'form':form})
 
 def valida_login(request):
     return render(request,'index/login.html')
