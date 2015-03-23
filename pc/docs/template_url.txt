@@ -1,12 +1,32 @@
+NÃO COLOCAR SENHA OU DADOS CONFIDENCIAIS AQUI!
+
+TEMPLATE
 http://almsaeedstudio.com/preview
 
 INDEX:
 http://www.bootply.com/render/129806
 http://bootstrapzero.com/bootstrap-template/sectionalize
 
-
 LOGO:
 http://www.flaticon.com/free-icon/card-wallet_67026
 
 MODELAGEM DIAGRAMA_DE_OBJETO.XML
 https://www.draw.io/
+
+CLOUDINARY
+LOGIN: tiago.garcia@portaldeideias.com.br
+
+EMAIL
+contatoportalcontas@gmail.com
+
+FACEBOOK:
+https://www.facebook.com/PortalContas
+
+TWITTER:
+https://twitter.com/PortalContas
+
+GOOGLE PLUS:
+https://plus.google.com/u/0/b/101813900063598335998/101813900063598335998/
+
+GITHUB:
+https://github.com/mateusportal/portalconta
