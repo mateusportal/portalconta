@@ -1,4 +1,5 @@
 # coding: utf-8
+# heroku git:remote -a portalconta
 
 import os
 import cloudinary
