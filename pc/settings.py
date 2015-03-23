@@ -65,9 +65,9 @@ WSGI_APPLICATION = 'pc.wsgi.application'
 
 # Tutorial: http://cloudinary.com/documentation/django_integration#getting_started_guide
 if 'PRODUCTION' in os.environ:
-    DEBUG = False
-    TEMPLATE_DEBUG = False
-    DATABASES = { 'default': dj_database_url.config(default=os.environ.get('DATABASE_URL')) }
+    DEBUG = True
+    TEMPLATE_DEBUG = True
+    DATABASES = { 'default': dj_database_url.config() }
     SECRET_KEY = os.environ.get('CONF_SECRET_KEY')
     EMAIL_HOST = os.environ.get('CONF_EMAIL_HOST')
     EMAIL_HOST_USER = os.environ.get('CONF_EMAIL_HOST_USER')
