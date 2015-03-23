@@ -67,7 +67,7 @@ WSGI_APPLICATION = 'pc.wsgi.application'
 if 'PRODUCTION' in os.environ:
     DEBUG = True
     TEMPLATE_DEBUG = True
-    DATABASES = { 'default': dj_database_url.config() }
+    DATABASES = { 'default': dj_database_url.config(default=os.environ.get('DATABASE_URL')) }
     SECRET_KEY = os.environ.get('CONF_SECRET_KEY')
     EMAIL_HOST = os.environ.get('CONF_EMAIL_HOST')
     EMAIL_HOST_USER = os.environ.get('CONF_EMAIL_HOST_USER')
