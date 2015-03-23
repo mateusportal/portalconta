@@ -18,5 +18,8 @@ def valida_cadastro(request):
 def sistema(request):
     return render(request,'sistema/index2.html')
 
+def calendario(request):
+    return render(request,'sistema/calendario.html')    
+
 
 
