@@ -10,7 +10,9 @@ urlpatterns = patterns('',
     url(r'^cadastro/$', 'core.views.cadastro', name='cadastro'),
     url(r'^valida_cadastro/$', 'core.views.valida_cadastro', name='valida_cadastro'),
     url(r'^sistema/$', 'core.views.sistema', name='sistema'),
-    url(r'^calendar/$', 'core.views.calendar', name='sistema'),   
+    url(r'^sistema/calendario/$', 'core.views.calendario', name='calendario'),
+    url(r'^sistema/sistema/$', 'core.views.cadastroSistema', name='cadastroSistema'),
+    url(r'^sistema/empresa/$', 'core.views.cadastroEmpresa', name='cadastroEmpresa'),  
 
 
     #url(r'^admin/', include(admin.site.urls)),

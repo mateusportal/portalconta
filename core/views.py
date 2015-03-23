@@ -20,5 +20,13 @@ def valida_cadastro(request):
 def sistema(request):
     return render(request,'sistema/index2.html')
 
+def cadastroSistema(request):
+    return render(request,'sistema/sistema.html')
+
+def cadastroEmpresa(request):
+    return render(request,'sistema/empresa.html')
+
+   
+
 
 
