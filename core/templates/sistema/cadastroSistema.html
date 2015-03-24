@@ -2,10 +2,8 @@
 {% block titulo %}Cadastro de Sistema{% endblock %}
 
 {% block container %} 
-    <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-        <section class="content-header">
+    <!--    <section class="content-header">
           <h1>
             Configurações de Sistema       
           </h1>
@@ -14,7 +12,7 @@
             <li class="active">Configurações de Sistema</li>
           </ol>
         </section>
-
+    -->
         <!-- Main content -->
         <section class="content">
           <!-- Info boxes -->
@@ -26,30 +24,34 @@
             </div><!-- /.box-header -->
                  <form role="form">
                     <div class="box-body">
-                      <div class="form-group">
-                        <label>Tipo</label>
-                        <select class="form-control">
-                          <option>Categoria</option>
-                          <option>Tipo</option>
-                          <option>Sub-tipo</option>
-                          <option>Tipo Pessoa</option>
-                        </select>
-                      </div>
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-cog"></i></span>
-                        <input type="text" class="form-control" placeholder="Tipo">
+                        <select class="form-control" placeholder="Tipo">
+                          <option SELECTED>ESCOLHA UM TIPO DE CARACTERÍSTICA</option>
+                          <option>CATEGORIA</option>
+                          <option>GRUPO</option>
+                          <option>SUB-GRUPO</option>
+                          <option>TIPO PESSOA</option>
+                        </select>
+                      </div>
+                      <br />
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-wrench"></i></span>
+                        <input type="text" class="form-control" placeholder="Nome">
                       </div>
                       <br/>
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-cogs"></i></span>
-                        <input type="text" class="form-control" placeholder="Sub-Tipo">
+                        <input type="text" class="form-control" placeholder="Descrição">
                       </div>
                       <br/>
-                    </div><!-- /.box-body -->
+                      <button type="submit" class="btn btn-success">Gravar</button>
+
+                  </div><!-- /.box-body -->
                 </form>
           </div><!-- /.box -->
         </section><!-- /.content -->
-</div><!-- /.content-wrapper -->      
+   
 
     
 
