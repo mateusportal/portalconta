@@ -1,12 +1,14 @@
 # coding: utf-8
 # heroku git:remote -a portalconta
-
 import os
 import cloudinary
-from dj_database_url import parse as db_url
+import dj_database_url
+
 from unipath import Path
 
 BASE_DIR = Path(__file__).parent
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 ALLOWED_HOSTS = ['*']
 
