@@ -15,5 +15,5 @@ urlpatterns = patterns('',
     url(r'^sistema/empresa/$', 'core.views.cadastroEmpresa', name='cadastroEmpresa'),  
 
 
-    #url(r'^admin/', include(admin.site.urls)),
+    #url(r'^admin/', include(admin.site.urls));
 )

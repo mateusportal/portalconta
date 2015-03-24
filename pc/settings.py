@@ -1,5 +1,5 @@
 # coding: utf-8
-# heroku git:remote -a portalconta
+# ADICIONANDO HOSPEDAGEM: heroku git:remote -a portalconta
 import os
 import cloudinary
 import dj_database_url
