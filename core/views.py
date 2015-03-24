@@ -26,6 +26,9 @@ def cadastroSistema(request):
 def cadastroEmpresa(request):
     return render(request,'sistema/empresa.html')
 
+def cadastarSistema(request):
+    return render(request,'sistema/cadastroSistema.html')
+
    
 
 

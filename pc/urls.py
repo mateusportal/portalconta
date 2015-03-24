@@ -13,7 +13,7 @@ urlpatterns = patterns('',
     url(r'^sistema/calendario/$', 'core.views.calendario', name='calendario'),
     url(r'^sistema/sistema/$', 'core.views.cadastroSistema', name='cadastroSistema'),
     url(r'^sistema/empresa/$', 'core.views.cadastroEmpresa', name='cadastroEmpresa'),  
-
+    url(r'^sistema/sistema/cadastro/$', 'core.views.cadastarSistema', name='cadastarSistema'),
 
     #url(r'^admin/', include(admin.site.urls)),
 )
