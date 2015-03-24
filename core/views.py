@@ -19,7 +19,10 @@ def sistema(request):
     return render(request,'sistema/index2.html')
 
 def calendario(request):
-    return render(request,'sistema/calendario.html')    
+    return render(request,'sistema/calendario.html') 
+
+def pessoas(request):
+    return render(request,'sistema/pessoas.html')    
 
 
 
