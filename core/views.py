@@ -26,5 +26,11 @@ def calendario(request):
 def pessoas(request):
     return render(request,'sistema/pessoas.html')    
 
+def cadastroEmpresa(request):
+    return render(request,'sistema/empresa.html')
+
+def cadastarSistema(request):
+    return render(request,'sistema/cadastroSistema.html')
+
 
 
