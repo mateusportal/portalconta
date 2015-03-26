@@ -22,11 +22,12 @@
                 <i class="ion ion-clipboard"></i>
                 <h3 class="box-title">Cadastro de Configurações</h3>
             </div><!-- /.box-header -->
-                 <form role="form">
+                 <form role="form" method="POST" action="/sistema/sistema/gravar/">
+                 {% csrf_token %}
                     <div class="box-body">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-cog"></i></span>
-                        <select class="form-control" placeholder="Tipo">
+                        <select class="form-control" placeholder="Tipo" id="tipo" name="tipo">
                           <option SELECTED>ESCOLHA UM TIPO DE CARACTERÍSTICA</option>
                           <option>CATEGORIA</option>
                           <option>GRUPO</option>
@@ -35,20 +36,22 @@
                         </select>
                       </div>
                       <br />
+                      <input type="hidden" value="{{sistemas.id}}" name="sisID" id ="sisID" >
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-wrench"></i></span>
-                        <input type="text" class="form-control" placeholder="Nome">
+                        <input type="text" class="form-control" placeholder="Nome" id="nome" name="nome" value="{{sistemas.nome}}">
                       </div>
                       <br/>
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-cogs"></i></span>
-                        <input type="text" class="form-control" placeholder="Descrição">
+                        <input type="text" class="form-control" placeholder="Descrição" id="descricao" name="descricao" value="{{sistemas.descricao}}">
                       </div>
                       <br/>
                       <button type="submit" class="btn btn-success">Gravar</button>
 
                   </div><!-- /.box-body -->
                 </form>
+
           </div><!-- /.box -->
         </section><!-- /.content -->
    

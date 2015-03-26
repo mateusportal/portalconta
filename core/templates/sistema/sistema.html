@@ -72,17 +72,35 @@
                       <!-- todo text -->
                       <span class="text">{{sistema.nome}}</span>
                       <!-- Emphasis label -->
-                      
+                      <input type="hidden" value="{{sistema.pk}}">
                       <!-- General tools such as edit or delete-->
-                      <div class="tools">
-                        <i class="fa fa-edit"></i>
-                        <i class="fa fa-trash-o"></i>
+                      <div class="tools" style="display: block">
+                        <a href="/sistema/sistema/editor/{{sistema.id}}" class="fa fa-edit"></a>
+                        <a href="" class="fa fa-trash-o" data-toggle="modal" data-target="#Modal{{sistema.id}}"></a>
+                        <!-- Modal -->
+                        <div class="modal fade" id="Modal{{sistema.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">CONFIRMA ESCLUSÃO!</h4>
+                              </div>
+                              <div class="modal-body">
+                                Deseja mesmo excluir o registro : {{sistema.tipo}} : {{sistema.nome}}
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
+                                <a href="/sistema/sistema/excluir/{{sistema.id}}"><button type="button" class="btn btn-primary">Sim</button></a>
+                              </div>
+                            </div>
+                          </div>
+                        </div><!-- Modal -->
                       </div>
                     </li>
                   {% endfor %}
                     </ul>
                     <div class="box-footer clearfix no-border">
-                      <a href="cadastro/"><button class="btn btn-default"><i class="fa fa-plus"></i>&nbsp;&nbsp;Adicionar novo</button></a>
+                      <a href="editor/"><button class="btn btn-default"><i class="fa fa-plus"></i>&nbsp;&nbsp;Adicionar novo</button></a>
                       <div class="box-tools pull-right">
                         <ul class="pagination pagination-sm inline">
                           <li><a href="#">&laquo;</a></li>

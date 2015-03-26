@@ -29,11 +29,14 @@ def pessoas(request):
 def cadastroEmpresa(request):
     return render(request,'sistema/empresa.html')
 
-def cadastarSistema(request):
-    return render(request,'sistema/cadastroSistema.html')
+def listarSistema(request):
+    return render(request,'sistema/sistema.html')
 
 def cadastroSistema(request):
-    return render(request,'sistema/sistema.html')
+    return render(request,'sistema/cadastroSistema.html')
+
+
+
 
 
 
