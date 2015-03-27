@@ -28,11 +28,23 @@
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-cog"></i></span>
                         <select class="form-control" placeholder="Tipo" id="tipo" name="tipo">
-                          <option SELECTED>ESCOLHA UM TIPO DE CARACTERÍSTICA</option>
-                          <option>CATEGORIA</option>
-                          <option>GRUPO</option>
-                          <option>SUB-GRUPO</option>
-                          <option>TIPO PESSOA</option>
+                          <option {% if sistemas.tipo == '' %}
+                            SELECTED
+                          {% endif %} >ESCOLHA UM TIPO DE CARACTERÍSTICA</option>
+                          <option 
+                          {% if sistemas.tipo == 'CATEGORIA' %}
+                            SELECTED
+                          {% endif %}  >CATEGORIA</option>
+                          <option 
+                          {% if sistemas.tipo == 'GRUPO' %}
+                            SELECTED
+                          {% endif %} >GRUPO</option>
+                          <option {% if sistemas.tipo == 'SUB-GRUPO' %}
+                            SELECTED
+                          {% endif %} >SUB-GRUPO</option>
+                          <option {% if sistemas.tipo == 'TIPO PESSOA' %}
+                            SELECTED
+                          {% endif %} >TIPO PESSOA</option>
                         </select>
                       </div>
                       <br />

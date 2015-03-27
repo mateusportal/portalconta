@@ -5,8 +5,15 @@ from contas.models import Sistema
 # Create your views here.
 
 def listaSistema(request):
-	sistemas = Sistema.objects.filter(empresa_id=1).order_by('tipo','nome')
-	return render(request,'sistema/sistema.html',{'sistemas':sistemas})
+    if request.method == 'POST':
+        sistemas = Sistema.objects.filter(Q(nome__contains=request.POST.get('parametro','')) | Q(tipo__contains=request.POST.get('parametro',''))).order_by('tipo','nome')    
+
+        print request.POST.get('parametro','')
+
+    else:
+        sistemas = Sistema.objects.filter(empresa_id=1,).order_by('tipo','nome')
+
+    return render(request,'sistema/sistema.html',{'sistemas':sistemas})
 
 def gravarSistema(request):
     if request.method == 'POST':
@@ -42,6 +49,6 @@ def preencherSistema(request,sisId):
 
 
 
-    	
+        
     
 

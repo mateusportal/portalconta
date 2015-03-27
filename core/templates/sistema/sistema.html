@@ -17,12 +17,14 @@
         <!-- Main content -->
         <section class="content">
           <!-- Info boxes -->
+          <form method="POST" action="/sistema/sistema/buscar/"> {% csrf_token %}
             <div class="input-group">
-                <input class="form-control" placeholder="Sua pesquisa aqui..."/>
+                <input class="form-control" placeholder="Sua pesquisa aqui..." name="parametro" type="text" />
               <div class="input-group-btn">
-                <button class="btn btn-success"><i class="fa fa-search"><b>&nbsp;Pesquisa</b></i></button>
+                <button type="submit" class="btn btn-success"><i class="fa fa-search"><b>&nbsp;Pesquisa</b></i></button>
               </div>
             </div>
+          </form>
             <br/>
           <div class="box box-primary">
                 <div class="box-header">
@@ -100,7 +102,7 @@
                   {% endfor %}
                     </ul>
                     <div class="box-footer clearfix no-border">
-                      <a href="editor/"><button class="btn btn-default"><i class="fa fa-plus"></i>&nbsp;&nbsp;Adicionar novo</button></a>
+                      <a href="/sistema/sistema/editor/"><button class="btn btn-default"><i class="fa fa-plus"></i>&nbsp;&nbsp;Adicionar novo</button></a>
                       <div class="box-tools pull-right">
                         <ul class="pagination pagination-sm inline">
                           <li><a href="#">&laquo;</a></li>
