@@ -1,0 +1,169 @@
+{% extends "sistema/template.html" %}
+{% block titulo %} Portal Contas - Pessoas {% endblock %}
+
+{% block container %}  
+<section class="content">
+    <div class="row">    
+        <div class="col-md-12">           
+            <div class="box box-info">
+                <div class="box-header">
+                    <h3 class="box-title">Dados Pessoais</h3>
+                </div>
+                <div class="box-body">           
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                        <input type="text" class="form-control" placeholder="Nome">
+                    </div>
+                    <br/>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-edit"></i></span>
+                        <input type="text" class="form-control" id="cpf" placeholder="Cpf">
+                    </div>
+                    <br/>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-edit"></i></span>
+                        <input type="text" class="form-control" placeholder="Rg">                     
+                    </div>
+                    <br />
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-bank"></i></span>
+                        <input type="text" class="form-control" placeholder="Banco">
+                    </div>
+                    <br/>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-table"></i></span>
+                        <input type="text" class="form-control" id="cpf" placeholder="Conta Corrente">
+                    </div>
+                    <br/>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-bank"></i></span>
+                        <input type="text" class="form-control" placeholder="Agência">
+                    </div>                    
+                    <br/>
+                </div><!-- /.box-body -->
+            </div><!-- /.box -->
+        </div><!--/.col  -->            
+    </div>   <!-- /.row -->
+    <div class="row">    
+        <div class="col-md-12">           
+            <div class="box box-info">
+                <div class="box-header">
+                    <h3 class="box-title">Endereço</h3>
+                </div>
+                <div class="box-body">           
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-home"></i></span>
+                        <input type="text" class="form-control" placeholder="Endereço">
+                    </div>
+                    <br/>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-edit"></i></span>
+                        <input type="text" class="form-control" placeholder="Número">
+                    </div>
+                    <br/>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-home"></i></span>
+                        <input type="text" class="form-control" placeholder="Complemento">                     
+                    </div>
+                    <br />
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-globe"></i></span>
+                        <input type="text" class="form-control" placeholder="Bairro">
+                    </div>
+                    <br/>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-globe"></i></span>
+                        <input type="text" class="form-control" id="cpf" placeholder="Cidade">
+                    </div>
+                    <br/>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-globe"></i></span>
+                        <input type="text" class="form-control" placeholder="Estado">
+                    </div>                    
+                    <br/>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-globe"></i></span>
+                        <input type="text" class="form-control" placeholder="País">
+                    </div>                    
+                    <br/>
+                </div><!-- /.box-body -->
+            </div><!-- /.box -->
+        </div><!--/.col  -->
+        </div>   <!-- /.row -->
+        <div class="row">    
+            <div class="col-md-12">           
+                <div class="box box-info">
+                    <div class="box-header">
+                        <h3 class="box-title">Contatos</h3>
+                    </div>
+                    <div class="box-body">           
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+                            <input type="text" class="form-control" placeholder="Telefone">
+                        </div>
+                        <br/>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-mobile"></i></span>
+                            <input type="text" class="form-control" placeholder="Celular">
+                        </div>
+                        <br/>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
+                            <input type="email" class="form-control" placeholder="E-mail">               
+                        </div>
+                        <br />
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
+                            <input type="email" class="form-control" placeholder="E-mail Empresarial">
+                        </div>
+                        <br/>
+                    </div><!-- /.box-body -->
+                </div><!-- /.box -->
+            </div><!--/.col  -->             
+        </div>   <!-- /.row -->
+        <div class="row">    
+            <div class="col-md-12">           
+                <div class="box box-info">
+                    <div class="box-header">
+                        <h3 class="box-title">Redes Sociais</h3>
+                    </div>
+                    <div class="box-body">           
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-facebook"></i></span>
+                            <input type="text" class="form-control" placeholder="Facebook">
+                        </div>
+                        <br/>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-twitter"></i></span>
+                            <input type="text" class="form-control" placeholder="Twitter">
+                        </div>
+                        <br/>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-skype"></i></span>
+                            <input type="email" class="form-control" placeholder="Skype">             
+                        </div>
+                        <br />
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-google-plus"></i></span>
+                            <input type="email" class="form-control" placeholder="Google Plus">             
+                        </div>                      
+                    </div><!-- /.box-body -->
+                </div><!-- /.box -->
+            </div><!--/.col  -->             
+        </div>   <!-- /.row -->
+</section><!-- /.content -->
+{% endblock %}
+{% block js %}
+    <script src="/static/sistema/js/mask.js"></script>
+    <script>
+       jQuery(function($){
+       $("#cpf").mask("999.999.999-99");
+       $("#rg").mask("99.999.999-99");
+    }); 
+</script> 
+{% endblock %}
+
+
+
+
+

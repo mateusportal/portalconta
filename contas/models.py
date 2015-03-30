@@ -1,19 +1,9 @@
 from django.db import models
-from empresas.models import Pessoa, Empresa
+from empresas.models import Empresa, Sistema, Pessoa
 
 # = models.CharField(max_length=50, blank=True, null=True)
 # = models.CharField(max_length=150, blank=True, null=False)
 # = models.CharField(max_length=250, blank=True, null=True)
-
-
-class Sistema(models.Model):
-    tipo = models.CharField(max_length=50, blank=True, null=True)
-    nome = models.CharField(max_length=150, blank=True, null=True)
-    empresa = models.ForeignKey(Empresa,related_name="sistema_empresa_id")
-    tags = models.CharField(max_length=250, blank=True, null=True)
-    descricao = models.CharField(max_length=250, blank=True, null=True)
-    data_cadastro = models.DateTimeField(auto_now=False, auto_now_add=True)
-    ativo = models.CharField(default="SIM", max_length=50, blank=False, null=False)
 
 
 class Caixa(models.Model):

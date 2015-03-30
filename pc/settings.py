@@ -32,9 +32,9 @@ INSTALLED_APPS = (
     'cloudinary',
     'south',
     'pagination',
+    'core',
     'empresas',
     'contas',
-    'core',
 )
 
 MIDDLEWARE_CLASSES = (

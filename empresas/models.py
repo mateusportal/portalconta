@@ -8,6 +8,8 @@ from cloudinary.models import CloudinaryField
 #Pequenos : 50
 #Medios   : 150
 #Grandes  : 250
+
+
 class Empresa(models.Model):
     logo = models.CharField(default='semfoto.png', max_length=100, blank=True, null=True)
     razao_social = models.CharField(db_index=True,max_length=150, blank=False, null=False)
@@ -40,6 +42,7 @@ class Empresa(models.Model):
     tags = models.CharField(max_length=250, blank=True, null=True)
     ativo = models.CharField(default="SIM", max_length=50, blank=False, null=False)
 
+    
 
 class Usuario(AbstractUser):
     # username
@@ -72,8 +75,21 @@ class Usuario(AbstractUser):
     def __unicode__(self):
         return u'{username} ({email})'.format(username=self.username, email=self.email)
 
-class Pessoa(models.Model):
+class Sistema(models.Model):
     tipo = models.CharField(max_length=50, blank=True, null=True)
+    nome = models.CharField(max_length=150, blank=True, null=True)
+    empresa = models.ForeignKey(Empresa, related_name="sistema_empresa_id", blank=True, null=True)
+    tags = models.CharField(max_length=250, blank=True, null=True)
+    descricao = models.CharField(max_length=250, blank=True, null=True)
+    data_cadastro = models.DateTimeField(auto_now=False, auto_now_add=True)
+    ativo = models.CharField(default="SIM", max_length=50, blank=False, null=False)
+
+    def __unicode__(self):
+        return u'{tipo} ({nome})'.format(tipo=self.tipo, nome=self.nome)
+
+
+class Pessoa(models.Model):
+    tipo = models.ForeignKey(Sistema, related_name="pessoa_tipo_id", blank=True, null=True)
     nome = models.CharField(db_index=True,max_length=150, blank=True, null=False)
     cpf = models.CharField(max_length=50, blank=True, null=True)
     rg = models.CharField(max_length=50, blank=True, null=True)
@@ -104,3 +120,6 @@ class Pessoa(models.Model):
     anotacacoes = models.CharField(max_length=250, blank=True, null=True)
     grupo_pessoa = models.CharField(db_index=True,max_length=150, blank=True, null=False)
     tags = models.CharField(max_length=250, blank=True, null=True)
+
+    def __unicode__(self):
+        return u'{nome} ({email_pessoal})'.format(nome=self.nome, email_pessoal=self.email_pessoal)

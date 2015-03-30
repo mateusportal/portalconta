@@ -92,11 +92,11 @@ def calendario(request):
     return render(request,'sistema/calendario.html') 
 
 @login_required
-def pessoas(request):
-    return render(request,'sistema/pessoas.html')
+def cadastrarPessoas(request):
+    return render(request,'sistema/cadastroPessoas.html')
 
-def listaPessoas(request):
-    return render(request,'sistema/listaPessoas.html')        
+def pessoas(request):
+    return render(request,'sistema/pessoas.html')        
 
 @login_required
 def cadastroEmpresa(request):
