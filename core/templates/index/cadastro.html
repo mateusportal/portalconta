@@ -7,20 +7,41 @@
 <div class="row">
   <div class="col-sm-4 col-sm-offset-4">
         <div class="list-group text-center">
-        <form action="/valida_cadastro/" method="POST">
-          <a href="#" class="list-group-item">
-            <h2 class="list-group-item-heading">Cadastro</h2>
+
+        <form action="/valida_cadastro/" method="POST"> {% csrf_token %}
+          <a href="#" class="list-group-item" title="Neste formulário você irá cadastrar um novo usuário mestre para o sistema.">
+            <h2 class="list-group-item-heading">Novo Cadastro!</h2>
           </a>
-          <a href="#" class="list-group-item">
-            <p class="list-group-item-text"><input required type="text" class="form-control" name="" placeholder="NOME DE USUÁRIO"></p>
-          </a>
-          <a href="#" class="list-group-item">
-            <p class="list-group-item-text"><input required type="password" class="form-control" name="" placeholder="SENHA"></p>
-          </a>
-          <a href="#" class="list-group-item">
-            <input type="submit" class="btn btn-warning btn-lg btn-block" value="CADASTRAR">
-          </a>
-          <h6>Clicando no botão acima você concorda com nossos <a href="#" style="color:#ffffff;">Termos de Uso</a>.</h6>
+
+          <div class="list-group-item" title="Informe seu nome completo.">
+            <font color="black">Nome Completo</font>
+            <p class="list-group-item-text"><input required type="text" class="form-control" name="{{ form.first_name.name }}" placeholder="Seu nome completo." value="{{ form.first_name.value|default_if_none:'' }}"></p>
+          </div>
+
+          <div class="list-group-item" title="Informe seu login de usuário para entrar no sistema.">
+            <font color="black">Login de Usuário</font>
+            <p class="list-group-item-text"><input required type="text" class="form-control" name="{{ form.username.name }}" placeholder="Nome usado no login." value="{{ form.username.value|default_if_none:'' }}"></p>
+          </div>
+
+          <div class="list-group-item" title="Informe o seu e-mail de uso diário.">
+            <font color="black">E-Mail Válido</font>
+            <p class="list-group-item-text"><input required type="email" class="form-control" name="{{ form.email.name }}" placeholder="seu@email.com.br" value="{{ form.email.value|default_if_none:'' }}"></p>
+          </div>
+
+          <div class="list-group-item" title="Informe uma senha que você lembre. Não será confirmada a senha.">
+            <font color="black">Senha</font>
+            <p class="list-group-item-text"><input required type="password" class="form-control" name="{{ form.password.name }}" placeholder="Digite sua senha." value="{{ form.password.value|default_if_none:'' }}"></p>
+          </div>
+
+          <div class="list-group-item">
+            <input type="submit" class="btn btn-warning btn-lg btn-block" value="CADASTRAR" title="Clique para validar as informações e fazer um novo registro no sistema.">
+          </div>
+
+          <h6>Clicando no botão acima você concorda com nossos<br/><a href="#" style="color:#ffffff;">Termos de Uso</a>.</h6>
+
+          <input type="hidden" name="{{ form.last_login.name }}" value="{% now 'SHORT_DATETIME_FORMAT' %}">
+          <input type="hidden" name="{{ form.date_joined.name }}" value="{% now 'SHORT_DATETIME_FORMAT' %}">
+          <input type="hidden" name="{{ form.empresa.name }}" value="">
         <form>
         </div>
   </div><!--/centro-->

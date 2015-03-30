@@ -1,5 +1,9 @@
 # coding: utf-8
 # ADICIONANDO HOSPEDAGEM: heroku git:remote -a portalconta
+# ADICIONANDO NOVO USUARIO CASO O SOUTH NAO CRIE: python manage.py createsuperuser
+# COMANDO SOUTH: python manage.py schemamigration empresas --auto
+# COMANDO SOUTH: python manage.py migrate empresas
+
 import os
 import cloudinary
 import dj_database_url
@@ -14,7 +18,7 @@ ALLOWED_HOSTS = ['*']
 
 LOGIN_URL = '/login/'
 
-LOGIN_REDIRECT_URL = '/central/'
+LOGIN_REDIRECT_URL = '/sistema/'
 
 AUTH_USER_MODEL = 'empresas.Usuario'
 
