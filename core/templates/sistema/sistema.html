@@ -45,6 +45,7 @@
                    {% for sistema in sistemas %}
                     <li>
                       <!-- drag handle -->
+                      <a href="/sistema/sistema/editor/{{sistema.id}}" >
                       <span class="handle">
                         <i class="fa fa-ellipsis-v"></i>
                         <i class="fa fa-ellipsis-v"></i>
@@ -76,8 +77,9 @@
                       <!-- Emphasis label -->
                       <input type="hidden" value="{{sistema.pk}}">
                       <!-- General tools such as edit or delete-->
+                      </a>
                       <div class="tools" style="display: block">
-                        <a href="/sistema/sistema/editor/{{sistema.id}}" class="fa fa-edit"></a>
+                      
                         <a href="" class="fa fa-trash-o" data-toggle="modal" data-target="#Modal{{sistema.id}}"></a>
                         <!-- Modal -->
                         <div class="modal fade" id="Modal{{sistema.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
