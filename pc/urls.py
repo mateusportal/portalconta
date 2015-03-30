@@ -11,9 +11,13 @@ urlpatterns = patterns('',
     url(r'^valida_cadastro/$', 'core.views.valida_cadastro', name='valida_cadastro'),
     url(r'^sistema/$', 'core.views.sistema', name='sistema'),
     url(r'^sistema/calendario/$', 'core.views.calendario', name='calendario'),
-    #url(r'^sistema/sistema/$', 'core.views.cadastroSistema', name='cadastroSistema'),
-    #url(r'^sistema/empresa/$', 'core.views.cadastroEmpresa', name='cadastroEmpresa'),  
-    #url(r'^sistema/sistema/cadastro/$', 'core.views.cadastarSistema', name='cadastarSistema'),
+    url(r'^sistema/sistema/$', 'contas.views.listaSistema', name='listaSistema'),
+    url(r'^sistema/empresa/$', 'core.views.cadastroEmpresa', name='cadastroEmpresa'),  
+    url(r'^sistema/sistema/buscar/$', 'contas.views.listaSistema', name='listaSistema'),
+    url(r'^sistema/sistema/editor/$', 'core.views.cadastroSistema', name='cadastroSistema'),
+    url(r'^sistema/sistema/editor/(?P<sisId>\d+)/$', 'contas.views.preencherSistema', name='preencherSistema'),
+    url(r'^sistema/sistema/gravar/$', 'contas.views.gravarSistema', name='gravarSistema'),
+    url(r'^sistema/sistema/excluir/(?P<sisId>\d+)/$', 'contas.views.excluirSistema', name='excluirSistema'),
 
-    #url(r'^admin/', include(admin.site.urls));
+    url(r'^admin/', include(admin.site.urls)),
 )

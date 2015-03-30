@@ -99,9 +99,14 @@ def pessoas(request):
 def cadastroEmpresa(request):
     return render(request,'sistema/empresa.html')
 
-@login_required
-def cadastarSistema(request):
+def listarSistema(request):
+    return render(request,'sistema/sistema.html')
+
+def cadastroSistema(request):
     return render(request,'sistema/cadastroSistema.html')
+
+
+
 
 
 
