@@ -5,35 +5,71 @@
 <section class="content">
     <div class="row">
         <div class="col-xs-12">
+        <form method="POST" action="/sistema/pessoas/buscar/"> {% csrf_token %}
+            <div class="input-group">
+                <input class="form-control" placeholder="Sua pesquisa aqui..." name="parametro" type="text" />
+                <div class="input-group-btn">
+                    <button type="submit" class="btn btn-success"><i class="fa fa-search"><b>&nbsp;Pesquisa</b></i></button>
+                </div>
+            </div>
+          </form>
+        </div>
+    </div>        
+    <div class="row">
+        <div class="col-xs-12">
             <div class="box">
                 <div class="box-header">
-                  <h3 class="box-title">Listagem de Pessoas</h3>
-                  <div class="box-tools">
-                    <div class="input-group">
-                      <input type="text" name="table_search" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Search"/>
-                      <div class="input-group-btn">
-                        <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
-                      </div>
-                    </div>
-                  </div>
+                  <h3 class="box-title">Listagem de Pessoas</h3>                
                 </div><!-- /.box-header -->
                 <div class="box-body table-responsive no-padding">
                   <table class="table table-hover">
                     <tr>                     
-                      <th>Nome</th>
-                      <th>Telefone</th>
+                      <th>Tipo/Nome</th>
                       <th>e-mail</th>
-                      <th>Editar</th>
+                      <th>Telefone</th>
+                      <th>Apagar</th>
                     </tr>
+                    {% for pessoa in pessoas %}
                     <tr>                     
-                      <td><span class="label label-info">Cliente</span>&nbsp;John Deepe Defoe</td>
-                      <td>3727-4224</td>
-                      <td>john@deep.com</td>
-                      <td><a href="/sistema/pessoas/" class="btn btn-danger btn-sm fa fa-trash-o"></a></td>
+                      <td><a href="/sistema/pessoas/editor/{{pessoa.id}}"><span class="label label-success">{{pessoa.tipo}}</span>&nbsp;{{pessoa.nome}}</a></td>
+                      <td><a href="mailto:{{pessoa.email_pessoal}}">{{pessoa.email_pessoal}}</a></td>
+                      <td><a href="tel:{{pessoa.telefone_celular}}">{{pessoa.telefone_celular}}</a></td>
+                      <td><a href="" class="btn btn-danger btn-sm fa fa-trash-o" data-toggle="modal" data-target="#Modal{{pessoa.id}}" ></a></td>
+                      <!-- Modal -->
+                        <div class="modal fade" id="Modal{{pessoa.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">CONFIRMA ESCLUSÃO!</h4>
+                              </div>
+                              <div class="modal-body">
+                                Deseja mesmo excluir o registro : {{pessoa.tipo}} : {{pessoa.nome}}
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
+                                <a href="/sistema/pessoas/excluir/{{pessoa.id}}"><button type="button" class="btn btn-primary">Sim</button></a>
+                              </div>
+                            </div>
+                          </div>
+                        </div><!-- Modal -->
                     </tr>
+                    {% endfor %}
                   </table>
                 </div><!-- /.box-body -->
-              </div><!-- /.box -->  
+              </div><!-- /.box -->
+          <div class="box-footer clearfix no-border">
+                      <a href="/sistema/pessoas/editor"><button class="btn btn-default"><i class="fa fa-plus"></i>&nbsp;&nbsp;Adicionar novo</button></a>
+                      <div class="box-tools pull-right">
+                        <ul class="pagination pagination-sm inline">
+                          <li><a href="#">&laquo;</a></li>
+                          <li><a href="#">1</a></li>
+                          <li><a href="#">2</a></li>
+                          <li><a href="#">3</a></li>
+                          <li><a href="#">&raquo;</a></li>
+                        </ul>
+                      </div>  
+                    </div>      
         </div><!-- /.col -->
     </div><!-- /.row -->
 </section><!-- /.content --> 

@@ -10,12 +10,12 @@ html,body {
 }
 
 .navbar-trans {
-	background-color:#279ddd;
-  color:#fff;
+	background-color:#514c86;
+    color:#fff;
 }
 
 .navbar-trans li>a:hover,.navbar-trans li>a:focus,.navbar-trans li.active {
-	background-color:#38afef;
+	background-color:#3c3b78;
 }
 
 .navbar-trans a{
@@ -44,13 +44,14 @@ section {
 	border-color:transparent;
 }
 
-a.list-group-item.active,[class*='-info'] {
-	background-color: #168ccc;
+a.list-group-item.active, a.list-group-item.active:hover, a.list-group-item.active:focus {
+	background-color: #514c86;
+    border-color: #fff;
     color:#fff;
 }
 
 #section1 {
-	background-color: #168ccc;
+	background-color: #3c3b78;
     color:#dedeff;
 }
 
@@ -74,7 +75,7 @@ a.list-group-item.active,[class*='-info'] {
 }
 
 #section6 {
-	background-color: #168ccc;
+	background-color: #3c3b78;
     color:#ddd;
 }
 

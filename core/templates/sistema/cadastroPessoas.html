@@ -3,6 +3,7 @@
 
 {% block container %}  
 <section class="content">
+    <form method="POST" action="/sistema/sistema/gravar/"> {% csrf_token %}
     <div class="row">    
         <div class="col-md-12">           
             <div class="box box-info">
@@ -12,7 +13,7 @@
                 <div class="box-body">           
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                        <input type="text" class="form-control" placeholder="Nome">
+                        <input type="text" class="form-control" placeholder="Nome" value="{{pessoas.nome}}">
                     </div>
                     <br/>
                     <div class="input-group">
@@ -41,6 +42,7 @@
                     </div>                    
                     <br/>
                 </div><!-- /.box-body -->
+
             </div><!-- /.box -->
         </div><!--/.col  -->            
     </div>   <!-- /.row -->
@@ -104,12 +106,12 @@
                         <br/>
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-mobile"></i></span>
-                            <input type="text" class="form-control" placeholder="Celular">
+                            <input type="text" class="form-control" placeholder="Celular" value="{{pessoas.telefone_celular}}" >
                         </div>
                         <br/>
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
-                            <input type="email" class="form-control" placeholder="E-mail">               
+                            <input type="email" class="form-control" placeholder="E-mail" value="{{pessoas.email_pessoal}}">               
                         </div>
                         <br />
                         <div class="input-group">
@@ -151,6 +153,7 @@
                 </div><!-- /.box -->
             </div><!--/.col  -->             
         </div>   <!-- /.row -->
+    </form>
 </section><!-- /.content -->
 {% endblock %}
 {% block js %}

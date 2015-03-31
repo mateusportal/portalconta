@@ -2,8 +2,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>{% block titulo %}{% endblock %}</title>
-    
+    <title>{% block titulo %}{% endblock %} - PortalContas - Administrativo</title>
     <meta charset="UTF-8">    
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <link href="/static/sistema/css/bootstrap.min.css" rel="stylesheet" type="text/css" />    
@@ -11,12 +10,12 @@
     <link href="http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet" type="text/css" />           
     <link href="/static/sistema/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />   
     <link href="/static/sistema/css/skin-blue.css" rel="stylesheet" type="text/css" />
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
+    <link rel="icon" type="image/png" href="/static/index/img/favicon_preto.png" />
+    <meta name="robots" content="noindex, nofollow">
     {% block css %}{% endblock %}
 </head>
 <body class="skin-blue">
@@ -225,36 +224,54 @@
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <img src="/static/sistema/img/user2-160x160.jpg" class="user-image" alt="User Image"/>
-                  <span class="hidden-xs">Tiago Garcia</span>
+                  <span class="hidden-xs">{{ user.empresa.nome_fantasia }}</span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
                   <li class="user-header">
                     <img src="/static/sistema/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
                     <p>
-                      Tiago Garcia - Web Developer
-                      <small>Membro desde Outubro 2014</small>
+                      {{ user.empresa.razao_social }}
+                      <small>Membro desde {{ user.empresa.data_cadastro|date:"M/Y" }}</small>
                     </p>
                   </li>
                   <!-- Menu Body -->
                   <li class="user-body">
+                    {% if user.empresa.facebook %}
                     <div class="col-xs-4 text-center">
-                      <a href="#">Facebook</a>
+                      <a href="{{ user.empresa.facebook }}" target="_blank">Facebook</a>
                     </div>
+                    {% else %}
                     <div class="col-xs-4 text-center">
-                      <a href="#">Twetter</a>
+                      <a href="/LINK PARA ATUALIZACAO DO FACEBOOK/" target="_blank">Facebook</a>
                     </div>
+                    {% endif %}
+                    {% if user.empresa.twitter %}
                     <div class="col-xs-4 text-center">
-                      <a href="#">Amigos</a>
+                      <a href="{{ user.empresa.twitter }}" target="_blank">Twitter</a>
                     </div>
+                    {% else %}
+                    <div class="col-xs-4 text-center">
+                      <a href="/LINK PARA ATUALIZACAO DO Twitter/" target="_blank">Twitter</a>
+                    </div>
+                    {% endif %}
+                    {% if user.empresa.googleplus %}
+                    <div class="col-xs-4 text-center">
+                      <a href="{{ user.empresa.googleplus }}" target="_blank">Google+</a>
+                    </div>
+                    {% else %}
+                    <div class="col-xs-4 text-center">
+                      <a href="/LINK PARA ATUALIZACAO DO Amigos/" target="_blank">Google+</a>
+                    </div>
+                    {% endif %}
                   </li>
                   <!-- Menu Footer-->
                   <li class="user-footer">
                     <div class="pull-left">
-                      <a href="#" class="btn btn-default btn-flat">Perfil</a>
+                      <a href="/sistema/usuario/" class="btn btn-default btn-flat">Perfil</a>
                     </div>
                     <div class="pull-right">
-                      <a href="#" class="btn btn-default btn-flat">Sair</a>
+                      <a href="/logout/" class="btn btn-default btn-flat">Sair</a>
                     </div>
                   </li>
                 </ul>
@@ -331,7 +348,7 @@
             </li>
 
             <li>
-              <a href="/calendario/">
+              <a href="/sistema/calendario/">
                 <i class="fa fa-calendar"></i> <span>Calendar</span>
                 <small class="label pull-right bg-red">3</small>
               </a>
@@ -375,7 +392,7 @@
 
   </div><!-- ./wrapper -->
 
-  <script src="/static/sistema/js/jQuery-2.1.3.min.js"></script>   
+  <script src="/static/sistema/js/jQuery.js"></script>   
   <script src="/static/sistema/js/bootstrap.min.js"></script>
   <script src='/static/sistema/js/fastclick.min.js'></script>  
   <script src="/static/sistema/js/app.min.js"></script>   

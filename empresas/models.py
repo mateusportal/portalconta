@@ -85,7 +85,7 @@ class Sistema(models.Model):
     ativo = models.CharField(default="SIM", max_length=50, blank=False, null=False)
 
     def __unicode__(self):
-        return u'{tipo} ({nome})'.format(tipo=self.tipo, nome=self.nome)
+        return u'{nome}'.format(nome=self.nome)
 
 
 class Pessoa(models.Model):
