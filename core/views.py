@@ -83,22 +83,22 @@ def valida_cadastro(request):
     
     return render(request,'index/cadastro_valida.html')
 
-@login_required
+#@login_required
 def sistema(request):
     return render(request,'sistema/index2.html')
 
-@login_required
+#@login_required
 def calendario(request):
     return render(request,'sistema/calendario.html') 
 
-@login_required
+#@login_required
 def cadastrarPessoas(request):
     return render(request,'sistema/cadastroPessoas.html')
 
 def pessoas(request):
     return render(request,'sistema/pessoas.html')        
 
-@login_required
+#@login_required
 def cadastroEmpresa(request):
     return render(request,'sistema/empresa.html')
 
