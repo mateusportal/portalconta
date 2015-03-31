@@ -1,6 +1,11 @@
 {% extends "sistema/template.html" %}
 {% block titulo %} Portal Contas - Pessoas {% endblock %}
 
+{% block css %}
+<link href="/static/sistema/css/jasny-bootstrap.css.map" rel="stylesheet" type="text/css" />
+<link href="/static/sistema/css/jasny-bootstrap.min.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+
 {% block container %}  
 <section class="content">
     <div class="row">    
@@ -13,6 +18,10 @@
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
                         <input type="text" class="form-control" placeholder="Nome">
+
+                        <input type="text" class="form-control" data-mask="999.999.999-99" placeholder="CPF">
+
+
                     </div>
                     <br/>
                     <div class="input-group">
@@ -145,22 +154,25 @@
                         <br />
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-google-plus"></i></span>
-                            <input type="email" class="form-control" placeholder="Google Plus">             
+                            <input type="email" class="form-control" placeholder="Google Plus">     
                         </div>                      
                     </div><!-- /.box-body -->
                 </div><!-- /.box -->
             </div><!--/.col  -->             
         </div>   <!-- /.row -->
+        <div class="row">    
+            <div class="col-md-12">
+                <div class="input-group">                  
+                    <span class="input-group-btn">
+                       <button type="button" class="btn btn-success btn-flat">Salvar Dados</button>
+                    </span>
+                </div>
+            </div><!--/.col  -->             
+        </div>   <!-- /.row -->         
 </section><!-- /.content -->
 {% endblock %}
 {% block js %}
-    <script src="/static/sistema/js/mask.js"></script>
-    <script>
-       jQuery(function($){
-       $("#cpf").mask("999.999.999-99");
-       $("#rg").mask("99.999.999-99");
-    }); 
-</script> 
+    <script src="/static/sistema/js/jasny-bootstrap.min.js"></script>
 {% endblock %}
 
 
