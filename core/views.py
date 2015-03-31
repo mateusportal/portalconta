@@ -4,30 +4,40 @@ from django.db.models import Q
 from datetime import date, datetime
 from empresas.forms import LoginForm, UsuarioForm
 from empresas.models import Usuario, Empresa
-from django.contrib.auth import authenticate, logout, login as auth_login
+from django.contrib.auth import authenticate, logout as auth_logout, login as auth_login
 from django.contrib.auth.decorators import login_required # USAR: @login_required
 
 def index(request):
-    return render(request,'index/index.html')
+    if request.user.is_authenticated():
+        return HttpResponseRedirect('/sistema/')
+    else:
+        return render(request,'index/index.html')
+
+def logout(request):
+    auth_logout(request)
+    return HttpResponseRedirect('/login/')
 
 def login(request):
-    form = LoginForm()
-    return render(request,'index/login.html', {'form':form})
+    if request.user.is_authenticated():
+        return HttpResponseRedirect('/sistema/')
+    else:
+        form = LoginForm()
+        return render(request,'index/login.html', {'form':form})
 
 def valida_login(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
 
         if form.is_valid():
-            user = authenticate(username___iexact=form.data['username'], password=form.data['password']) 
+            user = authenticate(username=form.data['username'].lower(), password=form.data['password']) 
             if user is not None:
                 if user.is_active:
                     auth_login(request, user)
                     return HttpResponseRedirect('/sistema/')
                 else:
-                    return render(request, 'index/login.html', {'form': form})
+                    return render(request, 'index/login.html', {'form': form, 'msg':'Usuário desativado do sistema! Cadastre-se novamente.'})
             else:
-                return render(request, 'index/login.html', {'form': form})  
+                return render(request, 'index/login.html', {'form': form, 'msg':'Falha ao retornar o objeto do banco.'})  
         else:
             return render(request, 'index/login.html', {'form': form})    
     else:
@@ -64,7 +74,7 @@ def valida_cadastro(request):
 
             usuario.last_name = usuario.last_name.strip()
             usuario.email = form['email'].lower().strip()
-            usuario.username = form['username'].strip()
+            usuario.username = form['username'].lower().strip()
             usuario.set_password(form['password'])
             usuario.is_staff = False
             usuario.is_active = True
@@ -87,18 +97,15 @@ def valida_cadastro(request):
 def sistema(request):
     return render(request,'sistema/index2.html')
 
-@login_required
 def calendario(request):
     return render(request,'sistema/calendario.html') 
 
-@login_required
 def pessoas(request):
     return render(request,'sistema/pessoas.html')
 
 def listaPessoas(request):
     return render(request,'sistema/listaPessoas.html')        
 
-@login_required
 def cadastroEmpresa(request):
     return render(request,'sistema/empresa.html')
 
@@ -107,6 +114,9 @@ def listarSistema(request):
 
 def cadastroSistema(request):
     return render(request,'sistema/cadastroSistema.html')
+
+def usuario(request):
+    return render(request,'sistema/usuario.html')
 
 
 

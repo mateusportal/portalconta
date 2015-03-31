@@ -8,19 +8,19 @@
   <div class="col-sm-4 col-sm-offset-4">
         <div class="list-group text-center">
         <form action="/valida_login/" method="POST"> {% csrf_token %}
-          <a href="#" class="list-group-item">
-            <h2 class="list-group-item-heading">Entrar no Sistema</h2>
-          </a>
-          <a href="#" class="list-group-item">
-            <p class="list-group-item-text"><input required type="text" class="form-control" name="" placeholder="NOME DE USUÁRIO"></p>
-          </a>
-          <a href="#" class="list-group-item">
-            <p class="list-group-item-text"><input required type="password" class="form-control" name="" placeholder="SENHA"></p>
-          </a>
-          <a href="#" class="list-group-item">
-            <input type="submit" class="btn btn-success btn-lg btn-block" value="ENTRAR">
-          </a>
-          <h6><a href="#" style="color:#ffffff;">Quero me cadastrar</a> | <a href="#" style="color:#ffffff;">Não me lembro da senha</a></h6>
+          <div class="list-group-item" title="Complete os dados para entrar no sistema.">
+            <font color="black"><h2 class="list-group-item-heading">Entrar no Sistema</h2></font>
+          </div>
+          <div class="list-group-item" title="Informe seu nome de usuário.">
+            <p class="list-group-item-text"><input required type="text" class="form-control" name="username" placeholder="Nome do Usuário" value="{{ form.username.value|default_if_none:'' }}"></p>
+          </div>
+          <div class="list-group-item" title="Informe a sua senha.">
+            <p class="list-group-item-text"><input required type="password" class="form-control" name="password" placeholder="Senha" value="{{ form.password.value|default_if_none:'' }}"></p>
+          </div>
+          <div class="list-group-item" title="Clique para entrar.">
+            <input type="submit" class="btn btn-success btn-lg btn-block" value="ENTRAR" title="Clique para entrar no sistema.">
+          </div>
+          <h6><a href="/cadastro/" style="color:#ffffff;">Quero me cadastrar</a> | <a href="#" style="color:#ffffff;">Não me lembro da senha</a></h6>
         <form>
         </div>
   </div><!--/centro-->
