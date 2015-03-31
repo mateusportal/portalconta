@@ -103,6 +103,9 @@ def calendario(request):
 def pessoas(request):
     return render(request,'sistema/pessoas.html')
 
+def usuarios(request):
+    return render(request,'sistema/usuarios.html')
+
 def listaPessoas(request):
     return render(request,'sistema/listaPessoas.html')        
 
