@@ -63,8 +63,45 @@ def excluirPessoas(request,pessoaId):
 
 def preencherPessoas(request,pessoaId):
     pessoas = Pessoa.objects.get(id=pessoaId)
+    tipos = Sistema.objects.filter(ativo='SIM', tipo='TIPO PESSOA').order_by('tipo')
 
     print pessoas.nome
 
-    return render(request,'sistema/cadastroPessoas.html',{'pessoas':pessoas})
+    return render(request,'sistema/cadastroPessoas.html',{'pessoas':pessoas,'tipos':tipos})
+
+def gravarPessoas(request):
+    if request.method == 'POST':
+        #try:
+        pessoa = Pessoa.objects.get(id=request.POST.get('pessoaId'))
+        #except:
+        #    pessoa = Pessoa()
+
+        pessoa.tipo_id = request.POST.get('tipo','0')
+        pessoa.nome = request.POST.get('nome')
+        pessoa.cpf = request.POST.get('cpf')
+        pessoa.rg = request.POST.get('rg')
+        pessoa.conta_banco = request.POST.get('conta_banco')
+        pessoa.conta_agencia = request.POST.get('conta_agencia')
+        pessoa.conta_corrente = request.POST.get('conta_corrente')
+        pessoa.endereco_rua = request.POST.get('endereco_rua').title()
+        pessoa.endereco_numero = request.POST.get('endereco_numero')
+        pessoa.endereco_complemento = request.POST.get('endereco_complemento')
+        pessoa.endereco_bairro = request.POST.get('endereco_bairro')
+        pessoa.endereco_cidade = request.POST.get('endereco_cidade')
+        pessoa.endereco_estado = request.POST.get('endereco_estado')
+        pessoa.endereco_pais = request.POST.get('endereco_pais')
+        pessoa.endereco_cep = request.POST.get('endereco_cep')
+        pessoa.telefone_fixo = request.POST.get('telefone_fixo')
+        pessoa.telefone_celular = request.POST.get('telefone_celular')
+        pessoa.email_pessoal = request.POST.get('email_pessoal')
+        pessoa.email_empresarial = request.POST.get('email_empresarial')
+        pessoa.facebook = request.POST.get('facebook')
+        pessoa.twitter = request.POST.get('twitter')
+        pessoa.skype = request.POST.get('skype')
+        pessoa.googleplus = request.POST.get('googleplus')
+
+        pessoa.save()
+    
+        return HttpResponseRedirect('/sistema/pessoas/')
+    return HttpResponseRedirect('/')
 

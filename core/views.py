@@ -3,7 +3,7 @@ from django.shortcuts import render, HttpResponseRedirect
 from django.db.models import Q
 from datetime import date, datetime
 from empresas.forms import LoginForm, UsuarioForm
-from empresas.models import Usuario, Empresa
+from empresas.models import Usuario, Empresa, Sistema
 from django.contrib.auth import authenticate, logout as auth_logout, login as auth_login
 from django.contrib.auth.decorators import login_required # USAR: @login_required
 
@@ -93,22 +93,25 @@ def valida_cadastro(request):
     
     return render(request,'index/cadastro_valida.html')
 
-#@login_required
+@login_required
 def sistema(request):
     return render(request,'sistema/index2.html')
 
-#@login_required
+@login_required
 def calendario(request):
     return render(request,'sistema/calendario.html') 
 
-#@login_required
+@login_required
 def cadastrarPessoas(request):
-    return render(request,'sistema/cadastroPessoas.html')
+    tipos = Sistema.objects.filter(ativo='SIM', tipo='TIPO PESSOA').order_by('tipo')
+
+    return render(request,'sistema/cadastroPessoas.html',{'tipos':tipos}) 
 
 def pessoas(request):
-    return render(request,'sistema/pessoas.html')        
+    
+    return render(request,'sistema/cadastroPessoas.html')       
 
-#@login_required
+@login_required
 def cadastroEmpresa(request):
     return render(request,'sistema/empresa.html')
 
