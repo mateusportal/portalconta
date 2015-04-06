@@ -20,47 +20,74 @@
           <div class="box box-primary">
             <div class="box-header">
                 <i class="ion ion-clipboard"></i>
-                <h3 class="box-title">Cadastro de Configurações</h3>
+                <h3 class="box-title">Cadastro de Contas</h3>
             </div><!-- /.box-header -->
                  <form role="form" method="POST" action="/sistema/sistema/gravar/">
                  {% csrf_token %}
                     <div class="box-body">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-cog"></i></span>
-                        <select class="form-control" placeholder="Tipo" id="tipo" name="tipo">
-                          <option {% if sistemas.tipo == '' %}
-                            SELECTED
-                          {% endif %} >ESCOLHA UM TIPO DE CARACTERÍSTICA</option>
-                          <option 
-                          {% if sistemas.tipo == 'CATEGORIA' %}
-                            SELECTED
-                          {% endif %}  >CATEGORIA</option>
-                          <option 
-                          {% if sistemas.tipo == 'GRUPO' %}
-                            SELECTED
-                          {% endif %} >GRUPO</option>
-                          <option {% if sistemas.tipo == 'SUB-GRUPO' %}
-                            SELECTED
-                          {% endif %} >SUB-GRUPO</option>
-                          <option {% if sistemas.tipo == 'TIPO PESSOA' %}
-                            SELECTED
-                          {% endif %} >TIPO PESSOA</option>
-                        </select>
-                      </div>
-                      <br />
-                      <input type="hidden" value="{{sistemas.id}}" name="sisID" id ="sisID" >
-                      <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-wrench"></i></span>
-                        <input type="text" class="form-control" placeholder="Nome" id="nome" name="nome" value="{{sistemas.nome}}">
+                          <select class="form-control" placeholder="Tipo" name="tipo">
+                            <option>Categoria</option>
+                            {% for tipo in tipos %}
+                            <option value="{{tipo.pk}}" {% if pessoas.tipo.nome == tipo.nome %} SELECTED {% endif %} >{{tipo.nome}}</option>
+                            {% endfor%}
+                          </select>           
                       </div>
                       <br/>
                       <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-cogs"></i></span>
-                        <input type="text" class="form-control" placeholder="Descrição" id="descricao" name="descricao" value="{{sistemas.descricao}}">
+                        <span class="input-group-addon"><i class="fa fa-cog"></i></span>
+                          <select class="form-control" placeholder="Tipo" name="tipo">
+                            <option>Grupo</option>
+                            {% for tipo in tipos %}
+                            <option value="{{tipo.pk}}" {% if pessoas.tipo.nome == tipo.nome %} SELECTED {% endif %} >{{tipo.nome}}</option>
+                            {% endfor%}
+                          </select>           
+                      </div>
+                      <br/>
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-cog"></i></span>
+                          <select class="form-control" placeholder="Tipo" name="tipo">
+                            <option>Sub-Grupo</option>
+                            {% for tipo in tipos %}
+                            <option value="{{tipo.pk}}" {% if pessoas.tipo.nome == tipo.nome %} SELECTED {% endif %} >{{tipo.nome}}</option>
+                            {% endfor%}
+                          </select>           
+                      </div>
+                      <br/>
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-pencil-square-o"></i></span>
+                        <input type="text" class="form-control" name="descricao" placeholder="Descrição">
+                      </div>
+                      <br/>
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                        <input class="form-control" placeholder="Pessoa" id="Pessoa" name="Pessoa">
+                      </div>
+                      <br />
+
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-money"></i></span>
+                        <input type="text" class="form-control" placeholder="Valor Bruto" id="#demo8"  name="valor_bruto" value="" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+                        <script type="text/javascript">$("#demo8").maskMoney();</script>
+                      </div>
+                      <br/>
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                        <input type="text" class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask="" name="data_vencimento" placeholder="Vencimento">
+                      </div>
+                      <br/>
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                        <input type="text" class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask="" name="data_pagamento" placeholder="Pagamento">
+                      </div>
+                      <br/>
+                      <div class="input-group">
+                          <span class="input-group-addon"><i class="fa fa-pencil-square-o"></i></span>
+                          <input type="text" class="form-control" name="observacao" placeholder="Observação">
                       </div>
                       <br/>
                       <button type="submit" class="btn btn-success">Gravar</button>
-
                   </div><!-- /.box-body -->
                 </form>
 
@@ -71,4 +98,9 @@
     
 
    
+{% endblock %}
+{% block js %}
+    <script src="/static/sistema/js/jasny-bootstrap.min.js"></script>
+    <script src="/static/sistema/js/jquery.maskMoney.min.js"></script>
+
 {% endblock %}

@@ -134,6 +134,10 @@ def usuarios(request):
 def caixa(request):
     return render(request,'sistema/caixa.html')
 
+@login_required
+def cadastrarCaixa(request):
+    return render(request,'sistema/cadastroCaixa.html')
+
 
 
 
