@@ -14,7 +14,7 @@ def index(request):
         return render(request,'index/index.html')
 
 def termos_de_uso(request):
-    return render(request,'index/termosdeuso.html')
+    return render(request,'index/termos_de_uso.html')
 
 def politica_de_privacidade(request):
     return render(request,'index/politica_de_privacidade.html')
