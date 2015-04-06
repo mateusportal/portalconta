@@ -1,0 +1,129 @@
+{% extends "sistema/template.html" %}
+{% block titulo %}Cadastro de Sistema{% endblock %}
+
+{% block container %} 
+
+    <!-- Content Header (Page header) -->
+    <!--    <section class="content-header">
+          <h1>
+            Configurações de Sistema       
+          </h1>
+          <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Configurações de Sistema</li>
+          </ol>
+        </section>
+    -->
+        <!-- Main content -->
+        <section class="content">
+          <!-- Info boxes -->
+          <form method="POST" action="/sistema/sistema/buscar/"> {% csrf_token %}
+            <div class="input-group">
+                <input class="form-control" placeholder="Sua pesquisa aqui..." name="parametro" type="text" />
+              <div class="input-group-btn">
+                <button type="submit" class="btn btn-success"><i class="fa fa-search"><b>&nbsp;Pesquisa</b></i></button>
+              </div>
+            </div>
+          </form>
+            <br/>
+          <div class="box box-primary">
+                <div class="box-header">
+                  <i class="ion ion-clipboard"></i>
+                  <h3 class="box-title">Configurações cadastradas</h3><br/><br/>
+                  <a href="/sistema/caixa/editor/"><button class="btn btn-default"><i class="fa fa-plus"></i>&nbsp;&nbsp;Adicionar novo</button></a>
+                  <div class="box-tools pull-right">
+                    <ul class="pagination pagination-sm inline">
+                      <li><a href="#">&laquo;</a></li>
+                      <li><a href="#">1</a></li>
+                      <li><a href="#">2</a></li>
+                      <li><a href="#">3</a></li>
+                      <li><a href="#">&raquo;</a></li>
+                    </ul>
+                  </div>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                  <ul class="todo-list">
+                   {% for sistema in sistemas %}
+                    <li>
+                      <!-- drag handle -->
+                      <a href="/sistema/sistema/editor/{{sistema.id}}" >
+                      <span class="handle">
+                        <i class="fa fa-ellipsis-v"></i>
+                        <i class="fa fa-ellipsis-v"></i>
+                      </span>
+                      <!-- danger = vermelho | info = azul | warning = amarelo | success = verde -->
+                      <!-- primary = azulescuro | default = cinza -->
+                      <small class="{%if sistema.tipo == 'TIPO PESSOA' %}
+                          label label-info
+                      {% elif sistema.tipo == 'GRUPO'  %}
+                          label label-warning
+                      {% elif sistema.tipo == 'SUB-GRUPO'  %}
+                          label label-danger
+                      {% elif sistema.tipo == 'CATEGORIA'  %}
+                          label label-success
+                      {% endif %}">
+                      <i class="
+                      {%if sistema.tipo == 'TIPO PESSOA' %}
+                          fa fa-user
+                      {% elif sistema.tipo == 'GRUPO'  %}
+                          fa fa-cog
+                      {% elif sistema.tipo == 'SUB-GRUPO'  %}
+                          fa fa-cogs
+                      {% elif sistema.tipo == 'CATEGORIA'  %}
+                          fa fa-folder
+                      {% endif %}">&nbsp;</i>{{sistema.tipo}}</small>
+
+                      <!-- todo text -->
+                      <span class="text">{{sistema.nome}}</span>
+                      <!-- Emphasis label -->
+                      <input type="hidden" value="{{sistema.pk}}">
+                      <!-- General tools such as edit or delete-->
+                      </a>
+                      <div class="tools" style="display: block">
+                      
+                        <a href="" class="fa fa-trash-o" data-toggle="modal" data-target="#Modal{{sistema.id}}"></a>
+                        <!-- Modal -->
+                        <div class="modal fade" id="Modal{{sistema.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">CONFIRMA ESCLUSÃO!</h4>
+                              </div>
+                              <div class="modal-body">
+                                Deseja mesmo excluir o registro : {{sistema.tipo}} : {{sistema.nome}}
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
+                                <a href="/sistema/sistema/excluir/{{sistema.id}}"><button type="button" class="btn btn-primary">Sim</button></a>
+                              </div>
+                            </div>
+                          </div>
+                        </div><!-- Modal -->
+                      </div>
+                    </li>
+                  {% endfor %}
+                    </ul>
+
+                </div><!-- /.box-body-->
+                <div class="box-footer clearfix no-border">
+                      <a href="/sistema/caixa/editor/"><button class="btn btn-default"><i class="fa fa-plus"></i>&nbsp;&nbsp;Adicionar novo</button></a>
+                      <div class="box-tools pull-right">
+                        <ul class="pagination pagination-sm inline">
+                          <li><a href="#">&laquo;</a></li>
+                          <li><a href="#">1</a></li>
+                          <li><a href="#">2</a></li>
+                          <li><a href="#">3</a></li>
+                          <li><a href="#">&raquo;</a></li>
+                        </ul>
+                      </div>  
+                    </div>
+              </div><!-- /.box -->
+
+        </section><!-- /.content -->
+     
+
+    
+
+   
+{% endblock %}

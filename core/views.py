@@ -106,7 +106,7 @@ def cadastrarPessoas(request):
     tipos = Sistema.objects.filter(ativo='SIM', tipo='TIPO PESSOA').order_by('tipo')
 
     return render(request,'sistema/cadastroPessoas.html',{'tipos':tipos}) 
-
+@login_required
 def pessoas(request):
     
     return render(request,'sistema/cadastroPessoas.html')       
@@ -118,14 +118,21 @@ def cadastroEmpresa(request):
 def listarSistema(request):
     return render(request,'sistema/sistema.html')
 
+@login_required
 def cadastroSistema(request):
     return render(request,'sistema/cadastroSistema.html')
 
+@login_required
 def usuario(request):
     return render(request,'sistema/usuario.html')
 
+@login_required
 def usuarios(request):
     return render(request,'sistema/usuarios.html')
+
+@login_required
+def caixa(request):
+    return render(request,'sistema/caixa.html')
 
 
 
