@@ -29,5 +29,8 @@ urlpatterns = patterns('',
 
     url(r'^sistema/usuario/$', 'core.views.usuario', name='usuario'),
 
+    url(r'^termos-de-uso/$', 'core.views.termos_de_uso', name='termos_de_uso'),
+    url(r'^politica-de-privacidade/$', 'core.views.politica_de_privacidade', name='politica_de_privacidade'),
+    
     url(r'^admin/', include(admin.site.urls)),
 )
