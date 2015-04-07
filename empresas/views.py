@@ -65,8 +65,6 @@ def preencherPessoas(request,pessoaId):
     pessoas = Pessoa.objects.get(id=pessoaId)
     tipos = Sistema.objects.filter(ativo='SIM', tipo='TIPO PESSOA').order_by('tipo')
 
-    print pessoas.nome
-
     return render(request,'sistema/cadastroPessoas.html',{'pessoas':pessoas,'tipos':tipos})
 
 def gravarPessoas(request):
@@ -104,4 +102,6 @@ def gravarPessoas(request):
     
         return HttpResponseRedirect('/sistema/pessoas/')
     return HttpResponseRedirect('/')
+
+
 

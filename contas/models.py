@@ -9,8 +9,8 @@ from empresas.models import Empresa, Sistema, Pessoa
 class Caixa(models.Model):
     pessoa = models.ForeignKey(Pessoa,related_name="caixa_pessoa_id")
     valor_bruto = models.DecimalField(max_digits=7, decimal_places=2)
-    data_vencimento = models.DateTimeField(auto_now=False, auto_now_add=False)
-    data_pagamento = models.DateTimeField(auto_now=False, auto_now_add=False)
+    data_vencimento = models.DateField(auto_now=False, auto_now_add=False)
+    data_pagamento = models.DateField(auto_now=False, auto_now_add=False)
     valor_multa = models.DecimalField(max_digits=7, decimal_places=2)
     valor_juros = models.DecimalField(max_digits=7, decimal_places=2)
     valor_desconto = models.DecimalField(max_digits=7, decimal_places=2) 
@@ -23,10 +23,10 @@ class Caixa(models.Model):
     empresa = models.ForeignKey(Empresa,related_name="caixa_empresa_id")
     observacao = models.CharField(max_length=250, blank=True, null=True)
     tags = models.CharField(max_length=250, blank=True, null=True)
-    data_boleto = models.DateTimeField(auto_now=False, auto_now_add=False)
+    data_boleto = models.DateField(auto_now=False, auto_now_add=False)
     processo = models.CharField(max_length=250, blank=True, null=True)
     categoria = models.ForeignKey(Sistema,related_name="caixa_categoria_id")
-    grupo_id = models.ForeignKey(Sistema,related_name="caixa_grupo_id")
+    grupo = models.ForeignKey(Sistema,related_name="caixa_grupo_id")
     subgrupo = models.ForeignKey(Sistema,related_name="caixa_subgrupo_id")
 
 
@@ -45,9 +45,9 @@ class Cheque(models.Model):
     numero_cheque = models.CharField(max_length=50, blank=True, null=True)
     valor = models.DecimalField(max_digits=7, decimal_places=2)
     nome = models.CharField(max_length=150, blank=True, null=True)
-    data_recebido = models.DateTimeField(auto_now=False, auto_now_add=False)
-    data_compensar = models.DateTimeField(auto_now=False, auto_now_add=False)
-    data_compensado = models.DateTimeField(auto_now=False, auto_now_add=False)
+    data_recebido = models.DateField(auto_now=False, auto_now_add=False)
+    data_compensar = models.DateField(auto_now=False, auto_now_add=False)
+    data_compensado = models.DateField(auto_now=False, auto_now_add=False)
     caixa  = models.ForeignKey(Caixa,related_name="cheque_caixa_id")
 
 

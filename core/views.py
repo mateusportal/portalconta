@@ -106,9 +106,9 @@ def cadastrarPessoas(request):
     tipos = Sistema.objects.filter(ativo='SIM', tipo='TIPO PESSOA').order_by('tipo')
 
     return render(request,'sistema/cadastroPessoas.html',{'tipos':tipos}) 
+
 @login_required
 def pessoas(request):
-    
     return render(request,'sistema/cadastroPessoas.html')       
 
 @login_required
@@ -136,7 +136,11 @@ def caixa(request):
 
 @login_required
 def cadastrarCaixa(request):
-    return render(request,'sistema/cadastroCaixa.html')
+    grupo = Sistema.objects.filter(ativo='SIM', tipo='GRUPO').order_by('nome')
+    subgrupo = Sistema.objects.filter(ativo='SIM', tipo='SUB-GRUPO').order_by('nome')
+    categoria = Sistema.objects.filter(ativo='SIM', tipo='CATEGORIA').order_by('nome')
+
+    return render(request,'sistema/cadastroCaixa.html',{'grupos':grupo,'subgrupos':subgrupo,'categorias':categoria})
 
 
 

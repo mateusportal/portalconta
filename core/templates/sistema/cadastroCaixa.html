@@ -22,15 +22,15 @@
                 <i class="ion ion-clipboard"></i>
                 <h3 class="box-title">Cadastro de Contas</h3>
             </div><!-- /.box-header -->
-                 <form role="form" method="POST" action="/sistema/sistema/gravar/">
+                 <form role="form" method="POST" action="/sistema/caixa/gravar/">
                  {% csrf_token %}
                     <div class="box-body">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-cog"></i></span>
                           <select class="form-control" placeholder="Tipo" name="tipo">
                             <option>Categoria</option>
-                            {% for tipo in tipos %}
-                            <option value="{{tipo.pk}}" {% if pessoas.tipo.nome == tipo.nome %} SELECTED {% endif %} >{{tipo.nome}}</option>
+                            {% for categoria in categorias %}
+                            <option value="{{categoria.pk}}" {% if caixas.categoria.nome == categoria.nome %} SELECTED {% endif %} >{{categoria.nome}}</option>
                             {% endfor%}
                           </select>           
                       </div>
@@ -38,9 +38,9 @@
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-cog"></i></span>
                           <select class="form-control" placeholder="Tipo" name="tipo">
-                            <option>Grupo</option>
-                            {% for tipo in tipos %}
-                            <option value="{{tipo.pk}}" {% if pessoas.tipo.nome == tipo.nome %} SELECTED {% endif %} >{{tipo.nome}}</option>
+                            <option>Grupo {{caixa.grupo.nome}} </option>
+                            {% for grupo in grupos %}
+                            <option value="{{grupo.pk}}" {% if caixas.grupo.nome == grupo.nome %} SELECTED {% endif %} >{{grupo.nome}}</option>
                             {% endfor%}
                           </select>           
                       </div>
@@ -49,42 +49,42 @@
                         <span class="input-group-addon"><i class="fa fa-cog"></i></span>
                           <select class="form-control" placeholder="Tipo" name="tipo">
                             <option>Sub-Grupo</option>
-                            {% for tipo in tipos %}
-                            <option value="{{tipo.pk}}" {% if pessoas.tipo.nome == tipo.nome %} SELECTED {% endif %} >{{tipo.nome}}</option>
+                            {% for subgrupo in subgrupos %}
+                            <option value="{{subgrupo.pk}}" {% if caixas.subgrupo.nome == subgrupo.nome %} SELECTED {% endif %} >{{subgrupo.nome}}</option>
                             {% endfor%}
                           </select>           
                       </div>
                       <br/>
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-pencil-square-o"></i></span>
-                        <input type="text" class="form-control" name="descricao" placeholder="Descrição">
+                        <input type="text" class="form-control" name="descricao" placeholder="Descrição" value="{{caixas.descricao}}">
                       </div>
                       <br/>
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                        <input class="form-control" placeholder="Pessoa" id="Pessoa" name="Pessoa">
+                        <input class="form-control" placeholder="Pessoa" id="Pessoa" name="Pessoa"
+                        value="{{caixas.pessoa.nome}}">
                       </div>
                       <br />
 
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-money"></i></span>
-                        <input type="text" class="form-control" placeholder="Valor Bruto" id="#demo8"  name="valor_bruto" value="" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
-                        <script type="text/javascript">$("#demo8").maskMoney();</script>
+                        <input type="text" class="form-control" placeholder="Valor Bruto" id="demo8"  name="valor_bruto" value="{{caixas.valor_bruto}}" >
                       </div>
                       <br/>
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                        <input type="text" class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask="" name="data_vencimento" placeholder="Vencimento">
+                        <input type="text" class="form-control"  name="data_vencimento" placeholder="Vencimento" value="{{caixas.data_vencimento}}" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask="">
                       </div>
                       <br/>
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                        <input type="text" class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask="" name="data_pagamento" placeholder="Pagamento">
+                        <input type="text" class="form-control"  name="data_pagamento" placeholder="Pagamento" value="{{caixas.data_pagamento}}" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask="">
                       </div>
                       <br/>
                       <div class="input-group">
                           <span class="input-group-addon"><i class="fa fa-pencil-square-o"></i></span>
-                          <input type="text" class="form-control" name="observacao" placeholder="Observação">
+                          <input type="text" class="form-control" name="observacao" placeholder="Observação" value="{{caixas.observacao}}">
                       </div>
                       <br/>
                       <button type="submit" class="btn btn-success">Gravar</button>
@@ -102,5 +102,7 @@
 {% block js %}
     <script src="/static/sistema/js/jasny-bootstrap.min.js"></script>
     <script src="/static/sistema/js/jquery.maskMoney.min.js"></script>
-
+    <script type="text/javascript">
+      $("#demo8").maskMoney({thousands:'.', decimal:',', affixesStay: true});
+    </script>
 {% endblock %}
