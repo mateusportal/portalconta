@@ -27,7 +27,7 @@
                     <div class="box-body">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-cog"></i></span>
-                        <select class="form-control" placeholder="Tipo" id="tipo" name="tipo">
+                        <select class="form-control" data-toggle="tooltip" data-placement="top" title="Tipo" placeholder="Tipo" id="tipo" name="tipo">
                           <option {% if sistemas.tipo == '' %}
                             SELECTED
                           {% endif %} >ESCOLHA UM TIPO DE CARACTERÍSTICA</option>
@@ -51,12 +51,12 @@
                       <input type="hidden" value="{{sistemas.id}}" name="sisID" id ="sisID" >
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-wrench"></i></span>
-                        <input type="text" class="form-control" placeholder="Nome" id="nome" name="nome" value="{{sistemas.nome}}">
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Nome" placeholder="Nome" id="nome" name="nome" value="{{sistemas.nome}}">
                       </div>
                       <br/>
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-cogs"></i></span>
-                        <input type="text" class="form-control" placeholder="Descrição" id="descricao" name="descricao" value="{{sistemas.descricao}}">
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Descrição" placeholder="Descrição" id="descricao" name="descricao" value="{{sistemas.descricao}}">
                       </div>
                       <br/>
                       <button type="submit" class="btn btn-success">Gravar</button>
