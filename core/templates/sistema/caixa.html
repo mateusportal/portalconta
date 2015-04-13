@@ -42,68 +42,107 @@
                   </div>
                 </div><!-- /.box-header -->
                 <div class="box-body">
-                  <ul class="todo-list">
-                   {% for sistema in sistemas %}
-                    <li>
-                      <!-- drag handle -->
-                      <a href="/sistema/sistema/editor/{{sistema.id}}" >
-                      <span class="handle">
-                        <i class="fa fa-ellipsis-v"></i>
-                        <i class="fa fa-ellipsis-v"></i>
-                      </span>
-                      <!-- danger = vermelho | info = azul | warning = amarelo | success = verde -->
-                      <!-- primary = azulescuro | default = cinza -->
-                      <small class="{%if sistema.tipo == 'TIPO PESSOA' %}
-                          label label-info
-                      {% elif sistema.tipo == 'GRUPO'  %}
-                          label label-warning
-                      {% elif sistema.tipo == 'SUB-GRUPO'  %}
-                          label label-danger
-                      {% elif sistema.tipo == 'CATEGORIA'  %}
-                          label label-success
-                      {% endif %}">
-                      <i class="
-                      {%if sistema.tipo == 'TIPO PESSOA' %}
-                          fa fa-user
-                      {% elif sistema.tipo == 'GRUPO'  %}
-                          fa fa-cog
-                      {% elif sistema.tipo == 'SUB-GRUPO'  %}
-                          fa fa-cogs
-                      {% elif sistema.tipo == 'CATEGORIA'  %}
-                          fa fa-folder
-                      {% endif %}">&nbsp;</i>{{sistema.tipo}}</small>
+                <!-- Info boxes -->
+                  <div class="row">
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                      <div class="info-box">
+                        <span class="info-box-icon bg-green"><i class="fa fa-money"></i></span>
+                        <div class="info-box-content">
+                          <span class="info-box-number">Mateus Granero</span>
+                          <span class="info-box-text">3727-4224</span>
+                          <span class="info-box-text">granero_90@hotmail.com</span>
+                        </div><!-- /.info-box-content -->
+                      </div><!-- /.info-box -->
+                    </div><!-- /.col -->
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                      <div class="info-box">
+                        <span class="info-box-icon bg-red"><i class="fa fa-money"></i></span>
+                        <div class="info-box-content">
+                          <span class="info-box-text">Saída de Caixa</span>
+                          <span class="info-box-number"><small>R$&nbsp;</small>45,81</span>
+                        </div><!-- /.info-box-content -->
+                      </div><!-- /.info-box -->
+                    </div><!-- /.col -->
 
-                      <!-- todo text -->
-                      <span class="text">{{sistema.nome}}</span>
-                      <!-- Emphasis label -->
-                      <input type="hidden" value="{{sistema.pk}}">
-                      <!-- General tools such as edit or delete-->
-                      </a>
-                      <div class="tools" style="display: block">
-                      
-                        <a href="" class="fa fa-trash-o" data-toggle="modal" data-target="#Modal{{sistema.id}}"></a>
-                        <!-- Modal -->
-                        <div class="modal fade" id="Modal{{sistema.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                          <div class="modal-dialog">
-                            <div class="modal-content">
-                              <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="myModalLabel">CONFIRMA ESCLUSÃO!</h4>
-                              </div>
-                              <div class="modal-body">
-                                Deseja mesmo excluir o registro : {{sistema.tipo}} : {{sistema.nome}}
-                              </div>
-                              <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
-                                <a href="/sistema/sistema/excluir/{{sistema.id}}"><button type="button" class="btn btn-primary">Sim</button></a>
-                              </div>
-                            </div>
-                          </div>
-                        </div><!-- Modal -->
-                      </div>
-                    </li>
-                  {% endfor %}
-                    </ul>
+                    <!-- fix for small devices only -->
+                    <div class="clearfix visible-sm-block"></div>
+
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                      <div class="info-box">
+                        <span class="info-box-icon bg-aqua"><i class="fa fa-bank"></i></span>
+                        <div class="info-box-content">
+                          <span class="info-box-text">Total</span>
+                          <span class="info-box-number"><small>R$&nbsp;</small>300,17</span>
+                        </div><!-- /.info-box-content -->
+                      </div><!-- /.info-box -->
+                    </div><!-- /.col -->
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                      <div class="info-box">
+                        <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
+                        <div class="info-box-content">
+                          <span class="info-box-text">Novos Usuários</span>
+                          <span class="info-box-number">2,000</span>
+                        </div><!-- /.info-box-content -->
+                      </div><!-- /.info-box -->
+                    </div><!-- /.col -->
+                  </div><!-- /.row -->
+
+                  <div class="row">
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box bg-aqua">
+                <div class="inner">
+                  <h3>150</h3>
+                  <p>New Orders</p>
+                </div>
+                <div class="icon">
+                  <i class="ion ion-bag"></i>
+                </div>
+                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div><!-- ./col -->
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box bg-green">
+                <div class="inner">
+                  <h3>53<sup style="font-size: 20px">%</sup></h3>
+                  <p>Bounce Rate</p>
+                </div>
+                <div class="icon">
+                  <i class="ion ion-stats-bars"></i>
+                </div>
+                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div><!-- ./col -->
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box bg-yellow">
+                <div class="inner">
+                  <h4><b>Mateus Granero dos Santos fulano </b></h4>
+                  <p>00A(A(A))BBBCCCCCCCC</p>
+                  <p>granero_90@hotmail.com</p>
+                </div>
+                <div class="icon">
+                  <i class="ion ion-person-add"></i>
+                </div>
+                <a href="#" class="small-box-footer">Excluir <i class="fa fa-trash-o"></i></a>
+              </div>
+            </div><!-- ./col -->
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box bg-red">
+                <div class="inner">
+                  <h3>65</h3>
+                  <p>Unique Visitors</p>
+                </div>
+                <div class="icon">
+                  <i class="ion ion-pie-graph"></i>
+                </div>
+                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div><!-- ./col -->
+          </div><!-- /.row -->
+
 
                 </div><!-- /.box-body-->
                 <div class="box-footer clearfix no-border">

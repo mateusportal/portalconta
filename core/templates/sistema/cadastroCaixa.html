@@ -1,4 +1,5 @@
 {% extends "sistema/template.html" %}
+{% load minhas_tags %}
 {% block titulo %}Cadastro de Sistema{% endblock %}
 
 {% block container %} 
@@ -16,7 +17,6 @@
         <!-- Main content -->
         <section class="content">
           <!-- Info boxes -->
-         
           <div class="box box-primary">
             <div class="box-header">
                 <i class="ion ion-clipboard"></i>
@@ -66,20 +66,34 @@
                         value="{{caixas.pessoa.nome}}">
                       </div>
                       <br />
-
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-money"></i></span>
-                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Valor Bruto" placeholder="Valor Bruto" id="demo8"  name="valor_bruto" value="{{caixas.valor_bruto}}" >
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Valor Bruto" placeholder="Valor Bruto" id="demo8"  name="valor_bruto" value="{{caixas.valor_bruto|formataDinheiro}}" >
+                      </div>
+                      <br/>
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-money"></i></span>
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Valor Multa" placeholder="Valor Bruto" id="demo8"  name="valor_multa" value="{{caixas.valor_multa|formataDinheiro}}" >
+                      </div>
+                      <br/>
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-money"></i></span>
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Valor Juros" placeholder="Valor Bruto" id="demo8"  name="valor_juros" value="{{caixas.valor_juros|formataDinheiro}}" >
+                      </div>
+                      <br/>
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-money"></i></span>
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Valor Desconto" placeholder="Valor Bruto" id="demo8"  name="valor_desconto" value="{{caixas.valor_desconto|formataDinheiro}}" >
                       </div>
                       <br/>
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Data de Vencimento" name="data_vencimento" placeholder="Vencimento" value="{{caixas.data_vencimento}}" data-inputmask="'alias': 'dd/dd/dddd'" data-mask="">
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Data de Vencimento" data-mask="99/99/9999" name="data_vencimento" placeholder="Vencimento" value="{{caixas.data_vencimento|date:"d/m/Y"}}">
                       </div>
                       <br/>
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Data de Pagamento"  name="data_pagamento" placeholder="Pagamento" value="{{caixas.data_pagamento}}" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask="">
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Data de Pagamento" data-mask="99/99/9999"  name="data_pagamento" placeholder="Pagamento" value="{{caixas.data_pagamento|date:"d/m/Y"}}" >
                       </div>
                       <br/>
                       <div class="input-group">
@@ -90,14 +104,8 @@
                       <button type="submit" class="btn btn-success">Gravar</button>
                   </div><!-- /.box-body -->
                 </form>
-
           </div><!-- /.box -->
-        </section><!-- /.content -->
-   
-
-    
-
-   
+        </section><!-- /.content --> 
 {% endblock %}
 {% block js %}
     <script src="/static/sistema/js/jasny-bootstrap.min.js"></script>
@@ -107,7 +115,7 @@
     </script>
     <script type="text/javascript">
         $(function () {
-          $('[data-toggle="tooltip"]').tooltip()
+          $('[data-toggle="tooltip"]').tooltip();
         })
     </script>
 {% endblock %}

@@ -8,9 +8,9 @@ from empresas.models import Empresa, Sistema, Pessoa
 
 class Caixa(models.Model):
     pessoa = models.ForeignKey(Pessoa,related_name="caixa_pessoa_id")
-    valor_bruto = models.DecimalField(max_digits=7, decimal_places=2)
     data_vencimento = models.DateField(auto_now=False, auto_now_add=False)
     data_pagamento = models.DateField(auto_now=False, auto_now_add=False)
+    valor_bruto = models.DecimalField(max_digits=7, decimal_places=2)
     valor_multa = models.DecimalField(max_digits=7, decimal_places=2)
     valor_juros = models.DecimalField(max_digits=7, decimal_places=2)
     valor_desconto = models.DecimalField(max_digits=7, decimal_places=2) 
@@ -27,7 +27,8 @@ class Caixa(models.Model):
     processo = models.CharField(max_length=250, blank=True, null=True)
     categoria = models.ForeignKey(Sistema,related_name="caixa_categoria_id")
     grupo = models.ForeignKey(Sistema,related_name="caixa_grupo_id")
-    subgrupo = models.ForeignKey(Sistema,related_name="caixa_subgrupo_id")
+    subgrupo = models.ForeignKey(Sistema,related_name="caixa_subgrupo_id")  
+    tipo = models.CharField(max_length=1,blank=False,null=False) 
 
 
 class Vinculo(models.Model):
