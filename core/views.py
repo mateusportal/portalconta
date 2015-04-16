@@ -115,6 +115,7 @@ def pessoas(request):
 def cadastroEmpresa(request):
     return render(request,'sistema/empresa.html')
 
+@login_required
 def listarSistema(request):
     return render(request,'sistema/sistema.html')
 

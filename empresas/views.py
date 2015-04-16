@@ -41,7 +41,6 @@ def preencherSistema(request,sisId):
 
     return render(request,'sistema/cadastroSistema.html',{'sistemas':sistemas})
 
-
 def listaPessoas(request):
     if request.method == 'POST':
         pessoas = Pessoa.objects.filter(Q(nome__contains=request.POST.get('parametro',''))).order_by('nome')

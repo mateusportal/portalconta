@@ -33,69 +33,72 @@
           </div>  
 
         </div><!-- /.box-header -->
-       <div class="box-body ">  
-      
-      <div class="row">
+        <div class="box-body ">  
+          
+          <div class="row">
 
 
-       {% for pessoa in pessoas %}
-       <div class="col-lg-3 col-xs-6">
-        <!-- small box -->
-        <div class="small-box bg-gray">
-          <div class="inner">
-            <h5><b><a href="/sistema/pessoas/editor/{{pessoa.id}}">{{pessoa.nome|truncatechars:35}}</a></b></h5>
-            <a href="/sistema/pessoas/editor/{{pessoa.id}}"><i class="fa fa-pencil-square fa-2x"></i></a>
-            &nbsp; 
-            <a href="tel:{{pessoa.telefone_celular}}"><i class="fa fa-phone-square fa-2x"></i></a>
-            &nbsp;
-            <a href="mailto:{{pessoa.email_pessoal}}"><i class="fa fa-envelope-square fa-2x"></i></a>
-            &nbsp;
-            <a href="#"><i class="fa fa-facebook-square fa-2x"></i></a>
-            &nbsp;
-            <a href="#"><i class="fa fa-external-link-square fa-2x"></i></a>
+           {% for pessoa in pessoas %}
+           <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-gray">
+              <div class="inner">
+                <h5><a href="/sistema/pessoas/editor/{{pessoa.id}}"><i class="fa fa-pencil-square fa-2x"></i></a>
+                  &nbsp;<b><a href="/sistema/pessoas/editor/{{pessoa.id}}">{{pessoa.nome|truncatechars:35}}</a></b></h5>
+                  
+                  <a href="tel:{{pessoa.telefone_celular}}"><i class="fa fa-phone-square fa-2x"></i></a>
+                  &nbsp;
+                  <a href="mailto:{{pessoa.email_pessoal}}"><i class="fa fa-envelope-square fa-2x"></i></a>
+                  &nbsp;
+                  <a href="#"><i class="fa fa-facebook-square fa-2x"></i></a>
+                  &nbsp;
+                  <a href="#"><i class="fa fa-external-link-square fa-2x"></i></a>
+                  <div class="icon">
+                    <i class="ion ion-person-add"></i>
+                  </div>
+                </div>
+
+                <a href="" class="small-box-footer" data-toggle="modal" data-target="#Modal{{pessoa.id}}">Excluir <i class="fa fa-trash-o"></i></a>
+
+              </div>
+              <!-- Modal -->
+              <div class="modal fade" id="Modal{{pessoa.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title" id="myModalLabel">CONFIRMA EXCLUSÃO!</h4>
+                    </div>
+                    <div class="modal-body">
+                      Deseja mesmo excluir o registro : {{pessoa.nome}} ?
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
+                      <a href="/sistema/pessoas/excluir/{{pessoa.id}}"><button type="button" class="btn btn-primary">Sim</button></a>
+                    </div>
+                  </div>
+                </div>
+              </div><!-- Modal --> 
+            </div><!-- ./col -->
+            {% endfor %}
           </div>
 
-          <a href="" class="small-box-footer" data-toggle="modal" data-target="#Modal{{pessoa.id}}">Excluir <i class="fa fa-trash-o"></i></a>
-
+        </div><!-- /.box -->
+        <div class="box-footer clearfix no-border">
+          <a href="/sistema/pessoas/editor"><button class="btn btn-default"><i class="fa fa-plus"></i>&nbsp;&nbsp;Adicionar novo</button></a>
+          <div class="box-tools pull-right">
+            <ul class="pagination pagination-sm inline">
+              <li><a href="#">&laquo;</a></li>
+              <li><a href="#">1</a></li>
+              <li><a href="#">2</a></li>
+              <li><a href="#">3</a></li>
+              <li><a href="#">&raquo;</a></li>
+            </ul>
+          </div>  
         </div>
-        <!-- Modal -->
-        <div class="modal fade" id="Modal{{pessoa.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">CONFIRMA EXCLUSÃO!</h4>
-              </div>
-              <div class="modal-body">
-                Deseja mesmo excluir o registro : {{pessoa.nome}} ?
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
-                <a href="/sistema/pessoas/excluir/{{pessoa.id}}"><button type="button" class="btn btn-primary">Sim</button></a>
-              </div>
-            </div>
-          </div>
-        </div><!-- Modal --> 
-      </div><!-- ./col -->
-      {% endfor %}
-    </div>
 
-    </div><!-- /.box -->
-    <div class="box-footer clearfix no-border">
-      <a href="/sistema/pessoas/editor"><button class="btn btn-default"><i class="fa fa-plus"></i>&nbsp;&nbsp;Adicionar novo</button></a>
-      <div class="box-tools pull-right">
-        <ul class="pagination pagination-sm inline">
-          <li><a href="#">&laquo;</a></li>
-          <li><a href="#">1</a></li>
-          <li><a href="#">2</a></li>
-          <li><a href="#">3</a></li>
-          <li><a href="#">&raquo;</a></li>
-        </ul>
-      </div>  
-    </div>
-
-  </div><!-- /.col -->
-</div><!-- /.row -->
-</section><!-- /.content --> 
-{% endblock %}
+      </div><!-- /.col -->
+    </div><!-- /.row -->
+  </section><!-- /.content --> 
+  {% endblock %}
 
