@@ -13,6 +13,12 @@ def index(request):
     else:
         return render(request,'index/index.html')
 
+def termos_de_uso(request):
+    return render(request,'index/termos_de_uso.html')
+
+def politica_de_privacidade(request):
+    return render(request,'index/politica_de_privacidade.html')
+
 def logout(request):
     auth_logout(request)
     return HttpResponseRedirect('/login/')
