@@ -1,0 +1,130 @@
+{% extends "sistema/template.html" %}
+{% load minhas_tags %}
+{% block titulo %}Cadastro de Sistema{% endblock %}
+
+{% block container %} 
+    <!-- Content Header (Page header) -->
+    <!--    <section class="content-header">
+          <h1>
+            Configurações de Sistema       
+          </h1>
+          <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Configurações de Sistema</li>
+          </ol>
+        </section>
+    -->
+        <!-- Main content -->
+        <section class="content">
+          <!-- Info boxes -->
+          <div class="box box-primary">
+            <div class="box-header">
+                <i class="ion ion-clipboard"></i>
+                <h3 class="box-title">Cadastro de Contas</h3>
+            </div><!-- /.box-header -->
+                 <form role="form" method="POST" action="/sistema/caixa/gravar/">
+                 {% csrf_token %}
+                    <div class="box-body">
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-cog"></i></span>
+                          <select class="form-control" data-toggle="tooltip" data-placement="top" title="Categoria" placeholder="" name="categoria_id">
+                            <option>Categoria</option>
+                            {% for categoria in categorias %}
+                            <option value="{{categoria.pk}}" {% if caixas.categoria.nome == categoria.nome %} SELECTED {% endif %} >{{categoria.nome}}</option>
+                            {% endfor%}
+                          </select>           
+                      </div>
+                      <br/>
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-cog"></i></span>
+                          <select class="form-control" data-toggle="tooltip" data-placement="top" title="Grupo" placeholder="Tipo" name="grupo_id">
+                            <option>Grupo {{caixa.grupo.nome}} </option>
+                            {% for grupo in grupos %}
+                            <option value="{{grupo.pk}}" {% if caixas.grupo.nome == grupo.nome %} SELECTED {% endif %} >{{grupo.nome}}</option>
+                            {% endfor%}
+                          </select>           
+                      </div>
+                      <br/>
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-cog"></i></span>
+                          <select class="form-control" data-toggle="tooltip" data-placement="top" title="Sub-Grupo" placeholder="Tipo" name="subgrupo_id">
+                            <option>Sub-Grupo</option>
+                            {% for subgrupo in subgrupos %}
+                            <option value="{{subgrupo.pk}}" {% if caixas.subgrupo.nome == subgrupo.nome %} SELECTED {% endif %} >{{subgrupo.nome}}</option>
+                            {% endfor%}
+                          </select>           
+                      </div>
+                      <br/>
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-pencil-square-o"></i></span>
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Descrição" name="descricao" placeholder="Descrição" value="{{caixas.descricao}}">
+                      </div>
+                      <br/>
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                        <input class="form-control" data-toggle="tooltip" data-placement="top" title="Pessoa" placeholder="Pessoa" id="Pessoa" name="pessoa_id"
+                        value="{{caixas.pessoa.nome}}">
+                        <input type="hidden" name="caixaId" value="{{caixas.id}}">
+                        <div class="input-group-btn">
+                          <button type="submit" class="btn btn-info"><i class="fa fa-search"><b></b></i></button>
+                        </div>
+                      </div>
+                      <br />
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-money"></i></span>
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Valor Bruto" placeholder="Valor Bruto" id="demo8"  name="valor_bruto" value="{{caixas.valor_bruto|formataDinheiro}}" >
+                      </div>
+                      <br/>
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-money"></i></span>
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Valor Multa" placeholder="Valor Multa" id="demo8"  name="valor_multa" value="{{caixas.valor_multa|formataDinheiro}}" >
+                      </div>
+                      <br/>
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-money"></i></span>
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Valor Juros" placeholder="Valor Juros" id="demo8"  name="valor_juros" value="{{caixas.valor_juros|formataDinheiro}}">
+                      </div>
+                      <br/>
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-money"></i></span>
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Valor Desconto" placeholder="Valor Desconto" id="demo8"  name="valor_desconto" value="{{caixas.valor_desconto|formataDinheiro}}" >
+                      </div>
+                      <br/>
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Data de Vencimento" data-mask="99/99/9999" name="data_vencimento" placeholder="Vencimento" value="{{caixas.data_vencimento|date:"d/m/Y"}}">
+                      </div>
+                      <br/>
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Data de Pagamento" data-mask="99/99/9999"  name="data_pagamento" placeholder="Pagamento" value="{{caixas.data_pagamento|date:"d/m/Y"}}" >
+                      </div>
+                      <br/>
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Data do boleto" data-mask="99/99/9999"  name="data_boleto" placeholder="Boleto" value="{{caixas.data_boleto|date:"d/m/Y"}}" >
+                      </div>
+                      <br/>
+                      <div class="input-group">
+                          <span class="input-group-addon"><i class="fa fa-pencil-square-o"></i></span>
+                          <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Observações" name="observacao" placeholder="Observações" value="{{caixas.observacao}}">
+                      </div>
+                      <br/>
+                      <button type="submit" class="btn btn-success">Gravar</button>
+                  </div><!-- /.box-body -->
+                </form>
+          </div><!-- /.box -->
+        </section><!-- /.content --> 
+{% endblock %}
+{% block js %}
+    <script src="/static/sistema/js/jasny-bootstrap.min.js"></script>
+    <script src="/static/sistema/js/jquery.maskMoney.min.js"></script>
+    <script type="text/javascript">
+      $("#demo8").maskMoney({thousands:'.', decimal:',', affixesStay: true});
+    </script>
+    <script type="text/javascript">
+        $(function () {
+          $('[data-toggle="tooltip"]').tooltip();
+        })
+    </script>
+{% endblock %}

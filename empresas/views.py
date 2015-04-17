@@ -18,21 +18,17 @@ def listaSistema(request):
 def gravarSistema(request):
     if request.method == 'POST':
         try:
-            sistema = Sistema.objects.get(id= request.POST.get('sisID'))
+            sistema = Sistema.objects.get(id= request.POST.get('sisID'),empresa_id=request.user.empresa.id)
 
-            sistema.tipo = request.POST.get('tipo', '').upper()
-            sistema.nome = request.POST.get('nome', '').upper()
-            sistema.descricao = request.POST.get('descricao','').upper()
-
-            sistema.save()
         except:
             sistema = Sistema()
-            sistema.tipo = request.POST.get('tipo', '').upper()
-            sistema.nome = request.POST.get('nome', '').upper()
-            sistema.descricao = request.POST.get('descricao','').upper()
-            sistema.empresa_id = 1
 
-            sistema.save()
+        sistema.tipo = request.POST.get('tipo', '').upper()
+        sistema.nome = request.POST.get('nome', '').upper()
+        sistema.descricao = request.POST.get('descricao','').upper()
+        sistema.empresa_id = request.user.empresa.id
+
+        sistema.save()
     
         return HttpResponseRedirect('/sistema/sistema/')
 
@@ -45,15 +41,14 @@ def preencherSistema(request,sisId):
 
     return render(request,'sistema/cadastroSistema.html',{'sistemas':sistemas})
 
-
 def listaPessoas(request):
     if request.method == 'POST':
-        pessoas = Pessoa.objects.filter(Q(nome__contains=request.POST.get('parametro','')))
+        pessoas = Pessoa.objects.filter(Q(nome__contains=request.POST.get('parametro',''))).order_by('nome')
 
         print request.POST.get('parametro','')
 
     else:
-        pessoas = Pessoa.objects.filter(empresa_id=1,).order_by('nome')
+        pessoas = Pessoa.objects.filter(empresa_id=request.user.empresa.id,).order_by('nome')
 
     return render(request,'sistema/pessoas.html',{'pessoas':pessoas})
 
@@ -65,16 +60,15 @@ def preencherPessoas(request,pessoaId):
     pessoas = Pessoa.objects.get(id=pessoaId)
     tipos = Sistema.objects.filter(ativo='SIM', tipo='TIPO PESSOA').order_by('tipo')
 
-    print pessoas.nome
-
     return render(request,'sistema/cadastroPessoas.html',{'pessoas':pessoas,'tipos':tipos})
 
 def gravarPessoas(request):
     if request.method == 'POST':
-        #try:
-        pessoa = Pessoa.objects.get(id=request.POST.get('pessoaId'))
-        #except:
-        #    pessoa = Pessoa()
+        try:
+            pessoa = Pessoa.objects.get(id=request.POST.get('pessoaId'),empresa_id=request.user.empresa.id,
+                usuario_id=request.user.id)
+        except:
+            pessoa = Pessoa()
 
         pessoa.tipo_id = request.POST.get('tipo','0')
         pessoa.nome = request.POST.get('nome')
@@ -99,9 +93,13 @@ def gravarPessoas(request):
         pessoa.twitter = request.POST.get('twitter')
         pessoa.skype = request.POST.get('skype')
         pessoa.googleplus = request.POST.get('googleplus')
+        pessoa.empresa_id = request.user.empresa.id
+        pessoa.usuario_id = request.user.id
 
         pessoa.save()
     
         return HttpResponseRedirect('/sistema/pessoas/')
     return HttpResponseRedirect('/')
+
+
 

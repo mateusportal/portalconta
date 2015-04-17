@@ -1,0 +1,96 @@
+{% extends "sistema/template.html" %}
+{% load minhas_tags %}
+{% block titulo %}Cadastro de Sistema{% endblock %}
+{% block container %} 
+<!-- Content Header (Page header) -->
+    <!--    <section class="content-header">
+          <h1>
+            Configurações de Sistema       
+          </h1>
+          <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Configurações de Sistema</li>
+          </ol>
+        </section>
+      -->
+      <!-- Main content -->
+      <section class="content">
+        <!-- Info boxes -->
+        <form method="POST" action="/sistema/caixa/buscar/"> {% csrf_token %}
+          <div class="input-group">
+            <input class="form-control" placeholder="Sua pesquisa aqui..." name="parametro" type="text" />
+            <div class="input-group-btn">
+              <button type="submit" class="btn btn-success"><i class="fa fa-search"><b>&nbsp;Pesquisa</b></i></button>
+            </div>
+          </div>
+        </form>
+        <br/>
+        <div class="box box-primary">
+          <div class="box-header">
+            <i class="ion ion-clipboard"></i>
+            <h3 class="box-title">Configurações cadastradas</h3><br/><br/>
+            <a href="/sistema/caixa/editor/"><button class="btn btn-default"><i class="fa fa-plus"></i>&nbsp;&nbsp;Adicionar novo</button></a>
+            <div class="box-tools pull-right">
+              <ul class="pagination pagination-sm inline">
+                <li><a href="#">&laquo;</a></li>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">&raquo;</a></li>
+              </ul>
+            </div>
+          </div><!-- /.box-header -->
+          <div class="box-body">
+            <div class="row">
+            {% for caixa in caixas %}
+             <div class="col-lg-3 col-xs-6">
+                <!-- small box -->
+                <div class="small-box bg-{% if caixa.tipo == 'E' %}green{% elif caixa.tipo == 'S' %}blue{% endif %}">
+                  <div class="inner">
+                    <h4><b>{{caixa.descricao}} </b></h4>
+                    <p>${{caixa.valor_bruto|formataDinheiro}}</p>
+                    <p>{{caixa.pessoa.nome}}</p>
+                    <p>{{caixa.data_vencimento|date:"d/m/Y"}}</p>
+                  </div>
+                  <a href="/sistema/caixa/editor/{{caixa.id}}" ><div class="icon">
+                    <i class="ion {% if caixa.tipo == 'E' %}ion-plus-round{% elif caixa.tipo == 'S' %}ion-minus-round{% endif %}"></i>
+                  </div></a>
+                  <a href="" class="small-box-footer" data-toggle="modal" data-target="#Modal{{caixa.id}}">Excluir <i class="fa fa-trash-o"></i></a>
+                                </div>
+              <!-- Modal -->
+              <div class="modal fade" id="Modal{{caixa.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title" id="myModalLabel">CONFIRMA EXCLUSÃO!</h4>
+                    </div>
+                    <div class="modal-body">
+                      Deseja mesmo excluir a Conta : {{caixa.descricao}} no valor de R${{caixa.valor_bruto|formataDinheiro}} e vencimento para {{caixa.data_vencimento|date:"d/m/Y"}}  ?
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
+                      <a href="/sistema/caixa/excluir/{{caixa.id}}"><button type="button" class="btn btn-primary">Sim</button></a>
+                    </div>
+                  </div>
+                </div>
+              </div><!-- Modal --> 
+              </div><!-- ./col -->
+            {% endfor %}
+            </div><!-- /.row -->
+          </div><!-- /.box-body-->
+          <div class="box-footer clearfix no-border">
+            <a href="/sistema/caixa/editor/"><button class="btn btn-default"><i class="fa fa-plus"></i>&nbsp;&nbsp;Adicionar novo</button></a>
+            <div class="box-tools pull-right">
+              <ul class="pagination pagination-sm inline">
+                <li><a href="#">&laquo;</a></li>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">&raquo;</a></li>
+              </ul>
+            </div>  
+          </div>
+        </div><!-- /.box -->
+      </section><!-- /.content -->
+      {% endblock %}

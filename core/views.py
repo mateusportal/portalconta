@@ -219,17 +219,19 @@ def cadastrarPessoas(request):
 
     return render(request,'sistema/cadastroPessoas.html',{'tipos':tipos}) 
 
+@login_required
 def pessoas(request):
-    
     return render(request,'sistema/cadastroPessoas.html')       
 
 @login_required
 def cadastroEmpresa(request):
     return render(request,'sistema/empresa.html')
 
+@login_required
 def listarSistema(request):
     return render(request,'sistema/sistema.html')
 
+@login_required
 def cadastroSistema(request):
     return render(request,'sistema/cadastroSistema.html')
 
@@ -237,8 +239,21 @@ def cadastroSistema(request):
 def usuario(request):
     return render(request,'sistema/usuario.html')
 
+@login_required
 def usuarios(request):
     return render(request,'sistema/usuarios.html')
+
+@login_required
+def caixa(request):
+    return render(request,'sistema/caixa.html')
+
+@login_required
+def cadastrarCaixa(request):
+    grupo = Sistema.objects.filter(ativo='SIM', tipo='GRUPO').order_by('nome')
+    subgrupo = Sistema.objects.filter(ativo='SIM', tipo='SUB-GRUPO').order_by('nome')
+    categoria = Sistema.objects.filter(ativo='SIM', tipo='CATEGORIA').order_by('nome')
+
+    return render(request,'sistema/cadastroCaixa.html',{'grupos':grupo,'subgrupos':subgrupo,'categorias':categoria})
 
 
 
