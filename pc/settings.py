@@ -7,6 +7,8 @@
 # RODANDO MIGRATE NO HEROKU: heroku run python manage.py migrate core
 # OU ESTE PARA AJUSTAR MIGRAÇÃO EM CASO DE ERROS: heroku run python manage.py migrate core --fake
 # DESCOBRIR ERROS NO SERVIDOR HEROKU: heroku run python ./manage.py collectstatic --noinput
+# LIMPAR BANCO HEROKU: heroku pg:reset DATABASE
+# CRIAR NOVAMENTE O BANCO REMOTO: heroku run python manage.py syncdb
 
 import os
 import cloudinary
