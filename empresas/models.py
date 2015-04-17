@@ -12,10 +12,10 @@ from cloudinary.models import CloudinaryField
 
 class Empresa(models.Model):
     logo = models.CharField(default='semfoto.png', max_length=100, blank=True, null=True)
-    razao_social = models.CharField(db_index=True,max_length=150, blank=False, null=False)
-    nome_fantasia = models.CharField(db_index=True,max_length=150, blank=True, null=False)
+    razao_social = models.CharField(db_index=True,max_length=150, blank=False)
+    nome_fantasia = models.CharField(db_index=True,max_length=150, blank=True)
     cnpj = models.CharField(max_length=50, blank=True, null=True)
-    num_registro = models.CharField(max_length=150, blank=True, null=False)
+    num_registro = models.CharField(max_length=150, blank=True)
     endereco_rua = models.CharField(max_length=250, blank=True, null=True)
     endereco_numero = models.CharField(max_length=250, blank=True, null=True)
     endereco_complemento = models.CharField(max_length=250, blank=True, null=True)
@@ -26,7 +26,7 @@ class Empresa(models.Model):
     endereco_cep = models.CharField(max_length=250, blank=True, null=True)
     telefone_contato = models.CharField(max_length=50, blank=True, null=True)
     telefone_financeiro = models.CharField(max_length=50, blank=True, null=True)
-    email_contato = models.CharField(max_length=150, blank=False, null=False)
+    email_contato = models.CharField(max_length=150, blank=False)
     email_financeiro = models.CharField(max_length=150, blank=True, null=True)
     facebook = models.CharField(max_length=150, blank=True, null=True)
     googleplus = models.CharField(max_length=150, blank=True, null=True)
@@ -40,7 +40,7 @@ class Empresa(models.Model):
     data_cadastro = models.DateTimeField(auto_now=False, auto_now_add=True)
     data_alteracao = models.DateTimeField(auto_now=True, auto_now_add=True)
     tags = models.CharField(max_length=250, blank=True, null=True)
-    ativo = models.CharField(default="SIM", max_length=50, blank=False, null=False)
+    ativo = models.CharField(default="SIM", max_length=50, blank=False)
 
     
 
@@ -64,7 +64,7 @@ class Usuario(AbstractUser):
     telefone_fixo = models.CharField(_(u'Telefone Fixo'), max_length=50, blank=True, null=True)
     telefone_celular = models.CharField(_(u'Telefone Celular'), max_length=50, blank=True, null=True)
     foto = CloudinaryField(_(u'foto'), blank=True, null=True)
-    idioma = models.CharField(_(u'Idioma'), max_length=50, blank=True, null=False)
+    idioma = models.CharField(_(u'Idioma'), max_length=50, blank=True)
     empresa = models.ForeignKey(Empresa, related_name="usuario_empresa_id", blank=True, null=True)
 
     class Meta:
@@ -82,7 +82,7 @@ class Sistema(models.Model):
     tags = models.CharField(max_length=250, blank=True, null=True)
     descricao = models.CharField(max_length=250, blank=True, null=True)
     data_cadastro = models.DateTimeField(auto_now=False, auto_now_add=True)
-    ativo = models.CharField(default="SIM", max_length=50, blank=False, null=False)
+    ativo = models.CharField(default="SIM", max_length=50, blank=False)
 
     def __unicode__(self):
         return u'{nome}'.format(nome=self.nome)
@@ -90,7 +90,7 @@ class Sistema(models.Model):
 
 class Pessoa(models.Model):
     tipo = models.ForeignKey(Sistema, related_name="pessoa_tipo_id", blank=True, null=True)
-    nome = models.CharField(db_index=True,max_length=150, blank=True, null=False)
+    nome = models.CharField(db_index=True,max_length=150, blank=True)
     cpf = models.CharField(max_length=50, blank=True, null=True)
     rg = models.CharField(max_length=50, blank=True, null=True)
     conta_banco = models.CharField(max_length=50, blank=True, null=True)
@@ -108,17 +108,17 @@ class Pessoa(models.Model):
     telefone_celular = models.CharField(max_length=50, blank=True, null=True)
     email_pessoal = models.CharField(max_length=250, blank=True, null=True)
     email_empresarial = models.CharField(max_length=250, blank=True, null=True)
-    facebook = models.CharField(db_index=True,max_length=150, blank=True, null=False)
-    googleplus = models.CharField(db_index=True,max_length=150, blank=True, null=False)
-    skype = models.CharField(db_index=True,max_length=150, blank=True, null=False)
-    twitter = models.CharField(db_index=True,max_length=150, blank=True, null=False)
+    facebook = models.CharField(db_index=True,max_length=150, blank=True)
+    googleplus = models.CharField(db_index=True,max_length=150, blank=True)
+    skype = models.CharField(db_index=True,max_length=150, blank=True)
+    twitter = models.CharField(db_index=True,max_length=150, blank=True)
     empresa = models.ForeignKey(Empresa,related_name="pessoa_empresa_id")
     usuario = models.ForeignKey(Usuario,related_name="pessoa_usuario_id")
     data_cadastro = models.DateTimeField(auto_now=False, auto_now_add=True)
     data_alteracao = models.DateTimeField(auto_now=True, auto_now_add=True)
-    ativo = models.CharField(default="SIM", max_length=50, blank=False, null=False)
+    ativo = models.CharField(default="SIM", max_length=50, blank=False)
     anotacacoes = models.CharField(max_length=250, blank=True, null=True)
-    grupo_pessoa = models.CharField(db_index=True,max_length=150, blank=True, null=False)
+    grupo_pessoa = models.CharField(db_index=True,max_length=150, blank=True)
     tags = models.CharField(max_length=250, blank=True, null=True)
 
     def __unicode__(self):

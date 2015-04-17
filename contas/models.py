@@ -5,6 +5,17 @@ from empresas.models import Empresa, Sistema, Pessoa
 # = models.CharField(max_length=150, blank=True, null=False)
 # = models.CharField(max_length=250, blank=True, null=True)
 
+class Cheque(models.Model):
+    banco = models.CharField(max_length=50, blank=True, null=True)
+    agencia = models.CharField(max_length=50, blank=True, null=True)
+    numero_cheque = models.CharField(max_length=50, blank=True, null=True)
+    valor = models.DecimalField(max_digits=7, decimal_places=2)
+    nome = models.CharField(max_length=150, blank=True, null=True)
+    data_recebido = models.DateField(auto_now=False, auto_now_add=False)
+    data_compensar = models.DateField(auto_now=False, auto_now_add=False)
+    data_compensado = models.DateField(auto_now=False, auto_now_add=False)
+    tags = models.CharField(max_length=250, blank=True, null=True)
+    empresa = models.ForeignKey(Empresa,related_name="cheque_empresa_id")
 
 class Caixa(models.Model):
     pessoa = models.ForeignKey(Pessoa,related_name="caixa_pessoa_id")
@@ -18,7 +29,7 @@ class Caixa(models.Model):
     operacao = models.CharField(max_length=250, blank=True, null=True)
     data_cadastro = models.DateTimeField(auto_now=False, auto_now_add=True)
     data_alteracao = models.DateTimeField(auto_now=True, auto_now_add=True)
-    ativo = models.CharField(default="SIM", max_length=50, blank=False, null=False)
+    ativo = models.CharField(default="SIM", max_length=50, blank=False)
     usuario = models.ForeignKey(Pessoa,related_name="caixa_usuario_id")
     empresa = models.ForeignKey(Empresa,related_name="caixa_empresa_id")
     observacao = models.CharField(max_length=250, blank=True, null=True)
@@ -28,7 +39,8 @@ class Caixa(models.Model):
     categoria = models.ForeignKey(Sistema,related_name="caixa_categoria_id")
     grupo = models.ForeignKey(Sistema,related_name="caixa_grupo_id")
     subgrupo = models.ForeignKey(Sistema,related_name="caixa_subgrupo_id")  
-    tipo = models.CharField(max_length=1,blank=False,null=False) 
+    tipo = models.CharField(default="E",max_length=1,blank=False) 
+ 
 
 
 class Vinculo(models.Model):
@@ -40,15 +52,6 @@ class Vinculo(models.Model):
     empresa = models.ForeignKey(Empresa,related_name="vinculo_empresa_id")
 
 
-class Cheque(models.Model):
-    banco = models.CharField(max_length=50, blank=True, null=True)
-    agencia = models.CharField(max_length=50, blank=True, null=True)
-    numero_cheque = models.CharField(max_length=50, blank=True, null=True)
-    valor = models.DecimalField(max_digits=7, decimal_places=2)
-    nome = models.CharField(max_length=150, blank=True, null=True)
-    data_recebido = models.DateField(auto_now=False, auto_now_add=False)
-    data_compensar = models.DateField(auto_now=False, auto_now_add=False)
-    data_compensado = models.DateField(auto_now=False, auto_now_add=False)
-    caixa  = models.ForeignKey(Caixa,related_name="cheque_caixa_id")
+
 
 
