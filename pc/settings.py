@@ -1,13 +1,16 @@
 # coding: utf-8
 # ADICIONANDO HOSPEDAGEM: heroku git:remote -a portalconta
 # ADICIONANDO NOVO USUARIO CASO O SOUTH NAO CRIE: python manage.py createsuperuser
-# COMANDO SOUTH: python manage.py schemamigration empresas --auto
+# COMANDO SOUTH: python manage.py schemamigration core --auto
 # COMANDO SOUTH: python manage.py migrate empresas
+# APPS DO SISTEMA PARA RODAR OS COMANDOS: core empresas contas
+# RODANDO MIGRATE NO HEROKU: heroku run python manage.py migrate core
+# OU ESTE PARA AJUSTAR MIGRAÇÃO EM CASO DE ERROS: heroku run python manage.py migrate core --fake
+# DESCOBRIR ERROS NO SERVIDOR HEROKU: heroku run python ./manage.py collectstatic --noinput
 
 import os
 import cloudinary
 import dj_database_url
-
 from unipath import Path
 
 BASE_DIR = Path(__file__).parent
