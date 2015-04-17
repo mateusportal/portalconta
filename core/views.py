@@ -93,6 +93,112 @@ def valida_cadastro(request):
     
             usuario.save()
 
+            sistema = Sistema()
+            sistema.tipo = 'TIPO PESSOA'
+            sistema.nome = 'CLIENTE'
+            sistema.id_empresa = empresa.pk
+            sistema.tags = 'PADRÃO '
+            sistema.descricao = 'Você pode mudar o nome deste tipo, mas não excluir do sistema.'
+            sistema.save()
+            sistema = Sistema()
+            sistema.tipo = 'TIPO PESSOA'
+            sistema.nome = 'FORNECEDOR'
+            sistema.id_empresa = empresa.pk
+            sistema.tags = 'PADRÃO '
+            sistema.descricao = 'Você pode mudar o nome deste tipo, mas não excluir do sistema.'
+            sistema.save()
+            sistema = Sistema()
+            sistema.tipo = 'TIPO PESSOA'
+            sistema.nome = 'FUNCIONÁRIO(A)'
+            sistema.id_empresa = empresa.pk
+            sistema.tags = 'PADRÃO '
+            sistema.descricao = 'Você pode mudar o nome deste tipo, mas não excluir do sistema.'
+            sistema.save()
+            sistema = Sistema()
+            sistema.tipo = 'CATEGORIA'
+            sistema.nome = 'CAIXA INTERNO'
+            sistema.id_empresa = empresa.pk
+            sistema.tags = 'PADRÃO '
+            sistema.descricao = 'Você pode mudar o nome deste tipo, mas não excluir do sistema.'
+            sistema.save()
+            sistema = Sistema()
+            sistema.tipo = 'CATEGORIA'
+            sistema.nome = 'CAIXA EXTERNO BANCO'
+            sistema.id_empresa = empresa.pk
+            sistema.tags = 'PADRÃO '
+            sistema.descricao = 'Você pode mudar o nome deste tipo, mas não excluir do sistema.'
+            sistema.save()
+            sistema = Sistema()
+            sistema.tipo = 'GRUPO'
+            sistema.nome = 'PRODUTOS E SERVIÇOS'
+            sistema.id_empresa = empresa.pk
+            sistema.tags = 'PADRÃO '
+            sistema.descricao = 'Você pode mudar o nome deste tipo, mas não excluir do sistema.'
+            sistema.save()
+            sistema = Sistema()
+            sistema.tipo = 'GRUPO'
+            sistema.nome = 'ADMINISTRATIVO'
+            sistema.id_empresa = empresa.pk
+            sistema.tags = 'PADRÃO '
+            sistema.descricao = 'Você pode mudar o nome deste tipo, mas não excluir do sistema.'
+            sistema.save()
+            sistema = Sistema()
+            sistema.tipo = 'GRUPO'
+            sistema.nome = 'FINANCEIRO'
+            sistema.id_empresa = empresa.pk
+            sistema.tags = 'PADRÃO '
+            sistema.descricao = 'Você pode mudar o nome deste tipo, mas não excluir do sistema.'
+            sistema.save()
+            sistema = Sistema()
+            sistema.tipo = 'SUB-GRUPO'
+            sistema.nome = 'MANUTENÇÃO'
+            sistema.id_empresa = empresa.pk
+            sistema.tags = 'PADRÃO '
+            sistema.descricao = 'Você pode mudar o nome deste tipo, mas não excluir do sistema.'
+            sistema.save()
+            sistema = Sistema()
+            sistema.tipo = 'SUB-GRUPO'
+            sistema.nome = 'OUTROS'
+            sistema.id_empresa = empresa.pk
+            sistema.tags = 'PADRÃO '
+            sistema.descricao = 'Você pode mudar o nome deste tipo, mas não excluir do sistema.'
+            sistema.save()
+            sistema = Sistema()
+            sistema.tipo = 'SUB-GRUPO'
+            sistema.nome = 'HONORÁRIOS'
+            sistema.id_empresa = empresa.pk
+            sistema.tags = 'PADRÃO '
+            sistema.descricao = 'Você pode mudar o nome deste tipo, mas não excluir do sistema.'
+            sistema.save()
+            sistema = Sistema()
+            sistema.tipo = 'SUB-GRUPO'
+            sistema.nome = 'ADIANTAMENTO'
+            sistema.id_empresa = empresa.pk
+            sistema.tags = 'PADRÃO '
+            sistema.descricao = 'Você pode mudar o nome deste tipo, mas não excluir do sistema.'
+            sistema.save()
+            sistema = Sistema()
+            sistema.tipo = 'SUB-GRUPO'
+            sistema.nome = 'OUTROS'
+            sistema.id_empresa = empresa.pk
+            sistema.tags = 'ALUGUEL '
+            sistema.descricao = 'Você pode mudar o nome deste tipo, mas não excluir do sistema.'
+            sistema.save()
+            sistema = Sistema()
+            sistema.tipo = 'SUB-GRUPO'
+            sistema.nome = 'TELEFONIA'
+            sistema.id_empresa = empresa.pk
+            sistema.tags = 'PADRÃO '
+            sistema.descricao = 'Você pode mudar o nome deste tipo, mas não excluir do sistema.'
+            sistema.save()
+            sistema = Sistema()
+            sistema.tipo = 'SUB-GRUPO'
+            sistema.nome = 'TAXAS'
+            sistema.id_empresa = empresa.pk
+            sistema.tags = 'PADRÃO '
+            sistema.descricao = 'Você pode mudar o nome deste tipo, mas não excluir do sistema.'
+            sistema.save()
+
             return render(request,'index/login.html',{'msg':'Usuário criado com sucesso! Faça o login abaixo.'})
         else:
             return render(request,'index/cadastro.html',{'form':form})
@@ -127,6 +233,7 @@ def listarSistema(request):
 def cadastroSistema(request):
     return render(request,'sistema/cadastroSistema.html')
 
+@login_required
 def usuario(request):
     return render(request,'sistema/usuario.html')
 

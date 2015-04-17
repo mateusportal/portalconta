@@ -239,29 +239,29 @@
                   <li class="user-body">
                     {% if user.empresa.facebook %}
                     <div class="col-xs-4 text-center">
-                      <a href="{{ user.empresa.facebook }}" target="_blank">Facebook</a>
+                      <a href="{{ user.empresa.facebook }}" target="_blank" title="Facebook da minha Empresa.">Facebook</a>
                     </div>
                     {% else %}
                     <div class="col-xs-4 text-center">
-                      <a href="/LINK PARA ATUALIZACAO DO FACEBOOK/" target="_blank">Facebook</a>
+                      <a href="https://www.facebook.com/PortalContas" target="_blank" title="Cadastre o Facebook da sua empresa e ele aparecerá aqui!">Facebook</a>
                     </div>
                     {% endif %}
                     {% if user.empresa.twitter %}
                     <div class="col-xs-4 text-center">
-                      <a href="{{ user.empresa.twitter }}" target="_blank">Twitter</a>
+                      <a href="{{ user.empresa.twitter }}" target="_blank" title="Twitter da minha Empresa.">Twitter</a>
                     </div>
                     {% else %}
                     <div class="col-xs-4 text-center">
-                      <a href="/LINK PARA ATUALIZACAO DO Twitter/" target="_blank">Twitter</a>
+                      <a href="https://twitter.com/PortalContas" target="_blank" title="Cadastre o Twitter da sua empresa e ele aparecerá aqui!">Twitter</a>
                     </div>
                     {% endif %}
                     {% if user.empresa.googleplus %}
                     <div class="col-xs-4 text-center">
-                      <a href="{{ user.empresa.googleplus }}" target="_blank">Google+</a>
+                      <a href="{{ user.empresa.googleplus }}" target="_blank" title="Google Plus da minha Empresa.">Google+</a>
                     </div>
                     {% else %}
                     <div class="col-xs-4 text-center">
-                      <a href="/LINK PARA ATUALIZACAO DO Amigos/" target="_blank">Google+</a>
+                      <a href="https://plus.google.com/u/0/b/101813900063598335998/101813900063598335998/" target="_blank" title="Cadastre o Google Plus da sua empresa e ele aparecerá aqui!">Google+</a>
                     </div>
                     {% endif %}
                   </li>
@@ -341,9 +341,9 @@
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="#"><i class="fa fa-circle-o"></i> Usuário</a></li>
-                <li><a href="#"><i class="fa fa-circle-o"></i> Empresa</a></li>
-                <li><a href="/sistema/sistema/"><i class="fa fa-circle-o"></i> Sistema</a></li>
+                <li><a href="/sistema/usuario/"><i class="fa fa-user"></i> Minhas Informações</a></li>
+                <li><a href="/sistema/usuario/empresa/"><i class="fa fa-users"></i> Minha Empresa</a></li>
+                <li><a href="/sistema/sistema/"><i class="fa fa-cube"></i> Meu Sistema</a></li>
               </ul>
             </li>
 
@@ -368,12 +368,8 @@
       <!-- Content Header (Page header) -->
           <section class="content-header">
             <h1>
-              painel de instrumentos            
+              {% block container_titulo %}Título da Página{% endblock %}            
             </h1>
-            <ol class="breadcrumb">
-              <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-              <li class="active">painel de instrumentos</li>
-            </ol>
           </section>
 
           <!-- Main content -->

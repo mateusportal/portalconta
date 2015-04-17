@@ -1,117 +1,146 @@
 {% extends "sistema/template.html" %}
-{% block titulo %}Cadastro do Usuário{% endblock %}
+{% block titulo %}Meu Perfil{% endblock %}
+{% block container_titulo %}<i class="fa fa-user"></i> Cadastro{% endblock %}  
 
-{% block container %}
-
-        <!-- Main content -->
-        <section class="content">
-          <!-- Info boxes -->
-          <form method="POST" action="/sistema/usuario/buscar/"> {% csrf_token %}
-            <div class="input-group">
-                <input class="form-control" placeholder="Sua pesquisa aqui..." name="parametro" type="text" />
-              <div class="input-group-btn">
-                <button type="submit" class="btn btn-success"><i class="fa fa-search"><b>&nbsp;Pesquisa</b></i></button>
-              </div>
-            </div>
-          </form>
-            <br/>
-          <div class="box box-primary">
+{% block container %}  
+<section class="content">
+    <div class="row">    
+        <div class="col-md-12">           
+            <div class="box box-info">
                 <div class="box-header">
-                  <i class="ion ion-clipboard"></i>
-                  <h3 class="box-title">Configurações cadastradas</h3>
-                  <div class="box-tools pull-right">
-                    <ul class="pagination pagination-sm inline">
-                      <li><a href="#">&laquo;</a></li>
-                      <li><a href="#">1</a></li>
-                      <li><a href="#">2</a></li>
-                      <li><a href="#">3</a></li>
-                      <li><a href="#">&raquo;</a></li>
-                    </ul>
-                  </div>
-                </div><!-- /.box-header -->
+                    <h3 class="box-title">Minhas Informações</h3>
+                </div>
                 <div class="box-body">
-                  <ul class="todo-list">
-                   {% for sistema in sistemas %}
-                    <li>
-                      <!-- drag handle -->
-                      <a href="/sistema/sistema/editor/{{sistema.id}}" >
-                      <span class="handle">
-                        <i class="fa fa-ellipsis-v"></i>
-                        <i class="fa fa-ellipsis-v"></i>
-                      </span>
-                      <!-- danger = vermelho | info = azul | warning = amarelo | success = verde -->
-                      <!-- primary = azulescuro | default = cinza -->
-                      <small class="{%if sistema.tipo == 'TIPO PESSOA' %}
-                          label label-info
-                      {% elif sistema.tipo == 'GRUPO'  %}
-                          label label-warning
-                      {% elif sistema.tipo == 'SUB-GRUPO'  %}
-                          label label-danger
-                      {% elif sistema.tipo == 'CATEGORIA'  %}
-                          label label-success
-                      {% endif %}">
-                      <i class="
-                      {%if sistema.tipo == 'TIPO PESSOA' %}
-                          fa fa-user
-                      {% elif sistema.tipo == 'GRUPO'  %}
-                          fa fa-cog
-                      {% elif sistema.tipo == 'SUB-GRUPO'  %}
-                          fa fa-cogs
-                      {% elif sistema.tipo == 'CATEGORIA'  %}
-                          fa fa-folder
-                      {% endif %}">&nbsp;</i>{{sistema.tipo}}</small>
-
-                      <!-- todo text -->
-                      <span class="text">{{sistema.nome}}</span>
-                      <!-- Emphasis label -->
-                      <input type="hidden" value="{{sistema.pk}}">
-                      <!-- General tools such as edit or delete-->
-                      </a>
-                      <div class="tools" style="display: block">
-                      
-                        <a href="" class="fa fa-trash-o" data-toggle="modal" data-target="#Modal{{sistema.id}}"></a>
-                        <!-- Modal -->
-                        <div class="modal fade" id="Modal{{sistema.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                          <div class="modal-dialog">
-                            <div class="modal-content">
-                              <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="myModalLabel">CONFIRMA ESCLUSÃO!</h4>
-                              </div>
-                              <div class="modal-body">
-                                Deseja mesmo excluir o registro : {{sistema.tipo}} : {{sistema.nome}}
-                              </div>
-                              <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
-                                <a href="/sistema/sistema/excluir/{{sistema.id}}"><button type="button" class="btn btn-primary">Sim</button></a>
-                              </div>
-                            </div>
-                          </div>
-                        </div><!-- Modal -->
-                      </div>
-                    </li>
-                  {% endfor %}
-                    </ul>
-                    <div class="box-footer clearfix no-border">
-                      <a href="/sistema/sistema/editor/"><button class="btn btn-default"><i class="fa fa-plus"></i>&nbsp;&nbsp;Adicionar novo</button></a>
-                      <div class="box-tools pull-right">
-                        <ul class="pagination pagination-sm inline">
-                          <li><a href="#">&laquo;</a></li>
-                          <li><a href="#">1</a></li>
-                          <li><a href="#">2</a></li>
-                          <li><a href="#">3</a></li>
-                          <li><a href="#">&raquo;</a></li>
-                        </ul>
-                      </div>  
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-edit"></i></span>
+                        <input type="text" id="Cpf" class="form-control"  placeholder="Cpf">
                     </div>
-                </div><!-- /.box-body-->
+                    <br/>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-edit"></i></span>
+                        <input type="text" class="form-control"id="rg" placeholder="Rg">                    
+                    </div>
+                    <br />
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-facebook"></i></span>
+                        <input type="text" class="form-control" placeholder="Facebook">
+                    </div>
+                    <br/>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-twitter"></i></span>
+                        <input type="text" class="form-control" placeholder="Twitter">
+                    </div>
+                    <br/>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-skype"></i></span>
+                        <input type="email" class="form-control" placeholder="Skype">             
+                    </div>
+                    <br />
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-google-plus"></i></span>
+                        <input type="email" class="form-control" placeholder="Google Plus">     
+                    </div>
+                    <br />
+                        <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+                        <input type="text" class="form-control" placeholder="Telefone">
+                    </div>
+                    <br/>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-mobile"></i></span>
+                        <input type="text" class="form-control" placeholder="Celular">
+                    </div>
+                    <br />
+                        <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-camera-retro"></i></span>
+                        <input type="text" class="form-control" placeholder="Foto">
+                    </div>
+                    <br/>                   
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-building-o"></i></span>
+                        <input type="text" class="form-control" placeholder="Empresa">
+                    </div>
+                    <br/> 
+                </div><!-- /.box-body -->
+            </div><!-- /.box -->
 
-              </div><!-- /.box -->
 
-        </section><!-- /.content -->
-     
+            <div class="box box-info">
+                <div class="box-header">
+                    <h3 class="box-title">Minhas Informações</h3>
+                </div>
+                <div class="box-body">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-edit"></i></span>
+                        <input type="text" id="Cpf" class="form-control"  placeholder="Cpf">
+                    </div>
+                    <br/>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-edit"></i></span>
+                        <input type="text" class="form-control"id="rg" placeholder="Rg">                    
+                    </div>
+                    <br />
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-facebook"></i></span>
+                        <input type="text" class="form-control" placeholder="Facebook">
+                    </div>
+                    <br/>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-twitter"></i></span>
+                        <input type="text" class="form-control" placeholder="Twitter">
+                    </div>
+                    <br/>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-skype"></i></span>
+                        <input type="email" class="form-control" placeholder="Skype">             
+                    </div>
+                    <br />
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-google-plus"></i></span>
+                        <input type="email" class="form-control" placeholder="Google Plus">     
+                    </div>
+                    <br />
+                        <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+                        <input type="text" class="form-control" placeholder="Telefone">
+                    </div>
+                    <br/>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-mobile"></i></span>
+                        <input type="text" class="form-control" placeholder="Celular">
+                    </div>
+                    <br />
+                        <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-camera-retro"></i></span>
+                        <input type="text" class="form-control" placeholder="Foto">
+                    </div>
+                    <br/>                   
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-building-o"></i></span>
+                        <input type="text" class="form-control" placeholder="Empresa">
+                    </div>
+                    <br/> 
+                </div><!-- /.box-body -->
+            </div><!-- /.box -->
 
-    
 
-   
+            
+        </div><!--/.col  -->            
+        </div>   <!-- /.row -->
+
+        <div class="row">    
+            <div class="col-md-12">
+                <div class="input-group">                  
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-success btn-flat">Salvar Dados</button>
+                    </span>
+                </div>
+            </div><!--/.col  -->             
+        </div><!-- /.row -->         
+</section><!-- /.content -->
 {% endblock %}
+
+
+
+
+
