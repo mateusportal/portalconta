@@ -8,9 +8,9 @@ from datetime import datetime
 #Trabalhando com datas
 def preencherCaixa(request,caixaId):
     caixa = Caixa.objects.get(id=caixaId)
-    grupo = Sistema.objects.filter(ativo='SIM', tipo='GRUPO').order_by('nome')
-    subgrupo = Sistema.objects.filter(ativo='SIM', tipo='SUB-GRUPO').order_by('nome')
-    categoria = Sistema.objects.filter(ativo='SIM', tipo='CATEGORIA').order_by('nome')
+    grupo = Sistema.objects.filter(ativo='SIM', tipo='GRUPO', empresa_id=request.user.empresa.id).order_by('nome')
+    subgrupo = Sistema.objects.filter(ativo='SIM', tipo='SUB-GRUPO', empresa_id=request.user.empresa.id).order_by('nome')
+    categoria = Sistema.objects.filter(ativo='SIM', tipo='CATEGORIA', empresa_id=request.user.empresa.id).order_by('nome')
 
 
     return render(request,'sistema/cadastroCaixa.html',{'caixas':caixa,'grupos':grupo,'subgrupos':subgrupo,'categorias':categoria})
