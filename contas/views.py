@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponseRedirect
 from django.db.models import Q
-from contas.models import Caixa
+from contas.models import Caixa, Cheque
 from empresas.models import Sistema
 from datetime import datetime
 #d = datetime.strptime('2007-07-18 10:03:19', '%Y-%m-%d %H:%M:%S')
@@ -48,7 +48,6 @@ def gravarCaixa(request):
     caixa.subgrupo_id = request.POST.get('subgrupo_id')
     caixa.tipo = request.POST.get('tipo')
 
-    print '=====' + request.POST.get('tipo')
     caixa.save()
 
     return HttpResponseRedirect('/sistema/caixa/')
@@ -57,3 +56,8 @@ def excluirCaixa(request,caixaId):
     caixa = Caixa.objects.get(empresa_id=request.user.empresa.id,id=caixaId,usuario_id=request.user.id).delete()
 
     return HttpResponseRedirect('/sistema/caixa/')
+
+def listarCheque(request):
+    cheque = Cheque.objects.filter(empresa_id=int(request.user.empresa.id)).order_by('data_compensar')
+
+    return render(request,'sistema/cheque.html',{'cheques':cheque})
