@@ -46,8 +46,9 @@ def gravarCaixa(request):
     caixa.categoria_id = request.POST.get('categoria_id')
     caixa.grupo_id = request.POST.get('grupo_id')
     caixa.subgrupo_id = request.POST.get('subgrupo_id')
-    caixa.tipo = 'E'
+    caixa.tipo = request.POST.get('tipo')
 
+    print '=====' + request.POST.get('tipo')
     caixa.save()
 
     return HttpResponseRedirect('/sistema/caixa/')

@@ -43,20 +43,22 @@
           <div class="box-body">
             <div class="row">
             {% for caixa in caixas %}
-             <div class="col-lg-3 col-xs-6">
+            <div class="col-lg-3 col-xs-6" >
                 <!-- small box -->
                 <div class="small-box bg-{% if caixa.tipo == 'E' %}green{% elif caixa.tipo == 'S' %}blue{% endif %}">
-                  <div class="inner">
+                  <div class="inner" >
+                    <a href="/sistema/caixa/editor/{{caixa.id}}" style="color:#FFFFFF;">
                     <h4><b>{{caixa.descricao}} </b></h4>
                     <p>${{caixa.valor_bruto|formataDinheiro}}</p>
                     <p>{{caixa.pessoa.nome}}</p>
                     <p>{{caixa.data_vencimento|date:"d/m/Y"}}</p>
+                    </a>
                   </div>
-                  <a href="/sistema/caixa/editor/{{caixa.id}}" ><div class="icon">
+                  <div class="icon">
                     <i class="ion {% if caixa.tipo == 'E' %}ion-plus-round{% elif caixa.tipo == 'S' %}ion-minus-round{% endif %}"></i>
-                  </div></a>
+                  </div>
                   <a href="" class="small-box-footer" data-toggle="modal" data-target="#Modal{{caixa.id}}">Excluir <i class="fa fa-trash-o"></i></a>
-                                </div>
+                  </div>
               <!-- Modal -->
               <div class="modal fade" id="Modal{{caixa.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
