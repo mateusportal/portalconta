@@ -1,4 +1,5 @@
 {% extends "sistema/template.html" %}
+{% load i18n %}
 {% block titulo %}Meu Perfil{% endblock %}
 {% block container_titulo %}<i class="fa fa-user"></i> Meu Perfil{% endblock %}  
 
@@ -8,59 +9,44 @@
         <div class="col-md-12">           
             <div class="box box-info">
                 <div class="box-header">
-                    <h3 class="box-title">Informações Pessoais</h3>
+                    <h3 class="box-title">{% trans "Informações Pessoais" %}</h3>
                 </div>
                 <div class="box-body">
                     <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-edit"> Login</i></span>
+                        <span class="input-group-addon"><i class="fa fa-edit"> {% trans "Login" %}</i></span>
                         <input type="text" class="form-control"  placeholder="Nome de usuário do sistema.">
                     </div>
                     <br/>
                     <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-edit"></i></span>
-                        <input type="text" class="form-control"id="rg" placeholder="Rg">                    
-                    </div>
-                    <br />
-                    <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-facebook"></i></span>
-                        <input type="text" class="form-control" placeholder="Facebook">
+                        <span class="input-group-addon"><i class="fa fa-edit"> {% trans "Nome" %}</i></span>
+                        <input type="text" class="form-control"  placeholder="Nome de usuário do sistema.">
                     </div>
                     <br/>
                     <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-twitter"></i></span>
-                        <input type="text" class="form-control" placeholder="Twitter">
+                        <span class="input-group-addon"><i class="fa fa-edit"> {% trans "Sobrenome" %}</i></span>
+                        <input type="text" class="form-control"  placeholder="Nome de usuário do sistema.">
                     </div>
                     <br/>
                     <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-skype"></i></span>
-                        <input type="email" class="form-control" placeholder="Skype">             
-                    </div>
-                    <br />
-                    <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-google-plus"></i></span>
-                        <input type="email" class="form-control" placeholder="Google Plus">     
-                    </div>
-                    <br />
-                        <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-                        <input type="text" class="form-control" placeholder="Telefone">
+                        <span class="input-group-addon"><i class="fa fa-edit"> {% trans "Email" %}</i></span>
+                        <input type="text" class="form-control"  placeholder="Nome de usuário do sistema.">
                     </div>
                     <br/>
                     <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-mobile"></i></span>
-                        <input type="text" class="form-control" placeholder="Celular">
+                        <span class="input-group-addon"><i class="fa fa-edit"> {% trans "Senha" %}</i></span>
+                        <input type="text" class="form-control"  placeholder="Nome de usuário do sistema.">
                     </div>
-                    <br />
-                        <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-camera-retro"></i></span>
-                        <input type="text" class="form-control" placeholder="Foto">
-                    </div>
-                    <br/>                   
+                    <br/>
                     <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-building-o"></i></span>
-                        <input type="text" class="form-control" placeholder="Empresa">
+                        <span class="input-group-addon"><i class="fa fa-edit"> {% trans "CPF" %}</i></span>
+                        <input type="text" class="form-control"  placeholder="Nome de usuário do sistema.">
                     </div>
-                    <br/> 
+                    <br/>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-edit"> {% trans "RG" %}</i></span>
+                        <input type="text" class="form-control"  placeholder="Nome de usuário do sistema.">
+                    </div>
+           
                 </div><!-- /.box-body -->
             </div><!-- /.box -->
 
