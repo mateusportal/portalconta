@@ -1,10 +1,20 @@
 {% extends "sistema/template.html" %}
 {% load i18n %}
-{% block titulo %}Meu Perfil{% endblock %}
-{% block container_titulo %}<i class="fa fa-user"></i> Meu Perfil{% endblock %}  
+
+{% block titulo %}{% trans "Meu Perfil" %}{% endblock %}
+
+{% block js %}
+    <script src="/static/sistema/js/jasny-bootstrap.min.js"></script>
+{% endblock %}
+
+{% block container_titulo %}<i class="fa fa-user"></i> {% trans "Meu Perfil" %}{% endblock %}  
 
 {% block container %}  
 <section class="content">
+<form action="/sistema/usuario/gravar/" method="POST"> {% csrf_token %}
+<input name="last_login"  value="{{ form.last_login.value|date:'Y-m-d H:i' }}" type="hidden">
+<input name="date_joined"  value="{{ form.date_joined.value|date:'Y-m-d H:i' }}" type="hidden">
+<input name="password" value="{{ form.password.value }}" type="hidden">
     <div class="row">    
         <div class="col-md-12">           
             <div class="box box-info">
@@ -14,115 +24,115 @@
                 <div class="box-body">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-edit"> {% trans "Login" %}</i></span>
-                        <input type="text" class="form-control"  placeholder="Nome de usuário do sistema.">
+                        <input name="username" readonly="true" value="{{ form.username.value|default_if_none:'' }}" type="text" class="form-control"  placeholder="{% trans 'Nome para entrar no sistema...' %}">
                     </div>
                     <br/>
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-edit"> {% trans "Nome" %}</i></span>
-                        <input type="text" class="form-control"  placeholder="Nome de usuário do sistema.">
+                        <input name="first_name" value="{{ form.first_name.value|default_if_none:'' }}" type="text" class="form-control"  placeholder="{% trans 'Seu primeiro nome...' %}">
                     </div>
                     <br/>
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-edit"> {% trans "Sobrenome" %}</i></span>
-                        <input type="text" class="form-control"  placeholder="Nome de usuário do sistema.">
-                    </div>
-                    <br/>
-                    <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-edit"> {% trans "Email" %}</i></span>
-                        <input type="text" class="form-control"  placeholder="Nome de usuário do sistema.">
-                    </div>
-                    <br/>
-                    <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-edit"> {% trans "Senha" %}</i></span>
-                        <input type="text" class="form-control"  placeholder="Nome de usuário do sistema.">
+                        <input name="last_name" value="{{ form.last_name.value|default_if_none:'' }}" type="text" class="form-control"  placeholder="{% trans 'Seu nome do meio ou último nome...' %}">
                     </div>
                     <br/>
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-edit"> {% trans "CPF" %}</i></span>
-                        <input type="text" class="form-control"  placeholder="Nome de usuário do sistema.">
+                        <input name="cpf" value="{{ form.cpf.value|default_if_none:'' }}" type="text" class="form-control" data-mask="999.999.999-99"  placeholder="{% trans 'Número de CPF...' %}">
                     </div>
                     <br/>
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-edit"> {% trans "RG" %}</i></span>
-                        <input type="text" class="form-control"  placeholder="Nome de usuário do sistema.">
+                        <input name="rg" value="{{ form.rg.value|default_if_none:'' }}" type="text" class="form-control"  placeholder="{% trans 'Número do RG...' %}">
                     </div>
            
                 </div><!-- /.box-body -->
             </div><!-- /.box -->
 
 
-            <div class="box box-info">
+            <div class="box box-warning">
                 <div class="box-header">
-                    <h3 class="box-title">Minhas Informações</h3>
+                    <h3 class="box-title">{% trans 'Dados de Contato' %}</h3>
                 </div>
                 <div class="box-body">
                     <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-edit"></i></span>
-                        <input type="text" id="Cpf" class="form-control"  placeholder="Cpf">
+                        <span class="input-group-addon"><i class="fa fa-edit"> {% trans "Email" %}</i></span>
+                        <input name="email" value="{{ form.email.value|default_if_none:'' }}" type="email" class="form-control"  placeholder="{% trans 'Seu e-mail de cadastro...' %}">
                     </div>
                     <br/>
                     <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-edit"></i></span>
-                        <input type="text" class="form-control"id="rg" placeholder="Rg">                    
-                    </div>
-                    <br />
-                    <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-facebook"></i></span>
-                        <input type="text" class="form-control" placeholder="Facebook">
+                        <span class="input-group-addon"><i class="fa fa-edit"> {% trans "Telefone Fixo" %}</i></span>
+                        <input name="telefone_fixo" value="{{ form.telefone_fixo.value|default_if_none:'' }}" type="text" class="form-control" data-mask="(99) 9999-9999"  placeholder="Telefone com DDD...">
                     </div>
                     <br/>
                     <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-twitter"></i></span>
-                        <input type="text" class="form-control" placeholder="Twitter">
+                        <span class="input-group-addon"><i class="fa fa-edit"> {% trans "Telefone Celular" %}</i></span>
+                        <input name="telefone_celular" value="{{ form.telefone_celular.value|default_if_none:'' }}" type="text" class="form-control" data-mask="(99) ?9999-99999" placeholder="{% trans 'Seu telefone móvel com DDD...' %}">
                     </div>
                     <br/>
                     <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-skype"></i></span>
-                        <input type="email" class="form-control" placeholder="Skype">             
-                    </div>
-                    <br />
-                    <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-google-plus"></i></span>
-                        <input type="email" class="form-control" placeholder="Google Plus">     
-                    </div>
-                    <br />
-                        <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-                        <input type="text" class="form-control" placeholder="Telefone">
+                        <span class="input-group-addon"><i class="fa fa-edit"> {% trans "Facebook" %}</i></span>
+                        <input name="facebook" value="{{ form.facebook.value|default_if_none:'' }}" type="text" class="form-control"  placeholder="{% trans 'Link do Facebook para o seu perfil...' %}">
                     </div>
                     <br/>
                     <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-mobile"></i></span>
-                        <input type="text" class="form-control" placeholder="Celular">
+                        <span class="input-group-addon"><i class="fa fa-edit"> {% trans "Google Plus" %}</i></span>
+                        <input name="googleplus" value="{{ form.googleplus.value|default_if_none:'' }}" type="text" class="form-control"  placeholder="{% trans 'Link do seu Google Plus...' %}">
                     </div>
-                    <br />
-                        <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-camera-retro"></i></span>
-                        <input type="text" class="form-control" placeholder="Foto">
-                    </div>
-                    <br/>                   
+                    <br/>
                     <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-building-o"></i></span>
-                        <input type="text" class="form-control" placeholder="Empresa">
+                        <span class="input-group-addon"><i class="fa fa-edit"> {% trans "Twitter" %}</i></span>
+                        <input name="twitter" value="{{ form.twitter.value|default_if_none:'' }}" type="text" class="form-control"  placeholder="{% trans 'Link do seu Twitter...' %}">
                     </div>
-                    <br/> 
+                    <br/>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-edit"> {% trans "Skype" %}</i></span>
+                        <input name="skype" value="{{ form.skype.value|default_if_none:'' }}" type="text" class="form-control"  placeholder="{% trans 'Seu email ou nome de usuário do Skype...' %}">
+                    </div>
+                    <br/>
                 </div><!-- /.box-body -->
             </div><!-- /.box -->
 
+            <div class="box box-danger">
+                <div class="box-header">
+                    <h3 class="box-title">{% trans 'Trocar Senha' %}</h3>
+                </div>
+                <div class="box-body">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-edit"> {% trans "Nova Senha" %}</i></span>
+                        <input name="passwordNovo" value="0" type="password" class="form-control"  placeholder="{% trans 'Digite sua nova senha de acesso para trocar.' %}">
+                    </div>
 
-            
+                    <br/>
+                </div><!-- /.box-body -->
+            </div><!-- /.box -->
         </div><!--/.col  -->            
         </div>   <!-- /.row -->
 
         <div class="row">    
-            <div class="col-md-12">
+            <div class="col-md-6">
                 <div class="input-group">                  
                     <span class="input-group-btn">
-                        <button type="button" class="btn btn-success btn-flat">Salvar Dados</button>
+                    <div align="left">
+                        <button type="button" class="btn btn-default btn-flat">{% trans "Suspender minha conta!" %}</button>
+                    </div>
                     </span>
                 </div>
-            </div><!--/.col  -->             
-        </div><!-- /.row -->         
+            </div>    
+            <div class="col-md-6">
+                <div class="input-group">                  
+                    <span class="input-group-btn">
+                    <div align="right">
+                        <input type="submit" class="btn btn-success btn-flat" value="{% trans 'Salvar meus dados!' %}">
+                    </div>
+                    </span>
+                </div>
+            </div><!--/.col  -->           
+        </div><!-- /.row -->  
+        <br />
+        Conta criada em: {{ form.date_joined.value }} 
+</form>     
 </section><!-- /.content -->
 {% endblock %}
 

@@ -1,4 +1,5 @@
 {% load staticfiles %}
+{% load i18n %}
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -27,7 +28,7 @@
         <nav class="navbar navbar-static-top" role="navigation">
           <!-- Sidebar toggle button-->
           <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
-            <span class="sr-only">Navegação</span>
+            <span class="sr-only">{% trans "Navegação" %}</span>
           </a>
           <!-- Navbar Right Menu -->
           <div class="navbar-custom-menu">
@@ -374,16 +375,31 @@
 
           <!-- Main content -->
           <section class="content">  
-      {% block container %}{% endblock %}   
+
+          {% if msg %}
+          <div class="alert alert-info alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+            <strong>Mensagem!</strong> {{ msg }}
+          </div>
+          {% endif %}
+
+          {% if form.errors %}
+          <div class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+            <strong>Erros!</strong> {{ form.errors.as_text }}
+          </div>
+          {% endif %}
+
+          {% block container %}{% endblock %}   
           </section><!-- /.content -->
       </div><!-- /.content-wrapper -->  
 
     <!-- Footer -->
     <footer class="main-footer">
         <div class="pull-right hidden-xs">
-          <b>Version</b> 1.0
+          <b>{% trans "Versão" %}</b> 0.4 Alfa
         </div>
-        <strong>&copy;&nbsp;2015 <a href="http:www.portaldeideias.com.br">Portal de Ideias</a>.</strong>
+        <strong>&copy;&nbsp;{% now "Y" %} <a href="http://www.portaldeideias.com.br" target="_blank">Portal de Ideias</a>.</strong>
     </footer>
 
   </div><!-- ./wrapper -->

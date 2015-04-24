@@ -6,6 +6,7 @@ from empresas.forms import LoginForm, UsuarioForm
 from empresas.models import Usuario, Empresa, Sistema
 from django.contrib.auth import authenticate, logout as auth_logout, login as auth_login
 from django.contrib.auth.decorators import login_required # USAR: @login_required
+from django.utils.translation import ugettext as _
 
 def index(request):
     if request.user.is_authenticated():
@@ -41,9 +42,9 @@ def valida_login(request):
                     auth_login(request, user)
                     return HttpResponseRedirect('/sistema/')
                 else:
-                    return render(request, 'index/login.html', {'form': form, 'msg':'Usuário desativado do sistema! Cadastre-se novamente.'})
+                    return render(request, 'index/login.html', {'form': form, 'msg':_(u'Usuário desativado do sistema! Cadastre-se novamente.')})
             else:
-                return render(request, 'index/login.html', {'form': form, 'msg':'Falha ao retornar o objeto do banco.'})  
+                return render(request, 'index/login.html', {'form': form, 'msg':_(u'Falha ao retornar o objeto do banco.')})  
         else:
             return render(request, 'index/login.html', {'form': form})    
     else:
@@ -63,8 +64,8 @@ def valida_cadastro(request):
             usuario = Usuario()
             empresa = Empresa()
 
-            empresa.razao_social = 'Empresa '+form['first_name'].strip().title()+' Ltda Me'
-            empresa.nome_fantasia = 'EMPRESA '+form['first_name'].upper().strip()
+            empresa.razao_social = _(u'Empresa ')+form['first_name'].strip().title()+_(u' Ltda Me')
+            empresa.nome_fantasia = _(u'EMPRESA ')+form['first_name'].upper().strip()
             empresa.email_contato = form['email'].lower().strip()
             empresa.email_financeiro = form['email'].lower().strip()
             empresa.save()
@@ -81,7 +82,7 @@ def valida_cadastro(request):
             usuario.last_name = usuario.last_name.strip()
             usuario.email = form['email'].lower().strip()
             usuario.username = form['username'].lower().strip()
-            usuario.set_password(form['password'])
+            usuario.set_password(form['password'].strip())
             usuario.is_staff = False
             usuario.is_active = True
             usuario.is_superuser = False
@@ -94,112 +95,112 @@ def valida_cadastro(request):
             usuario.save()
 
             sistema = Sistema()
-            sistema.tipo = 'TIPO PESSOA'
-            sistema.nome = 'CLIENTE'
+            sistema.tipo = _(u'TIPO PESSOA')
+            sistema.nome = _(u'CLIENTE')
             sistema.id_empresa = empresa.pk
             sistema.tags = 'PADRÃO '
-            sistema.descricao = 'Você pode mudar o nome deste tipo, mas não excluir do sistema.'
+            sistema.descricao = _(u'Você pode mudar o nome deste tipo, mas não excluir do sistema.')
             sistema.save()
             sistema = Sistema()
-            sistema.tipo = 'TIPO PESSOA'
-            sistema.nome = 'FORNECEDOR'
+            sistema.tipo = _(u'TIPO PESSOA')
+            sistema.nome = _(u'FORNECEDOR')
             sistema.id_empresa = empresa.pk
             sistema.tags = 'PADRÃO '
-            sistema.descricao = 'Você pode mudar o nome deste tipo, mas não excluir do sistema.'
+            sistema.descricao = _(u'Você pode mudar o nome deste tipo, mas não excluir do sistema.')
             sistema.save()
             sistema = Sistema()
-            sistema.tipo = 'TIPO PESSOA'
-            sistema.nome = 'FUNCIONÁRIO(A)'
+            sistema.tipo = _(u'TIPO PESSOA')
+            sistema.nome = _(u'FUNCIONÁRIO(A)')
             sistema.id_empresa = empresa.pk
             sistema.tags = 'PADRÃO '
-            sistema.descricao = 'Você pode mudar o nome deste tipo, mas não excluir do sistema.'
+            sistema.descricao = _(u'Você pode mudar o nome deste tipo, mas não excluir do sistema.')
             sistema.save()
             sistema = Sistema()
-            sistema.tipo = 'CATEGORIA'
-            sistema.nome = 'CAIXA INTERNO'
+            sistema.tipo = _(u'CATEGORIA')
+            sistema.nome = _(u'CAIXA INTERNO')
             sistema.id_empresa = empresa.pk
             sistema.tags = 'PADRÃO '
-            sistema.descricao = 'Você pode mudar o nome deste tipo, mas não excluir do sistema.'
+            sistema.descricao = _(u'Você pode mudar o nome deste tipo, mas não excluir do sistema.')
             sistema.save()
             sistema = Sistema()
-            sistema.tipo = 'CATEGORIA'
-            sistema.nome = 'CAIXA EXTERNO BANCO'
+            sistema.tipo = _(u'CATEGORIA')
+            sistema.nome = _(u'CAIXA EXTERNO BANCO')
             sistema.id_empresa = empresa.pk
             sistema.tags = 'PADRÃO '
-            sistema.descricao = 'Você pode mudar o nome deste tipo, mas não excluir do sistema.'
+            sistema.descricao = _(u'Você pode mudar o nome deste tipo, mas não excluir do sistema.')
             sistema.save()
             sistema = Sistema()
-            sistema.tipo = 'GRUPO'
-            sistema.nome = 'PRODUTOS E SERVIÇOS'
+            sistema.tipo = _(u'GRUPO')
+            sistema.nome = _(u'PRODUTOS E SERVIÇOS')
             sistema.id_empresa = empresa.pk
             sistema.tags = 'PADRÃO '
-            sistema.descricao = 'Você pode mudar o nome deste tipo, mas não excluir do sistema.'
+            sistema.descricao = _(u'Você pode mudar o nome deste tipo, mas não excluir do sistema.')
             sistema.save()
             sistema = Sistema()
-            sistema.tipo = 'GRUPO'
-            sistema.nome = 'ADMINISTRATIVO'
+            sistema.tipo = _(u'GRUPO')
+            sistema.nome = _(u'ADMINISTRATIVO')
             sistema.id_empresa = empresa.pk
             sistema.tags = 'PADRÃO '
-            sistema.descricao = 'Você pode mudar o nome deste tipo, mas não excluir do sistema.'
+            sistema.descricao = _(u'Você pode mudar o nome deste tipo, mas não excluir do sistema.')
             sistema.save()
             sistema = Sistema()
-            sistema.tipo = 'GRUPO'
-            sistema.nome = 'FINANCEIRO'
+            sistema.tipo = _(u'GRUPO')
+            sistema.nome = _(u'FINANCEIRO')
             sistema.id_empresa = empresa.pk
             sistema.tags = 'PADRÃO '
-            sistema.descricao = 'Você pode mudar o nome deste tipo, mas não excluir do sistema.'
+            sistema.descricao = _(u'Você pode mudar o nome deste tipo, mas não excluir do sistema.')
             sistema.save()
             sistema = Sistema()
-            sistema.tipo = 'SUB-GRUPO'
-            sistema.nome = 'MANUTENÇÃO'
+            sistema.tipo = _(u'SUB-GRUPO')
+            sistema.nome = _(u'MANUTENÇÃO')
             sistema.id_empresa = empresa.pk
             sistema.tags = 'PADRÃO '
-            sistema.descricao = 'Você pode mudar o nome deste tipo, mas não excluir do sistema.'
+            sistema.descricao = _(u'Você pode mudar o nome deste tipo, mas não excluir do sistema.')
             sistema.save()
             sistema = Sistema()
-            sistema.tipo = 'SUB-GRUPO'
-            sistema.nome = 'OUTROS'
+            sistema.tipo = _(u'SUB-GRUPO')
+            sistema.nome = _(u'OUTROS')
             sistema.id_empresa = empresa.pk
             sistema.tags = 'PADRÃO '
-            sistema.descricao = 'Você pode mudar o nome deste tipo, mas não excluir do sistema.'
+            sistema.descricao = _(u'Você pode mudar o nome deste tipo, mas não excluir do sistema.')
             sistema.save()
             sistema = Sistema()
-            sistema.tipo = 'SUB-GRUPO'
-            sistema.nome = 'HONORÁRIOS'
+            sistema.tipo = _(u'SUB-GRUPO')
+            sistema.nome = _(u'HONORÁRIOS')
             sistema.id_empresa = empresa.pk
             sistema.tags = 'PADRÃO '
-            sistema.descricao = 'Você pode mudar o nome deste tipo, mas não excluir do sistema.'
+            sistema.descricao = _(u'Você pode mudar o nome deste tipo, mas não excluir do sistema.')
             sistema.save()
             sistema = Sistema()
-            sistema.tipo = 'SUB-GRUPO'
-            sistema.nome = 'ADIANTAMENTO'
+            sistema.tipo = _(u'SUB-GRUPO')
+            sistema.nome = _(u'ADIANTAMENTO')
             sistema.id_empresa = empresa.pk
             sistema.tags = 'PADRÃO '
-            sistema.descricao = 'Você pode mudar o nome deste tipo, mas não excluir do sistema.'
+            sistema.descricao = _(u'Você pode mudar o nome deste tipo, mas não excluir do sistema.')
             sistema.save()
             sistema = Sistema()
-            sistema.tipo = 'SUB-GRUPO'
-            sistema.nome = 'OUTROS'
-            sistema.id_empresa = empresa.pk
-            sistema.tags = 'ALUGUEL '
-            sistema.descricao = 'Você pode mudar o nome deste tipo, mas não excluir do sistema.'
-            sistema.save()
-            sistema = Sistema()
-            sistema.tipo = 'SUB-GRUPO'
-            sistema.nome = 'TELEFONIA'
+            sistema.tipo = _(u'SUB-GRUPO')
+            sistema.nome = _(u'OUTROS')
             sistema.id_empresa = empresa.pk
             sistema.tags = 'PADRÃO '
-            sistema.descricao = 'Você pode mudar o nome deste tipo, mas não excluir do sistema.'
+            sistema.descricao = _(u'Você pode mudar o nome deste tipo, mas não excluir do sistema.')
             sistema.save()
             sistema = Sistema()
-            sistema.tipo = 'SUB-GRUPO'
-            sistema.nome = 'TAXAS'
+            sistema.tipo = _(u'SUB-GRUPO')
+            sistema.nome = _(u'TELEFONIA')
             sistema.id_empresa = empresa.pk
             sistema.tags = 'PADRÃO '
-            sistema.descricao = 'Você pode mudar o nome deste tipo, mas não excluir do sistema.'
+            sistema.descricao = _(u'Você pode mudar o nome deste tipo, mas não excluir do sistema.')
+            sistema.save()
+            sistema = Sistema()
+            sistema.tipo = _(u'SUB-GRUPO')
+            sistema.nome = _(u'TAXAS')
+            sistema.id_empresa = empresa.pk
+            sistema.tags = 'PADRÃO '
+            sistema.descricao = _(u'Você pode mudar o nome deste tipo, mas não excluir do sistema.')
             sistema.save()
 
-            return render(request,'index/login.html',{'msg':'Usuário criado com sucesso! Faça o login abaixo.'})
+            return render(request,'index/login.html',{'msg':_(u'Usuário criado com sucesso! Faça o login abaixo.')})
         else:
             return render(request,'index/cadastro.html',{'form':form})
     
@@ -237,11 +238,38 @@ def cadastroSistema(request):
 
 @login_required
 def usuario(request):
-    return render(request,'sistema/usuario.html')
+    try:
+        usuario = Usuario.objects.get(pk=request.user.id, is_active=True)
+        form = UsuarioForm(instance=usuario)
+        return render(request,'sistema/usuario.html',{'form':form})
+    except:
+        auth_logout(request)
+        form = LoginForm()
+        return render(request, 'index/login.html', {'form': form, 'msg':_(u'O usuário logado não foi encontrado. Entre novamente no sistema e tente outra vez.')})
 
 @login_required
-def usuarios(request):
-    return render(request,'sistema/usuarios.html')
+def usuario_gravar(request):
+    if request.method == 'POST':
+        form = UsuarioForm(request.POST)
+
+        if form.is_valid():
+            form = form.cleaned_data
+            usuario = Usuario.objects.get(pk=request.user.id, is_active=True)
+            usuario.first_name = form['first_name'].title().strip()
+            usuario.last_name = form['last_name'].title().strip()
+            usuario.email = form['email'].lower().strip()
+
+            if (request.POST['passwordNovo'].strip() <> '0') and (len(request.POST['passwordNovo'].strip()) > 0):
+                usuario.set_password(request.POST['passwordNovo'].strip())
+
+            usuario.save()
+            auth_login(request, usuario)
+            return render(request,'sistema/index2.html',{'msg': _(u'Seu usuário foi atualizado com sucesso!')})
+        else:
+            return render(request,'sistema/usuario.html',{'form':form})
+    else:
+        return render(request,'sistema/usuario.html',{'form':form})
+
 
 @login_required
 def caixa(request):
