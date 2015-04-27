@@ -45,17 +45,16 @@
             {% for cheque in cheques %}
             <div class="col-lg-3 col-xs-6" >
                 <!-- small box -->
-                <div class="small-box bg-{% if cheque.tipo == 'E' %}green{% elif cheque.tipo == 'S' %}blue{% endif %}">
+                <div class="small-box bg-orange">
                   <div class="inner" >
                     <a href="/sistema/cheque/editor/{{cheque.id}}" style="color:#FFFFFF;">
-                    <h4><b>{{cheque.descricao}}</b></h4>
-                    <p>${{cheque.valor_bruto|formataDinheiro}}</p>
-                    <p>{{cheque.pessoa.nome}}</p>
-                    <p>{{cheque.data_vencimento|date:"d/m/Y"}}</p>
+                    <h4><b>{{cheque.nome}}</b></h4>
+                    <p>${{cheque.valor}}</p>
+                    <p>{{cheque.data_compensar|date:"d/m/Y"}}</p>
                     </a>
                   </div>
                   <div class="icon">
-                    <i class="ion {% if cheque.tipo == 'E' %}ion-plus-round{% elif cheque.tipo == 'S' %}ion-minus-round{% endif %}"></i>
+                    <i class="fa fa-newspaper-o"></i>
                   </div>
                   <a href="" class="small-box-footer" data-toggle="modal" data-target="#Modal{{cheque.id}}">Excluir <i class="fa fa-trash-o"></i></a>
                   </div>
@@ -68,7 +67,7 @@
                       <h4 class="modal-title" id="myModalLabel">CONFIRMA EXCLUSÃO!</h4>
                     </div>
                     <div class="modal-body">
-                      Deseja mesmo excluir a Conta : {{cheque.descricao}} no valor de R${{cheque.valor_bruto|formataDinheiro}} e vencimento para {{cheque.data_vencimento|date:"d/m/Y"}}  ?
+                      Deseja mesmo excluir a Conta : {{cheque.nome}} no valor de R${{cheque.valor|formataDinheiro}} e vencimento para {{cheque.data_compensar|date:"d/m/Y"}}  ?
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-default" data-dismiss="modal">Não</button>

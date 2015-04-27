@@ -255,6 +255,9 @@ def cadastrarCaixa(request):
 
     return render(request,'sistema/cadastroCaixa.html',{'grupos':grupo,'subgrupos':subgrupo,'categorias':categoria})
 
+@login_required
+def cadastrarCheque(request):
+    return render(request,'sistema/cadastroCheque.html')
 
 
 
