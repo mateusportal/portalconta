@@ -250,21 +250,26 @@ def usuario(request):
 @login_required
 def usuario_gravar(request):
     if request.method == 'POST':
-        form = UsuarioForm(request.POST)
+        usuario = Usuario.objects.get(pk=request.user.id, is_active=True)
+        form = UsuarioForm(request.POST, instance=usuario)
 
         if form.is_valid():
+            usuario = form.save(commit=False)
             form = form.cleaned_data
-            usuario = Usuario.objects.get(pk=request.user.id, is_active=True)
+
             usuario.first_name = form['first_name'].title().strip()
             usuario.last_name = form['last_name'].title().strip()
             usuario.email = form['email'].lower().strip()
+            usuario.empresa_id = request.POST['empresa_id']
+            usuario.is_active = True
 
-            if (request.POST['passwordNovo'].strip() <> '0') and (len(request.POST['passwordNovo'].strip()) > 0):
+            if len(request.POST['passwordNovo'].strip()) > 0:
                 usuario.set_password(request.POST['passwordNovo'].strip())
-
+                
             usuario.save()
-            auth_login(request, usuario)
-            return render(request,'sistema/index2.html',{'msg': _(u'Seu usuário foi atualizado com sucesso!')})
+            auth_logout(request)
+            form = LoginForm()
+            return render(request, 'index/login.html', {'form': form, 'msg':_(u'Os dados de usuário(a) foram alterados com sucesso. Favor, faça login novamente para atualizar a sua tela com os novos dados.')})
         else:
             return render(request,'sistema/usuario.html',{'form':form})
     else:

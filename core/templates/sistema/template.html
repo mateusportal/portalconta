@@ -397,12 +397,36 @@
     <!-- Footer -->
     <footer class="main-footer">
         <div class="pull-right hidden-xs">
-          <b>{% trans "Versão" %}</b> 0.4 Alfa
+          <b>
+          <a data-toggle="tooltip" data-placement="top" title="Aplicativo em Português!" href="#" onclick="document.setLangPortugues.submit();return false;"><img src="/static/sistema/img/bandeiraBRA.png"></a> &nbsp;
+
+          <a data-toggle="tooltip" data-placement="top" title="Website in English!" href="#" onclick="document.setLangEnglish.submit();return false;"><img src="/static/sistema/img/bandeiraUSA.png"></a> &nbsp;
+
+          <a data-toggle="tooltip" data-placement="top" title="Sistema en Español!" href="#" onclick="document.setLangEspanhol.submit();return false;"><img src="/static/sistema/img/bandeiraESP.png"></a> &nbsp;
+
+          {% trans "Versão" %}</b> 0.4 Alfa
         </div>
         <strong>&copy;&nbsp;{% now "Y" %} <a href="http://www.portaldeideias.com.br" target="_blank">Portal de Ideias</a>.</strong>
     </footer>
 
   </div><!-- ./wrapper -->
+
+  <!-- TRADUÇÕES DO SITE -->
+  <form name="setLangEnglish" action="/i18n/setlang/" method="POST">{% csrf_token %}
+        <input name="next" type="hidden" value="/" />
+        <input type="hidden" name="language" value="en" />
+    </form>
+
+    <form name="setLangPortugues" action="/i18n/setlang/" method="POST">{% csrf_token %}
+        <input name="next" type="hidden" value="/" />
+        <input type="hidden" name="language" value="pt-br" />
+    </form> 
+
+    <form name="setLangEspanhol" action="/i18n/setlang/" method="POST">{% csrf_token %}
+        <input name="next" type="hidden" value="/" />
+        <input type="hidden" name="language" value="es" />
+    </form>  
+  <!-- FIM TRADUÇÕES DO SITE -->
 
   <script src="/static/sistema/js/jQuery.js"></script>   
   <script src="/static/sistema/js/bootstrap.min.js"></script>
@@ -412,7 +436,8 @@
   <script src="/static/sistema/js/icheck.min.js"></script>  
   <script src="/static/sistema/js/jquery.slimscroll.min.js"></script>  
   <script src="/static/sistema/js/Chart.min.js"></script>    
-  <script src="/static/sistema/js/dashboard2.js"></script>         
+  <script src="/static/sistema/js/dashboard2.js"></script>    
+  <script src="/static/sistema/js/jasny-bootstrap.min.js"></script>     
   {% block js %}{% endblock %}
 
 </body>

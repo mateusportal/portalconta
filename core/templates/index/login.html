@@ -1,6 +1,6 @@
 {% extends "index/template.html" %}
 {% load i18n %}
-{% block titulo %}Login{% endblock %}
+{% block titulo %}{% trans 'Login' %}{% endblock %}
 
 {% block section1 %}
 <div class="container">
@@ -8,19 +8,19 @@
   <div class="col-sm-4 col-sm-offset-4">
         <div class="list-group text-center">
         <form action="/valida_login/" method="POST"> {% csrf_token %}
-          <div class="list-group-item" title="Complete os dados para entrar no sistema.">
-            <font color="black"><h2 class="list-group-item-heading">Entrar no Sistema</h2></font>
+          <div class="list-group-item" title="{% trans 'Complete os dados para entrar no sistema.' %}">
+            <font color="black"><h2 class="list-group-item-heading">{% trans 'Entrar no Sistema' %}</h2></font>
           </div>
-          <div class="list-group-item" title="Informe seu nome de usuário.">
-            <p class="list-group-item-text"><input required type="text" class="form-control" name="username" placeholder="Nome do Usuário" value="{{ form.username.value|default_if_none:'' }}"></p>
+          <div class="list-group-item" title="{% trans 'Informe seu nome de usuário.' %}">
+            <p class="list-group-item-text"><input required type="text" class="form-control" name="username" placeholder="{% trans 'Nome do Usuário' %}" value="{{ form.username.value|default_if_none:'' }}"></p>
           </div>
-          <div class="list-group-item" title="Informe a sua senha.">
-            <p class="list-group-item-text"><input required type="password" class="form-control" name="password" placeholder="Senha" value="{{ form.password.value|default_if_none:'' }}"></p>
+          <div class="list-group-item" title="{% trans 'Informe a sua senha.' %}">
+            <p class="list-group-item-text"><input required type="password" class="form-control" name="password" placeholder="{% trans 'Senha' %}" value="" autofocus="autofocus"></p>
           </div>
-          <div class="list-group-item" title="Clique para entrar.">
-            <input type="submit" class="btn btn-success btn-lg btn-block" value="ENTRAR" title="Clique para entrar no sistema.">
+          <div class="list-group-item" title="{% trans 'Clique para entrar.'%}">
+            <input type="submit" class="btn btn-success btn-lg btn-block" value="ENTRAR" title="{% trans 'Clique para entrar no sistema.' %}">
           </div>
-          <h6><a href="/cadastro/" style="color:#ffffff;">Quero me cadastrar</a> | <a href="#" style="color:#ffffff;">Não me lembro da senha</a></h6>
+          <h6><a href="/cadastro/" style="color:#ffffff;">{% trans 'Quero me cadastrar' %}</a> | <a href="#" style="color:#ffffff;">{% trans 'Não me lembro da senha' %}</a></h6>
         <form>
         </div>
   </div><!--/centro-->

@@ -3,10 +3,6 @@
 
 {% block titulo %}{% trans "Meu Perfil" %}{% endblock %}
 
-{% block js %}
-    <script src="/static/sistema/js/jasny-bootstrap.min.js"></script>
-{% endblock %}
-
 {% block container_titulo %}<i class="fa fa-user"></i> {% trans "Meu Perfil" %}{% endblock %}  
 
 {% block container %}  
@@ -15,6 +11,8 @@
 <input name="last_login"  value="{{ form.last_login.value|date:'Y-m-d H:i' }}" type="hidden">
 <input name="date_joined"  value="{{ form.date_joined.value|date:'Y-m-d H:i' }}" type="hidden">
 <input name="password" value="{{ form.password.value }}" type="hidden">
+<input name="empresa_id" value="{{ user.empresa_id }}" type="hidden">
+
     <div class="row">    
         <div class="col-md-12">           
             <div class="box box-info">
@@ -23,7 +21,7 @@
                 </div>
                 <div class="box-body">
                     <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-edit"> {% trans "Login" %}</i></span>
+                        <span class="input-group-addon"><i class="fa fa-street-view"> {% trans "Login" %}</i></span>
                         <input name="username" readonly="true" value="{{ form.username.value|default_if_none:'' }}" type="text" class="form-control"  placeholder="{% trans 'Nome para entrar no sistema...' %}">
                     </div>
                     <br/>
@@ -101,7 +99,7 @@
                 <div class="box-body">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-edit"> {% trans "Nova Senha" %}</i></span>
-                        <input name="passwordNovo" value="0" type="password" class="form-control"  placeholder="{% trans 'Digite sua nova senha de acesso para trocar.' %}">
+                        <input name="passwordNovo" value="" type="password" class="form-control"  placeholder="{% trans 'Digite sua nova senha de acesso para trocar.' %}">
                     </div>
 
                     <br/>
@@ -115,7 +113,7 @@
                 <div class="input-group">                  
                     <span class="input-group-btn">
                     <div align="left">
-                        <button type="button" class="btn btn-default btn-flat">{% trans "Suspender minha conta!" %}</button>
+                        <a href="" class="btn btn-default btn-flat" data-toggle="modal" data-target="#ModalConfirma"><i class="fa fa-trash-o"></i> {% trans "Suspender minha conta!" %}</a>
                     </div>
                     </span>
                 </div>
@@ -134,6 +132,28 @@
         Conta criada em: {{ form.date_joined.value }} 
 </form>     
 </section><!-- /.content -->
+
+<!-- Modal -->
+<div class="modal fade" id="ModalConfirma" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel"><i class="fa fa-trash-o"></i> CONFIRMA EXCLUSÃO?</h4>
+            </div>
+            
+            <div class="modal-body">
+                {{ user.first_name }}{% trans ", você deseja excluir a sua conta? Se você for o(a) Gerente Principal da empresa "%}{{ user.empresa.nome_fantasia }}{% trans ", ela também será desativada juntamente com o seu registro. Caso não seja, somente a sua conta de funcionário(a) será excluída e não irá influenciar no registro principal da empresa." %}
+            </div>
+            
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">{% trans "Não Excluir!" %}</button>
+                <a class="btn btn-danger" href="/sistema/usuario/excluir/"><i class="fa fa-trash-o"></i> {% trans "Excluir minha conta." %}</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal --> 
 {% endblock %}
 
 
