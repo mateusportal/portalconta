@@ -51,6 +51,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'pagination.middleware.PaginationMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -107,13 +108,13 @@ else:
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
 
-# MANUAL PARA GERAÇÃO DAS TRADUÇÕES
-# django-admin.py makemessages -l pt-br
-# django-admin.py compilemessages -l pt-br
+# MANUAL PARA GERAÇÃO DAS TRADUÇÕES (ENTRAR NO DIRETORIO CORE E RODAR O COMANDO)
+# django-admin.py makemessages -l en  (PARA CADA LINGUA en & es)
+# django-admin.py compilemessages (PARA TODAS AS LINGUAS)
 
 LANGUAGE = (
     ('pt-br', u'Portugês'),
-    ('en-us', u'English'),
+    ('en', u'English'),
     ('es', u'Español'),
 )
 
@@ -124,8 +125,6 @@ LOCALE_PATHS = (
 LANGUAGE_CODE = 'pt-br'
 
 TIME_ZONE = 'America/Sao_Paulo'
-
-TIME_ZONE = 'UTC'
 
 USE_I18N = True
 

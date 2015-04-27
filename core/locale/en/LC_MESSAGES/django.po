@@ -1,0 +1,469 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-04-27 17:30-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: views.py:45
+msgid "Usuário desativado do sistema! Cadastre-se novamente."
+msgstr ""
+
+#: views.py:47
+msgid "Falha ao retornar o objeto do banco."
+msgstr ""
+
+#: views.py:67
+msgid "Empresa "
+msgstr ""
+
+#: views.py:67
+msgid " Ltda Me"
+msgstr ""
+
+#: views.py:68
+msgid "EMPRESA "
+msgstr ""
+
+#: views.py:98 views.py:105 views.py:112
+msgid "TIPO PESSOA"
+msgstr ""
+
+#: views.py:99
+msgid "CLIENTE"
+msgstr ""
+
+#: views.py:102 views.py:109 views.py:116 views.py:123 views.py:130
+#: views.py:137 views.py:144 views.py:151 views.py:158 views.py:165
+#: views.py:172 views.py:179 views.py:186 views.py:193 views.py:200
+msgid "Você pode mudar o nome deste tipo, mas não excluir do sistema."
+msgstr ""
+
+#: views.py:106
+msgid "FORNECEDOR"
+msgstr ""
+
+#: views.py:113
+msgid "FUNCIONÁRIO(A)"
+msgstr ""
+
+#: views.py:119 views.py:126
+msgid "CATEGORIA"
+msgstr ""
+
+#: views.py:120
+msgid "CAIXA INTERNO"
+msgstr ""
+
+#: views.py:127
+msgid "CAIXA EXTERNO BANCO"
+msgstr ""
+
+#: views.py:133 views.py:140 views.py:147
+msgid "GRUPO"
+msgstr ""
+
+#: views.py:134
+msgid "PRODUTOS E SERVIÇOS"
+msgstr ""
+
+#: views.py:141
+msgid "ADMINISTRATIVO"
+msgstr ""
+
+#: views.py:148
+msgid "FINANCEIRO"
+msgstr ""
+
+#: views.py:154 views.py:161 views.py:168 views.py:175 views.py:182
+#: views.py:189 views.py:196
+msgid "SUB-GRUPO"
+msgstr ""
+
+#: views.py:155
+msgid "MANUTENÇÃO"
+msgstr ""
+
+#: views.py:162 views.py:183
+msgid "OUTROS"
+msgstr ""
+
+#: views.py:169
+msgid "HONORÁRIOS"
+msgstr ""
+
+#: views.py:176
+msgid "ADIANTAMENTO"
+msgstr ""
+
+#: views.py:190
+msgid "TELEFONIA"
+msgstr ""
+
+#: views.py:197
+msgid "TAXAS"
+msgstr ""
+
+#: views.py:203
+msgid "Usuário criado com sucesso! Faça o login abaixo."
+msgstr ""
+
+#: views.py:248
+msgid ""
+"O usuário logado não foi encontrado. Entre novamente no sistema e tente "
+"outra vez."
+msgstr ""
+
+#: views.py:272
+msgid ""
+"Os dados de usuário(a) foram alterados com sucesso. Favor, faça login "
+"novamente para atualizar a sua tela com os novos dados."
+msgstr ""
+
+#: templates/index/cadastro.html:12
+msgid ""
+"Neste formulário você irá cadastrar um novo usuário mestre para o sistema."
+msgstr ""
+
+#: templates/index/cadastro.html:13
+msgid "Novo Cadastro!"
+msgstr ""
+
+#: templates/index/cadastro.html:16
+msgid "Informe seu nome completo."
+msgstr ""
+
+#: templates/index/cadastro.html:17
+msgid "Nome Completo"
+msgstr ""
+
+#: templates/index/cadastro.html:18
+msgid "Seu nome completo."
+msgstr ""
+
+#: templates/index/cadastro.html:21
+msgid "Informe seu login de usuário para entrar no sistema."
+msgstr ""
+
+#: templates/index/cadastro.html:22
+msgid "Login de Usuário"
+msgstr ""
+
+#: templates/index/cadastro.html:23
+msgid "Nome usado no login."
+msgstr ""
+
+#: templates/index/cadastro.html:26
+msgid "Informe o seu e-mail de uso diário."
+msgstr ""
+
+#: templates/index/cadastro.html:27
+msgid "E-Mail Válido"
+msgstr ""
+
+#: templates/index/cadastro.html:28
+msgid "seu@email.com.br"
+msgstr ""
+
+#: templates/index/cadastro.html:31
+msgid "Informe uma senha que você lembre. Não será confirmada a senha."
+msgstr ""
+
+#: templates/index/cadastro.html:32 templates/index/login.html:18
+msgid "Senha"
+msgstr ""
+
+#: templates/index/cadastro.html:37
+msgid "Clique para validar as informações e fazer um novo registro no sistema."
+msgstr ""
+
+#: templates/index/cadastro.html:40
+msgid "Clicando no botão acima você concorda com nossos"
+msgstr ""
+
+#: templates/index/cadastro.html:40
+msgid "Termos de Uso"
+msgstr ""
+
+#: templates/index/index.html:3
+msgid "Sistema de Gestão Financeira Simplificada"
+msgstr ""
+
+#: templates/index/index.html:10
+msgid "Simples"
+msgstr ""
+
+#: templates/index/index.html:10
+msgid "Sistema financeiro onde qualquer pessoa consegue usar!"
+msgstr ""
+
+#: templates/index/index.html:15
+msgid "Rápido"
+msgstr ""
+
+#: templates/index/index.html:15
+msgid "Nunca foi tão rápido criar contas e enviar boletos!"
+msgstr ""
+
+#: templates/index/index.html:20
+msgid "Gratuito"
+msgstr ""
+
+#: templates/index/index.html:20
+msgid "Nós gostamos assim, e sempre será assim! Aproveite e cadastre-se!"
+msgstr ""
+
+#: templates/index/index.html:32
+msgid "Experimente! É grátis!"
+msgstr ""
+
+#: templates/index/index.html:42
+msgid "Acesse de qualquer local!"
+msgstr ""
+
+#: templates/index/index.html:46
+msgid "Notebook, tablet, celular ou desktop? Tanto faz!"
+msgstr ""
+
+#: templates/index/index.html:61
+msgid "Plano Único"
+msgstr ""
+
+#: templates/index/index.html:62
+msgid "Plano Gratuito"
+msgstr ""
+
+#: templates/index/index.html:65
+msgid "Cadastro de Caixa Entrada - Ilimitado"
+msgstr ""
+
+#: templates/index/index.html:68
+msgid "Cadastro de Caixa Saída - Ilimitado"
+msgstr ""
+
+#: templates/index/index.html:71
+msgid "Cadastro de Chegues - Ilimitado"
+msgstr ""
+
+#: templates/index/index.html:74
+msgid "Cadastro de Plano de Contas - Ilimitado"
+msgstr ""
+
+#: templates/index/index.html:77
+msgid "Emissão de Boletos - Ilimitado"
+msgstr ""
+
+#: templates/index/index.html:80
+msgid "Comece a usar agora mesmo!"
+msgstr ""
+
+#: templates/index/index.html:91
+msgid "Cobrança Recorrente"
+msgstr ""
+
+#: templates/index/index.html:92
+msgid ""
+"Cadastre sua conta bancária no sistema e faça emissões de boletos por E-mail "
+"ou Correios!"
+msgstr ""
+
+#: templates/index/login.html:3 templates/sistema/usuario.html:24
+msgid "Login"
+msgstr ""
+
+#: templates/index/login.html:11
+msgid "Complete os dados para entrar no sistema."
+msgstr ""
+
+#: templates/index/login.html:12
+msgid "Entrar no Sistema"
+msgstr ""
+
+#: templates/index/login.html:14
+msgid "Informe seu nome de usuário."
+msgstr ""
+
+#: templates/index/login.html:15
+msgid "Nome do Usuário"
+msgstr ""
+
+#: templates/index/login.html:17
+msgid "Informe a sua senha."
+msgstr ""
+
+#: templates/index/login.html:20
+msgid "Clique para entrar."
+msgstr ""
+
+#: templates/index/login.html:21
+msgid "Clique para entrar no sistema."
+msgstr ""
+
+#: templates/index/login.html:23
+msgid "Quero me cadastrar"
+msgstr ""
+
+#: templates/index/login.html:23
+msgid "Não me lembro da senha"
+msgstr ""
+
+#: templates/sistema/template.html:31
+msgid "Navegação"
+msgstr ""
+
+#: templates/sistema/template.html:407
+msgid "Versão"
+msgstr "Version"
+
+#: templates/sistema/usuario.html:4 templates/sistema/usuario.html.py:6
+msgid "Meu Perfil"
+msgstr ""
+
+#: templates/sistema/usuario.html:20
+msgid "Informações Pessoais"
+msgstr ""
+
+#: templates/sistema/usuario.html:25
+msgid "Nome para entrar no sistema..."
+msgstr ""
+
+#: templates/sistema/usuario.html:29
+msgid "Nome"
+msgstr ""
+
+#: templates/sistema/usuario.html:30
+msgid "Seu primeiro nome..."
+msgstr ""
+
+#: templates/sistema/usuario.html:34
+msgid "Sobrenome"
+msgstr ""
+
+#: templates/sistema/usuario.html:35
+msgid "Seu nome do meio ou último nome..."
+msgstr ""
+
+#: templates/sistema/usuario.html:39
+msgid "CPF"
+msgstr ""
+
+#: templates/sistema/usuario.html:40
+msgid "Número de CPF..."
+msgstr ""
+
+#: templates/sistema/usuario.html:44
+msgid "RG"
+msgstr ""
+
+#: templates/sistema/usuario.html:45
+msgid "Número do RG..."
+msgstr ""
+
+#: templates/sistema/usuario.html:54
+msgid "Dados de Contato"
+msgstr ""
+
+#: templates/sistema/usuario.html:58
+msgid "Email"
+msgstr ""
+
+#: templates/sistema/usuario.html:59
+msgid "Seu e-mail de cadastro..."
+msgstr ""
+
+#: templates/sistema/usuario.html:63
+msgid "Telefone Fixo"
+msgstr ""
+
+#: templates/sistema/usuario.html:68
+msgid "Telefone Celular"
+msgstr ""
+
+#: templates/sistema/usuario.html:69
+msgid "Seu telefone móvel com DDD..."
+msgstr ""
+
+#: templates/sistema/usuario.html:73
+msgid "Facebook"
+msgstr ""
+
+#: templates/sistema/usuario.html:74
+msgid "Link do Facebook para o seu perfil..."
+msgstr ""
+
+#: templates/sistema/usuario.html:78
+msgid "Google Plus"
+msgstr ""
+
+#: templates/sistema/usuario.html:79
+msgid "Link do seu Google Plus..."
+msgstr ""
+
+#: templates/sistema/usuario.html:83
+msgid "Twitter"
+msgstr ""
+
+#: templates/sistema/usuario.html:84
+msgid "Link do seu Twitter..."
+msgstr ""
+
+#: templates/sistema/usuario.html:88
+msgid "Skype"
+msgstr ""
+
+#: templates/sistema/usuario.html:89
+msgid "Seu email ou nome de usuário do Skype..."
+msgstr ""
+
+#: templates/sistema/usuario.html:97
+msgid "Trocar Senha"
+msgstr ""
+
+#: templates/sistema/usuario.html:101
+msgid "Nova Senha"
+msgstr ""
+
+#: templates/sistema/usuario.html:102
+msgid "Digite sua nova senha de acesso para trocar."
+msgstr ""
+
+#: templates/sistema/usuario.html:116
+msgid "Suspender minha conta!"
+msgstr ""
+
+#: templates/sistema/usuario.html:125
+msgid "Salvar meus dados!"
+msgstr ""
+
+#: templates/sistema/usuario.html:146
+msgid ""
+", você deseja excluir a sua conta? Se você for o(a) Gerente Principal da "
+"empresa "
+msgstr ""
+
+#: templates/sistema/usuario.html:146
+msgid ""
+", ela também será desativada juntamente com o seu registro. Caso não seja, "
+"somente a sua conta de funcionário(a) será excluída e não irá influenciar no "
+"registro principal da empresa."
+msgstr ""
+
+#: templates/sistema/usuario.html:150
+msgid "Não Excluir!"
+msgstr ""
+
+#: templates/sistema/usuario.html:151
+msgid "Excluir minha conta."
+msgstr ""
