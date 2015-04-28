@@ -11,14 +11,14 @@ def listaSistema(request):
         print request.POST.get('parametro','')
 
     else:
-        sistemas = Sistema.objects.filter(empresa_id=1,).order_by('tipo','nome')
+        sistemas = Sistema.objects.filter(empresa_id=request.user.empresa.id).order_by('tipo','nome')
 
     return render(request,'sistema/sistema.html',{'sistemas':sistemas})
 
 def gravarSistema(request):
     if request.method == 'POST':
         try:
-            sistema = Sistema.objects.get(id= request.POST.get('sisID'),empresa_id=request.user.empresa.id)
+            sistema = Sistema.objects.get(id=request.POST.get('sisID'),empresa_id=request.user.empresa.id)
 
         except:
             sistema = Sistema()
@@ -58,7 +58,7 @@ def excluirPessoas(request,pessoaId):
 
 def preencherPessoas(request,pessoaId):
     pessoas = Pessoa.objects.get(id=pessoaId)
-    tipos = Sistema.objects.filter(ativo='SIM', tipo='TIPO PESSOA').order_by('tipo')
+    tipos = Sistema.objects.filter(ativo='SIM', tipo='TIPO PESSOA', empresa_id=request.user.empresa.id).order_by('tipo')
 
     return render(request,'sistema/cadastroPessoas.html',{'pessoas':pessoas,'tipos':tipos})
 

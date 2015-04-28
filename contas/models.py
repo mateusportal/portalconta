@@ -40,8 +40,6 @@ class Caixa(models.Model):
     grupo = models.ForeignKey(Sistema,related_name="caixa_grupo_id")
     subgrupo = models.ForeignKey(Sistema,related_name="caixa_subgrupo_id")  
     tipo = models.CharField(default="E",max_length=1,blank=False) 
- 
-
 
 class Vinculo(models.Model):
     caixa_pai = models.ForeignKey(Caixa,related_name="vinculo_caixa_pai_id")

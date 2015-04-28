@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponseRedirect
 from django.db.models import Q
-from contas.models import Caixa
+from contas.models import Caixa, Cheque
 from empresas.models import Sistema
 from datetime import datetime
 #d = datetime.strptime('2007-07-18 10:03:19', '%Y-%m-%d %H:%M:%S')
@@ -8,9 +8,9 @@ from datetime import datetime
 #Trabalhando com datas
 def preencherCaixa(request,caixaId):
     caixa = Caixa.objects.get(id=caixaId)
-    grupo = Sistema.objects.filter(ativo='SIM', tipo='GRUPO').order_by('nome')
-    subgrupo = Sistema.objects.filter(ativo='SIM', tipo='SUB-GRUPO').order_by('nome')
-    categoria = Sistema.objects.filter(ativo='SIM', tipo='CATEGORIA').order_by('nome')
+    grupo = Sistema.objects.filter(ativo='SIM', tipo='GRUPO', empresa_id=request.user.empresa.id).order_by('nome')
+    subgrupo = Sistema.objects.filter(ativo='SIM', tipo='SUB-GRUPO', empresa_id=request.user.empresa.id).order_by('nome')
+    categoria = Sistema.objects.filter(ativo='SIM', tipo='CATEGORIA', empresa_id=request.user.empresa.id).order_by('nome')
 
 
     return render(request,'sistema/cadastroCaixa.html',{'caixas':caixa,'grupos':grupo,'subgrupos':subgrupo,'categorias':categoria})
@@ -46,7 +46,7 @@ def gravarCaixa(request):
     caixa.categoria_id = request.POST.get('categoria_id')
     caixa.grupo_id = request.POST.get('grupo_id')
     caixa.subgrupo_id = request.POST.get('subgrupo_id')
-    caixa.tipo = 'E'
+    caixa.tipo = request.POST.get('tipo')
 
     caixa.save()
 
@@ -56,3 +56,50 @@ def excluirCaixa(request,caixaId):
     caixa = Caixa.objects.get(empresa_id=request.user.empresa.id,id=caixaId,usuario_id=request.user.id).delete()
 
     return HttpResponseRedirect('/sistema/caixa/')
+
+def listarCheque(request):
+    cheque = Cheque.objects.filter(empresa_id=int(request.user.empresa.id)).order_by('data_compensar')
+
+    return render(request,'sistema/cheque.html',{'cheques':cheque})
+
+def preencherCheque(request,chequeId):
+    cheque = Cheque.objects.get(id=chequeId)
+
+    return render(request,'sistema/cadastroCheque.html',{'cheques':cheque})
+
+def gravarCheque(request):
+    try:
+        cheque = Cheque.objects.get(id=request.POST.get('chequeId'),empresa_id=request.user.empresa.id)
+    except:
+        cheque = Cheque()
+
+    data_compensar = datetime.strptime(str(request.POST.get('data_compensar')), '%d/%m/%Y').date()
+    data_compensado = datetime.strptime(str(request.POST.get('data_compensado')), '%d/%m/%Y').date()
+    data_recebido = datetime.strptime(str(request.POST.get('data_recebido')), '%d/%m/%Y').date()
+
+    
+
+    cheque.numero_cheque = request.POST.get('numero_cheque')
+    cheque.valor = (request.POST.get('valor').replace('.','')).replace(',','.')
+    cheque.data_compensar = data_compensar.strftime('%Y-%m-%d')
+    cheque.data_recebido = data_recebido.strftime('%Y-%m-%d')
+    cheque.data_compensado = data_compensado.strftime('%Y-%m-%d')
+    cheque.banco = request.POST.get('banco')
+    cheque.agencia = request.POST.get('agencia')
+    cheque.nome = request.POST.get('nome')
+    cheque.empresa_id = request.user.empresa_id
+
+    cheque.save()
+
+    return HttpResponseRedirect('/sistema/cheque/')
+
+
+def excluirCheque(request,chequeId):
+    cheque = Cheque.objects.get(id=chequeId,empresa_id=request.user.empresa.id).delete()
+
+    return HttpResponseRedirect('/sistema/cheque/')
+
+
+
+
+        

@@ -110,6 +110,7 @@ else:
 
 # MANUAL PARA GERAÇÃO DAS TRADUÇÕES (ENTRAR NO DIRETORIO CORE E RODAR O COMANDO)
 # django-admin.py makemessages -l en  (PARA CADA LINGUA en & es)
+# traduzir as mensagens do arquivo *.po
 # django-admin.py compilemessages (PARA TODAS AS LINGUAS)
 
 LANGUAGE = (

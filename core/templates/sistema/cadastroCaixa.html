@@ -27,6 +27,15 @@
                     <div class="box-body">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-cog"></i></span>
+                          <select class="form-control" data-toggle="tooltip" data-placement="top" title="Tipo" placeholder="" name="tipo">
+                            <option>Tipo</option>
+                            <option value="E" {% if caixas.tipo == 'E' %} SELECTED {% endif %} >ENTRADA</option>
+                            <option value="S" {% if caixas.tipo == 'S' %} SELECTED {% endif %} >SAIDA</option>
+                          </select>           
+                      </div>
+                      <br/>
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-cog"></i></span>
                           <select class="form-control" data-toggle="tooltip" data-placement="top" title="Categoria" placeholder="" name="categoria_id">
                             <option>Categoria</option>
                             {% for categoria in categorias %}

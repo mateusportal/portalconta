@@ -16,7 +16,7 @@
       <!-- Main content -->
       <section class="content">
         <!-- Info boxes -->
-        <form method="POST" action="/sistema/caixa/buscar/"> {% csrf_token %}
+        <form method="POST" action="/sistema/cheque/buscar/"> {% csrf_token %}
           <div class="input-group">
             <input class="form-control" placeholder="Sua pesquisa aqui..." name="parametro" type="text" />
             <div class="input-group-btn">
@@ -29,7 +29,7 @@
           <div class="box-header">
             <i class="ion ion-clipboard"></i>
             <h3 class="box-title">Configurações cadastradas</h3><br/><br/>
-            <a href="/sistema/caixa/editor/"><button class="btn btn-default"><i class="fa fa-plus"></i>&nbsp;&nbsp;Adicionar novo</button></a>
+            <a href="/sistema/cheque/editor/"><button class="btn btn-default"><i class="fa fa-plus"></i>&nbsp;&nbsp;Adicionar novo</button></a>
             <div class="box-tools pull-right">
               <ul class="pagination pagination-sm inline">
                 <li><a href="#">&laquo;</a></li>
@@ -42,25 +42,24 @@
           </div><!-- /.box-header -->
           <div class="box-body">
             <div class="row">
-            {% for caixa in caixas %}
+            {% for cheque in cheques %}
             <div class="col-lg-3 col-xs-6" >
                 <!-- small box -->
-                <div class="small-box bg-{% if caixa.tipo == 'E' %}green{% elif caixa.tipo == 'S' %}blue{% endif %}">
+                <div class="small-box bg-orange">
                   <div class="inner" >
-                    <a href="/sistema/caixa/editor/{{caixa.id}}" style="color:#FFFFFF;">
-                    <h4><b>{{caixa.descricao}} </b></h4>
-                    <p>${{caixa.valor_bruto|formataDinheiro}}</p>
-                    <p>{{caixa.pessoa.nome}}</p>
-                    <p>{{caixa.data_vencimento|date:"d/m/Y"}}</p>
+                    <a href="/sistema/cheque/editor/{{cheque.id}}" style="color:#FFFFFF;">
+                    <h4><b>{{cheque.nome}}</b></h4>
+                    <p>${{cheque.valor}}</p>
+                    <p>{{cheque.data_compensar|date:"d/m/Y"}}</p>
                     </a>
                   </div>
                   <div class="icon">
-                    <i class="ion {% if caixa.tipo == 'E' %}ion-plus-round{% elif caixa.tipo == 'S' %}ion-minus-round{% endif %}"></i>
+                    <i class="fa fa-newspaper-o"></i>
                   </div>
-                  <a href="" class="small-box-footer" data-toggle="modal" data-target="#Modal{{caixa.id}}">Excluir <i class="fa fa-trash-o"></i></a>
+                  <a href="" class="small-box-footer" data-toggle="modal" data-target="#Modal{{cheque.id}}">Excluir <i class="fa fa-trash-o"></i></a>
                   </div>
               <!-- Modal -->
-              <div class="modal fade" id="Modal{{caixa.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal fade" id="Modal{{cheque.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -68,11 +67,11 @@
                       <h4 class="modal-title" id="myModalLabel">CONFIRMA EXCLUSÃO!</h4>
                     </div>
                     <div class="modal-body">
-                      Deseja mesmo excluir a Conta : {{caixa.descricao}} no valor de R${{caixa.valor_bruto|formataDinheiro}} e vencimento para {{caixa.data_vencimento|date:"d/m/Y"}}  ?
+                      Deseja mesmo excluir a Conta : {{cheque.nome}} no valor de R${{cheque.valor|formataDinheiro}} e vencimento para {{cheque.data_compensar|date:"d/m/Y"}}  ?
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
-                      <a href="/sistema/caixa/excluir/{{caixa.id}}"><button type="button" class="btn btn-primary">Sim</button></a>
+                      <a href="/sistema/cheque/excluir/{{cheque.id}}"><button type="button" class="btn btn-primary">Sim</button></a>
                     </div>
                   </div>
                 </div>
@@ -82,7 +81,7 @@
             </div><!-- /.row -->
           </div><!-- /.box-body-->
           <div class="box-footer clearfix no-border">
-            <a href="/sistema/caixa/editor/"><button class="btn btn-default"><i class="fa fa-plus"></i>&nbsp;&nbsp;Adicionar novo</button></a>
+            <a href="/sistema/cheque/editor/"><button class="btn btn-default"><i class="fa fa-plus"></i>&nbsp;&nbsp;Adicionar novo</button></a>
             <div class="box-tools pull-right">
               <ul class="pagination pagination-sm inline">
                 <li><a href="#">&laquo;</a></li>
