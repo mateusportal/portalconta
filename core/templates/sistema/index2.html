@@ -1,5 +1,9 @@
 {% extends "sistema/template.html" %}
-{% block titulo %} Portal Contas - Administrativo {% endblock %}
+{% load i18n %}
+
+{% block titulo %}{% trans "Portal Contas - Administrativo" %}{% endblock %}
+
+{% block container_titulo %}<i class="fa fa-user"></i> {% trans "Meu Perfil" %}{% endblock %}  
 
 {% block container %}     
           <!-- Info boxes -->
