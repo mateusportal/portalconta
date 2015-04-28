@@ -43,7 +43,10 @@ def preencherSistema(request,sisId):
 
 def listaPessoas(request):
     if request.method == 'POST':
-        pessoas = Pessoa.objects.filter(Q(nome__contains=request.POST.get('parametro',''))).order_by('nome')
+        pessoas = Pessoa.objects.filter(Q(nome__contains=request.POST.get('parametro',''))
+            |Q(cpf__contains=request.POST.get('parametro',''))|Q(rg__contains=request.POST.get('parametro',''))
+            |Q(telefone_celular__contains=request.POST.get('parametro',''))|Q(telefone_fixo__contains=request.POST.get('parametro',''))
+            |Q(email_pessoal__contains=request.POST.get('parametro',''))|Q(email_empresarial__contains=request.POST.get('parametro',''))).order_by('nome')
 
         print request.POST.get('parametro','')
 

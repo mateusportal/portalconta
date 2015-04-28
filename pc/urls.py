@@ -26,7 +26,7 @@ urlpatterns = patterns('',
     url(r'^sistema/pessoas/excluir/(?P<pessoaId>\d+)/$', 'empresas.views.excluirPessoas', name='excluirPessoas'),
     url(r'^sistema/pessoas/editor/$', 'core.views.cadastrarPessoas', name='cadastrarPessoas'),
     url(r'^sistema/pessoas/editor/(?P<pessoaId>\d+)$', 'empresas.views.preencherPessoas', name='cadastrarPessoas'),    
-    url(r'^sistema/pessoas/gravar/(?P<pessoaId>\d+)$', 'empresas.views.gravarPessoas', name='gravarPessoas'),
+    url(r'^sistema/pessoas/gravar/$', 'empresas.views.gravarPessoas', name='gravarPessoas'),
     
     url(r'^sistema/cheque/$', 'contas.views.listarCheque', name='cheque'),
     url(r'^sistema/cheque/editor/$', 'core.views.cadastrarCheque', name='cadastrarCheque'),
