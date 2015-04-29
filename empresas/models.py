@@ -3,12 +3,12 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import AbstractUser, User
 from cloudinary.models import CloudinaryField
+from django.db.models import signals
 
 #Campos Varchar
 #Pequenos : 50
 #Medios   : 150
 #Grandes  : 250
-
 
 class Empresa(models.Model):
     logo = models.CharField(default='semfoto.png', max_length=100, blank=True, null=True)
@@ -123,3 +123,18 @@ class Pessoa(models.Model):
 
     def __unicode__(self):
         return u'{nome} ({email_pessoal})'.format(nome=self.nome, email_pessoal=self.email_pessoal)
+
+def pessoa_formatacao(signal, instance, sender, **kwargs):
+    instance.nome = instance.nome.title().strip()
+    instance.endereco_rua = instance.endereco_rua.title().strip()
+
+signals.pre_save.connect(pessoa_formatacao, sender=Pessoa)
+
+def usuario_formatacao(signal, instance, sender, **kwargs):
+    instance.last_name = instance.last_name.title().strip()
+    instance.email = instance.email.lower().strip()
+    instance.password = instance.password.strip()
+    instance.is_staff = False
+    instance.is_superuser = False
+    
+signals.pre_save.connect(usuario_formatacao, sender=Usuario)

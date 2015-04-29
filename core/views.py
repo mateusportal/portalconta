@@ -212,17 +212,7 @@ def sistema(request):
 
 @login_required
 def calendario(request):
-    return render(request,'sistema/calendario.html') 
-
-@login_required
-def cadastrarPessoas(request):
-    tipos = Sistema.objects.filter(ativo='SIM', tipo='TIPO PESSOA').order_by('tipo')
-
-    return render(request,'sistema/cadastroPessoas.html',{'tipos':tipos}) 
-
-@login_required
-def pessoas(request):
-    return render(request,'sistema/cadastroPessoas.html')       
+    return render(request,'sistema/calendario.html')      
 
 @login_required
 def cadastroEmpresa(request):
