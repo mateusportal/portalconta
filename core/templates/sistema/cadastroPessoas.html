@@ -1,9 +1,9 @@
 {% extends "sistema/template.html" %}
+{% load i18n %}
 {% block js %}
     <script src="/static/sistema/js/jasny-bootstrap.min.js"></script>
 {% endblock %}
-
-{% block titulo %} Portal Contas - Pessoas {% endblock %}
+{% block titulo %} {% trans "Portal Contas - Pessoas" %} {% endblock %}
 
 {% block container %}  
 <section class="content">
@@ -12,13 +12,13 @@
         <div class="col-md-12">           
             <div class="box box-info">
                 <div class="box-header">
-                    <h3 class="box-title">Dados Pessoais</h3>
+                    <h3 class="box-title">{% trans "Dados Pessoais" %}</h3>
                 </div>
                 <div class="box-body">
                     <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-cog"></i></span>
-                        <select class="form-control" data-toggle="tooltip" data-placement="top" title="Tipo de Pessoa" placeholder="Tipo" name="tipo">
-                          <option>ESCOLHA UM TIPO DE PESSOA</option>
+                        <select class="form-control" data-toggle="tooltip" data-placement="top" title="{% trans 'Tipo de Pessoa' %}" placeholder="{% trans 'Tipo' %}" name="tipo">
+                          <option>{% trans "ESCOLHA UM TIPO DE PESSOA" %}</option>
                           {% for tipo in tipos %}
                           <option value="{{tipo.pk}}" {% if pessoas.tipo.nome == tipo.nome %} SELECTED {% endif %} >{{tipo.nome}}</option>
                           {% endfor%}
@@ -27,36 +27,36 @@
                     <br/>
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Nome" placeholder="Nome" name="nome" value="{{pessoas.nome}}">
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="{% trans 'Nome' %}" placeholder="{% trans 'Nome' %}" name="nome" value="{{pessoas.nome}}">
                     </div>
                     <br/>
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-edit"></i></span>
-                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="CPF" data-mask="999.999.999-99" id="cpf" placeholder="cpf" name="cpf" value="{{pessoas.cpf}}" >
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="{% trans 'CPF' %}" data-mask="999.999.999-99" id="cpf" placeholder="{% trans 'cpf' %}" name="cpf" value="{{pessoas.cpf}}" >
                     </div>
                     <br/>
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-edit"></i></span>
-                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="RG" placeholder="RG" name="rg" value="{{pessoas.rg}}">                     
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="{% trans 'RG' %}" placeholder="{% trans 'RG' %}" name="rg" value="{{pessoas.rg}}">                     
                     </div>
                     <br />
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-bank"></i></span>
-                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Banco" placeholder="Banco" name="conta_banco" value="{{pessoas.conta_banco}}">
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="{% trans 'Banco' %}" placeholder="{% trans 'Banco' %}" name="conta_banco" value="{{pessoas.conta_banco}}">
                     </div>
                     <br/>
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-table"></i></span>
-                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Conta Corrente" placeholder="Conta Corrente" name="conta_corrente" value="{{pessoas.conta_corrente}}">
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="{% trans 'Conta Corrente' %}" placeholder="{% trans 'Conta Corrente' %}" name="conta_corrente" value="{{pessoas.conta_corrente}}">
                     </div>
                     <br/>
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-bank"></i></span>
-                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Agência" placeholder="Agência" name="conta_agencia" value="{{pessoas.conta_agencia}}">
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="{% trans 'Agência' %}" placeholder="{% trans 'Agência' %}" name="conta_agencia" value="{{pessoas.conta_agencia}}">
                     </div>                    
                     <br/>
                     <div class="input-group">
-                            <button type="submit" class="btn btn-success">Gravar</button>
+                            <button type="submit" class="btn btn-success">{% trans "Gravar" %}</button>
                     </div>    
                 </div><!-- /.box-body -->
 
@@ -67,46 +67,46 @@
         <div class="col-md-12">           
             <div class="box box-info">
                 <div class="box-header">
-                    <h3 class="box-title">Endereço</h3>
+                    <h3 class="box-title">{% trans "Endereço" %}</h3>
                 </div>
                 <div class="box-body">           
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-home"></i></span>
-                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Endereço" placeholder="Endereço" name="endereco_rua" value="{{pessoas.endereco_rua}}">
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="{% trans 'Endereço' %}" placeholder="{% trans 'Endereço' %}" name="endereco_rua" value="{{pessoas.endereco_rua}}">
                     </div>
                     <br/>
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-edit"></i></span>
-                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Numero" placeholder="Número" name="endereco_numero" value="{{pessoas.endereco_numero}}">
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="{% trans 'Numero' %}" placeholder="{% trans 'Número' %}" name="endereco_numero" value="{{pessoas.endereco_numero}}">
                     </div>
                     <br/>
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-home"></i></span>
-                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Complemento" placeholder="Complemento" name="endereco_complemento" value="{{pessoas.endereco_complemento}}">                     
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="{% trans 'Complemento' %}" placeholder="{% trans 'Complemento' %}" name="endereco_complemento" value="{{pessoas.endereco_complemento}}">                     
                     </div>
                     <br />
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-globe"></i></span>
-                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Bairro" placeholder="Bairro" name="endereco_bairro" value="{{pessoas.endereco_bairro}}">
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="{% trans 'Bairro' %}" placeholder="{% trans 'Bairro' %}" name="endereco_bairro" value="{{pessoas.endereco_bairro}}">
                     </div>
                     <br/>
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-globe"></i></span>
-                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Cidade" placeholder="Cidade" name="endereco_cidade" value="{{pessoas.endereco_cidade}}">
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="{% trans 'Cidade' %}" placeholder="{% trans 'Cidade' %}" name="endereco_cidade" value="{{pessoas.endereco_cidade}}">
                     </div>
                     <br/>
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-globe"></i></span>
-                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Estado" placeholder="Estado" name="endereco_estado" value="{{pessoas.endereco_estado}}">
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="{% trans 'Estado' %}" placeholder="{% trans 'Estado' %}" name="endereco_estado" value="{{pessoas.endereco_estado}}">
                     </div>                    
                     <br/>
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-globe"></i></span>
-                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Pais" placeholder="País" name="endereco_pais" value="{{pessoas.endereco_pais}}">
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="{% trans 'Pais' %}" placeholder="{% trans 'País' %}" name="endereco_pais" value="{{pessoas.endereco_pais}}">
                     </div>                    
                     <br/>
                     <div class="input-group">
-                            <button type="submit" class="btn btn-success">Gravar</button>
+                            <button type="submit" class="btn btn-success">{% trans "Gravar" %}</button>
                         </div>    
                 </div><!-- /.box-body -->
             </div><!-- /.box -->
@@ -116,32 +116,32 @@
             <div class="col-md-12">           
                 <div class="box box-info">
                     <div class="box-header">
-                        <h3 class="box-title">Contatos</h3>
+                        <h3 class="box-title">{% trans "Contatos" %}</h3>
                     </div>
                     <div class="box-body">           
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-                            <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Telefone" placeholder="Telefone" name="telefone_fixo" value="{{pessoas.telefone_fixo}}">
+                            <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="{% trans 'Telefone' %}" placeholder="{% trans 'Telefone' %}" name="telefone_fixo" value="{{pessoas.telefone_fixo}}">
                             <input type="hidden" name="pessoaId" value="{{pessoas.id}}">
                         </div>
                         <br/>
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-mobile"></i></span>
-                            <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Celular" placeholder="Celular" name="telefone_celular" value="{{pessoas.telefone_celular}}" >
+                            <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="{% trans 'Celular' %}" placeholder="{% trans 'Celular' %}" name="telefone_celular" value="{{pessoas.telefone_celular}}" >
                         </div>
                         <br/>
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
-                            <input type="email" class="form-control" data-toggle="tooltip" data-placement="top" title="Email Pessoal" placeholder="E-mail" name="email_pessoal" value="{{pessoas.email_pessoal}}">               
+                            <input type="email" class="form-control" data-toggle="tooltip" data-placement="top" title="{% trans 'Email Pessoal' %}" placeholder="{% trans 'E-mail' %}" name="email_pessoal" value="{{pessoas.email_pessoal}}">               
                         </div>
                         <br />
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
-                            <input type="email" class="form-control" data-toggle="tooltip" data-placement="top" title="Email Empresarial" placeholder="E-mail Empresarial" name="email_empresarial" value="{{pessoas.email_empresarial}}">
+                            <input type="email" class="form-control" data-toggle="tooltip" data-placement="top" title="{% trans 'Email Empresarial' %}" placeholder="{% trans 'E-mail Empresarial' %}" name="email_empresarial" value="{{pessoas.email_empresarial}}">
                         </div>
                         <br/>
                         <div class="input-group">
-                            <button type="submit" class="btn btn-success">Gravar</button>
+                            <button type="submit" class="btn btn-success">{% trans "Gravar" %}</button>
                         </div>    
                     </div><!-- /.box-body -->
                 </div><!-- /.box -->
@@ -151,7 +151,7 @@
             <div class="col-md-12">           
                 <div class="box box-info">
                     <div class="box-header">
-                        <h3 class="box-title">Redes Sociais</h3>
+                        <h3 class="box-title">{% trans "Redes Sociais" %}</h3>
                     </div>
                     <div class="box-body">           
                         <div class="input-group">
@@ -175,7 +175,7 @@
                         </div> 
                         <br/>
                         <div class="input-group">
-                            <button type="submit" class="btn btn-success">Gravar</button>
+                            <button type="submit" class="btn btn-success">{% trans "Gravar" %}</button>
                         </div>                    
                     </div><!-- /.box-body -->
                 </div><!-- /.box -->
