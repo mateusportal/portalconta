@@ -1,115 +1,137 @@
 {% extends "sistema/template.html" %}
-{% block titulo %} Portal Contas - Calendário {% endblock %}
-
+{% load minhas_tags %}
+{% block titulo %}Cadastro de Sistema{% endblock %}
 {% block css %}
     <link rel="stylesheet" type="text/css" href="/static/sistema/css/timeline.css" />
     <link rel="stylesheet" type="text/css" href="/static/sistema/css/calendar.css" />
     <link rel="stylesheet" type="text/css" href="/static/sistema/css/custom_4.css" />
 {% endblock %}
 
-{% block container %}       
-        
-    <div class="main">
-        <div class="custom-calendar-wrap">
-            <div id="custom-inner" class="custom-inner">
-                <div class="custom-header clearfix">
-                    <nav>
-                        <span id="custom-prev" class="custom-prev"></span>
-                        <span id="custom-next" class="custom-next"></span>
-                    </nav>
-                    <h2 id="custom-month" class="custom-month"></h2>
-                    <h3 id="custom-year" class="custom-year"></h3>
+{% block container %}
+    <div class="row">
+        <div class="col-xs-12">                      
+            <div class="main">
+                <div class="custom-calendar-wrap">
+                    <div id="custom-inner" class="custom-inner">
+                        <div class="custom-header clearfix">
+                            <nav>
+                                <span id="custom-prev" class="custom-prev"></span>
+                                <span id="custom-next" class="custom-next"></span>
+                            </nav>
+                            <h2 id="custom-month" class="custom-month"></h2>
+                            <h3 id="custom-year" class="custom-year"></h3>
+                         </div>
+                        <div id="calendar" class="fc-calendar-container"></div>
+                    </div>
                 </div>
-                <div id="calendar" class="fc-calendar-container"></div>
-            </div>
-        </div>            
-        <ul class="cbp_tmtimeline">
-            <li class="all-day">
-                <time class="cbp_tmtime" datetime="all-day"><span>Eventos</span></time>
-            </li>
-            <li>
-                <time class="cbp_tmtime" datetime="00:00"><span>00:00</span></time>
-            </li>
-            <li>
-                <time class="cbp_tmtime" datetime="01:00"><span>01:00</span></time>
-            </li>
-            <li>
-                <time class="cbp_tmtime" datetime="02:00"><span>02:00</span></time>
-            </li>
-            <li>
-                <time class="cbp_tmtime" datetime="03:00"><span>03:00</span></time>
-            </li>
-            <li>
-                <time class="cbp_tmtime" datetime="04:00"><span>04:00</span></time>
-            </li>
-            <li>
-                <time class="cbp_tmtime" datetime="05:00"><span>05:00</span></time>
-            </li>
-            <li>
-                <time class="cbp_tmtime" datetime="06:00"><span>06:00</span></time>
-            </li>
-            <li>
-                <time class="cbp_tmtime" datetime="07:00"><span>07:00</span></time>
-            </li>
-            <li>
-                <time class="cbp_tmtime" datetime="08:00"><span>08:00</span></time>
-            </li>
-            <li>
-                <time class="cbp_tmtime" datetime="09:00"><span>09:00</span></time>
-            </li>
-            <li>
-                <time class="cbp_tmtime" datetime="10:00"><span>10:00</span></time>
-            </li>
-            <li>
-                <time class="cbp_tmtime" datetime="11:00"><span>11:00</span></time>
-            </li>
-            <li>
-                <time class="cbp_tmtime" datetime="12:00"><span>12:00</span></time>
-            </li>
-            <li>
-                <time class="cbp_tmtime" datetime="13:00"><span>13:00</span></time>
-            </li>
-            <li>
-                <time class="cbp_tmtime" datetime="14:00"><span>14:00</span></time>
-            </li>
-            <li>
-                <time class="cbp_tmtime" datetime="15:00"><span>15:00</span></time>
-            </li>
-            <li>
-                <time class="cbp_tmtime" datetime="16:00"><span>16:00</span></time>
-            </li>
-            <li>
-                <time class="cbp_tmtime" datetime="17:00"><span>17:00</span></time>
-            </li>
-            <li>
-                <time class="cbp_tmtime" datetime="18:00"><span>18:00</span></time>
-            </li>
-            <li>
-                <time class="cbp_tmtime" datetime="19:00"><span>19:00</span></time>
-            </li>
-            <li>
-                <time class="cbp_tmtime" datetime="20:00"><span>20:00</span></time>
-            </li>
-            <li>
-                <time class="cbp_tmtime" datetime="21:00"><span>21:00</span></time>
-            </li>
-            <li>
-                <time class="cbp_tmtime" datetime="22:00"><span>22:00</span></time>
-            </li>
-            <li>
-                <time class="cbp_tmtime" datetime="23:00"><span>23:00</span></time>
-            </li>
-        </ul>
+             </div>    
+            <header class="clearfix">
+                <h4>Descrição das contas</h4>                    
+            </header>
+            <ul class="cbp_tmtimeline">                    
+                <li>
+                    <time class="cbp_tmtime" datetime="00:00"><span>1</span></time>
+                </li>
+                <li>
+                    <time class="cbp_tmtime" datetime="01:00"><span>2</span></time>
+                </li>
+                <li>
+                    <time class="cbp_tmtime" datetime="02:00"><span>3</span></time>
+                </li>
+                <li>
+                    <time class="cbp_tmtime" datetime="03:00"><span>4</span></time>
+                </li>
+                <li>
+                    <time class="cbp_tmtime" datetime="04:00"><span>5</span></time>
+                </li>
+                <li>
+                    <time class="cbp_tmtime" datetime="05:00"><span>6</span></time>
+                </li>
+                <li>
+                    <time class="cbp_tmtime" datetime="06:00"><span>7</span></time>
+                </li>
+                <li>
+                    <time class="cbp_tmtime" datetime="07:00"><span>8</span></time>
+                </li>
+                <li>
+                    <time class="cbp_tmtime" datetime="08:00"><span>9</span></time>
+                </li>
+                <li>
+                    <time class="cbp_tmtime" datetime="09:00"><span>10</span></time>
+                </li>
+                <li>
+                    <time class="cbp_tmtime" datetime="10:00"><span>11</span></time>
+                </li>
+                <li>
+                    <time class="cbp_tmtime" datetime="11:00"><span>12</span></time>
+                </li>
+                <li>
+                    <time class="cbp_tmtime" datetime="12:00"><span>13</span></time>
+                </li>
+                <li>
+                    <time class="cbp_tmtime" datetime="13:00"><span>14</span></time>
+                </li>
+                <li>
+                    <time class="cbp_tmtime" datetime="14:00"><span>15</span></time>
+                </li>
+                <li>
+                    <time class="cbp_tmtime" datetime="15:00"><span>16</span></time>
+                </li>
+                <li>
+                    <time class="cbp_tmtime" datetime="16:00"><span>17</span></time>
+                </li>
+                <li>
+                    <time class="cbp_tmtime" datetime="17:00"><span>18</span></time>
+                </li>
+                <li>
+                    <time class="cbp_tmtime" datetime="18:00"><span>19</span></time>
+                </li>
+                <li>
+                    <time class="cbp_tmtime" datetime="19:00"><span>20</span></time>
+                </li>
+                <li>
+                    <time class="cbp_tmtime" datetime="20:00"><span>21</span></time>
+                </li>
+                <li>
+                    <time class="cbp_tmtime" datetime="21:00"><span>22</span></time>
+                </li>
+                <li>
+                    <time class="cbp_tmtime" datetime="22:00"><span>23</span></time>
+                </li>
+                <li>
+                    <time class="cbp_tmtime" datetime="23:00"><span>24</span></time>
+                </li>
+                <li>
+                    <time class="cbp_tmtime" datetime="23:00"><span>25</span></time>
+                </li>
+                <li>
+                    <time class="cbp_tmtime" datetime="23:00"><span>26</span></time>
+                </li>
+                <li>
+                    <time class="cbp_tmtime" datetime="23:00"><span>27</span></time>
+                </li>
+                <li>
+                    <time class="cbp_tmtime" datetime="23:00"><span>28</span></time>
+                </li>
+                <li>
+                    <time class="cbp_tmtime" datetime="23:00"><span>29</span></time>
+                </li>
+                <li>
+                    <time class="cbp_tmtime" datetime="23:00"><span>30</span></time>
+                </li>
+                <li>
+                    <time class="cbp_tmtime" datetime="23:00"><span>31</span></time>
+                </li>
+            </ul>                           
+        </div>
     </div>
-    
- 
 {% endblock %}
-
-{% block js %}     
-    <script type="text/javascript" src="/static/sistema/js/calendario_br.js"></script>
-    <script type="text/javascript" src="/static/sistema/js/dataTimeline.js"></script>
-    <script src="/static/sistema/js/modernizr.custom.63321.js"></script>
-    <script>
+{% block js %}
+<script src="/static/sistema/js/modernizr.custom.63321.js"></script>
+<script type="text/javascript" src="/static/sistema/js/jquery.calendario.js"></script>
+<script type="text/javascript" src="/static/sistema/js/dataTimeline.js"></script>
+<script src="/static/sistema/js/data.js"></script>
+<script>
     (function($){
         $(window).load(function(){
             var once = false,
@@ -118,7 +140,7 @@
                 zoneM = parseInt(today.getTimezoneOffset() % 60),
                 zoneS = (zoneH < 0 ? '+' : '-') + (Math.abs(zoneH) < 10 ? '0' + Math.abs(zoneH) : Math.abs(zoneH)) + ':' +
                 (Math.abs(zoneM) < 10 ? '0' + Math.abs(zoneM) : Math.abs(zoneM));
-             /*$(document).on('shown.calendar.calendario', function(e, instance){
+            $(document).on('calendar.calendario', function(e, instance){
                 if(!once) {
                     $('.custom-calendar-wrap').slideUp();
                     init();
@@ -127,7 +149,7 @@
                 }
             });
             
-           $('#view').on('click calClick', function(e){
+            /*$('#view').on('click calClick', function(e){
                 e.preventDefault();
                 $('.custom-calendar-wrap').slideToggle();
             });*/
@@ -210,7 +232,7 @@
                 var pos = start.getHours() + 2,
                     top = ((start.getMinutes() / 60) * 200) == 0 ? '-1px' :  ((start.getMinutes() / 60) * 200) - 1 + 'px',
                     height = ((((end.getTime() - start.getTime()) / (60 * 1000 * 60)) * 200) - 1) + 'px',
-                    append = '<div class="cbp_tmlabel" style="top:'+ top + ';height:' + height + '; max-height:' + height + '">' +
+                    append = '<div class="cbp_tmlabel"' + height + '">' +
                         content + '</div>';
                 $('ul > li:nth-child(' + pos +')').append(append);
             }
@@ -221,4 +243,4 @@
         });
     })(jQuery);
 </script>
-{% endblock %}   
+{% endblock %}
