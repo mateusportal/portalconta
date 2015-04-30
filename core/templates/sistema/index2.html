@@ -6,6 +6,21 @@
 {% block container_titulo %}<i class="fa fa-university"></i> {% trans "Painel Central" %}{% endblock %}  
 
 {% block js %}
+<!-- FACEBOOK COMENTARIOS -->
+<div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/{{ fb_lang }}/sdk.js#xfbml=1&version=v2.3&appId=1591680294408903";
+    fjs.parentNode.insertBefore(js, fjs);
+    }
+    (document, 'script', 'facebook-jssdk'));
+</script>
+<!-- FIM FACEBOOK COMENTARIOS -->
+
+<!-- GRAFICO ANUAL-->
  <script>
   var salesChartCanvas = $("#painelAnual").get(0).getContext("2d");
   var salesChart = new Chart(salesChartCanvas);
@@ -78,6 +93,7 @@
   //Create the line chart
   salesChart.Line(salesChartData, salesChartOptions);
 </script>  
+<!-- FIM GRAFICO ANUAL-->
 {% endblock %}
 
 
@@ -598,62 +614,17 @@
               <!-- PRODUCT LIST -->
               <div class="box box-primary">
                 <div class="box-header with-border">
-                  <h3 class="box-title">Produtos Adicionados Recentemente</h3>
-                  <div class="box-tools pull-right">
-                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                    <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                  </div>
+                  <h3 class="box-title">Recados & Comentários</h3>
                 </div><!-- /.box-header -->
                 <div class="box-body">
                   <ul class="products-list product-list-in-box">
-                    <li class="item">
-                      <div class="product-img">
-                        <img src="#" alt="Product Image"/>
-                      </div>
-                      <div class="product-info">
-                        <a href="javascript::;" class="product-title">Samsung TV <span class="label label-warning pull-right">R$1800</span></a>
-                        <span class="product-description">
-                          Samsung 32" 1080p 60Hz LED Smart HDTV.
-                        </span>
-                      </div>
-                    </li><!-- /.item -->
-                    <li class="item">
-                      <div class="product-img">
-                        <img src="/static/sistema/img/default-50x50.gif" alt="Product Image"/>
-                      </div>
-                      <div class="product-info">
-                        <a href="javascript::;" class="product-title">Bicicleta<span class="label label-info pull-right">R$700</span></a>
-                        <span class="product-description">
-                          26" Mongoose Dolomite Men's 7-speed, Navy Blue.
-                        </span>
-                      </div>
-                    </li><!-- /.item -->
-                    <li class="item">
-                      <div class="product-img">
-                        <img src="/static/sistema/img/default-50x50.gif" alt="Product Image"/>
-                      </div>
-                      <div class="product-info">
-                        <a href="javascript::;" class="product-title">Xbox One <span class="label label-danger pull-right">R$350</span></a>
-                        <span class="product-description">
-                          Xbox One Console Bundle with Halo Master Chief Collection.
-                        </span>
-                      </div>
-                    </li><!-- /.item -->
-                    <li class="item">
-                      <div class="product-img">
-                        <img src="/static/sistema/img/default-50x50.gif" alt="Product Image"/>
-                      </div>
-                      <div class="product-info">
-                        <a href="javascript::;" class="product-title">PlayStation 4 <span class="label label-success pull-right">R$399</span></a>
-                        <span class="product-description">
-                          PlayStation 4 500GB Console (PS4)
-                        </span>
-                      </div>
-                    </li><!-- /.item -->
+                    
+                   <div class="fb-comments" data-href="{{ request.build_absolute_uri }}" data-width="100%" data-numposts="5" data-colorscheme="light"></div> 
+              
                   </ul>
                 </div><!-- /.box-body -->
                 <div class="box-footer text-center">
-                  <a href="javascript::;" class="uppercase">Ver Todos os Produtos</a>
+                  Para realizar 
                 </div><!-- /.box-footer -->
               </div><!-- /.box -->
             </div><!-- /.col -->
