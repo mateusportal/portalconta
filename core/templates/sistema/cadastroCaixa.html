@@ -26,7 +26,7 @@
                  {% csrf_token %}
                     <div class="box-body">
                       <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-cog"></i></span>
+                        <span class="input-group-addon"><i class="fa fa-cog">&nbsp;Tipo</i></span>
                           <select class="form-control" data-toggle="tooltip" data-placement="top" title="Tipo" placeholder="" name="tipo">
                             <option>Tipo</option>
                             <option value="E" {% if caixas.tipo == 'E' %} SELECTED {% endif %} >ENTRADA</option>
@@ -35,7 +35,7 @@
                       </div>
                       <br/>
                       <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-cog"></i></span>
+                        <span class="input-group-addon"><i class="fa fa-cog">&nbsp;Categoria</i></span>
                           <select class="form-control" data-toggle="tooltip" data-placement="top" title="Categoria" placeholder="" name="categoria_id">
                             <option>Categoria</option>
                             {% for categoria in categorias %}
@@ -45,7 +45,7 @@
                       </div>
                       <br/>
                       <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-cog"></i></span>
+                        <span class="input-group-addon"><i class="fa fa-cog">&nbsp;Grupo</i></span>
                           <select class="form-control" data-toggle="tooltip" data-placement="top" title="Grupo" placeholder="Tipo" name="grupo_id">
                             <option>Grupo {{caixa.grupo.nome}} </option>
                             {% for grupo in grupos %}
@@ -55,7 +55,7 @@
                       </div>
                       <br/>
                       <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-cog"></i></span>
+                        <span class="input-group-addon"><i class="fa fa-cog">&nbsp;Sub Grupo</i></span>
                           <select class="form-control" data-toggle="tooltip" data-placement="top" title="Sub-Grupo" placeholder="Tipo" name="subgrupo_id">
                             <option>Sub-Grupo</option>
                             {% for subgrupo in subgrupos %}
@@ -65,12 +65,12 @@
                       </div>
                       <br/>
                       <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-pencil-square-o"></i></span>
+                        <span class="input-group-addon"><i class="fa fa-pencil-square-o">&nbsp;Descrição</i></span>
                         <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Descrição" name="descricao" placeholder="Descrição" value="{{caixas.descricao}}">
                       </div>
                       <br/>
                       <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                        <span class="input-group-addon"><i class="fa fa-user">&nbsp;Pessoa</i></span>
                         <input class="form-control" data-toggle="tooltip" data-placement="top" title="Pessoa" placeholder="Pessoa" id="Pessoa" name="pessoa_id"
                         value="{{caixas.pessoa.nome}}">
                         <input type="hidden" name="caixaId" value="{{caixas.id}}">
@@ -80,42 +80,42 @@
                       </div>
                       <br />
                       <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-money"></i></span>
+                        <span class="input-group-addon"><i class="fa fa-money">&nbsp;Valor</i></span>
                         <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Valor Bruto" placeholder="Valor Bruto" id="demo8"  name="valor_bruto" value="{{caixas.valor_bruto|formataDinheiro}}" >
                       </div>
                       <br/>
                       <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-money"></i></span>
+                        <span class="input-group-addon"><i class="fa fa-money">&nbsp;Multa</i></span>
                         <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Valor Multa" placeholder="Valor Multa" id="demo8"  name="valor_multa" value="{{caixas.valor_multa|formataDinheiro}}" >
                       </div>
                       <br/>
                       <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-money"></i></span>
+                        <span class="input-group-addon"><i class="fa fa-money">&nbsp;Juros</i></span>
                         <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Valor Juros" placeholder="Valor Juros" id="demo8"  name="valor_juros" value="{{caixas.valor_juros|formataDinheiro}}">
                       </div>
                       <br/>
                       <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-money"></i></span>
+                        <span class="input-group-addon"><i class="fa fa-money">&nbsp;Desconto</i></span>
                         <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Valor Desconto" placeholder="Valor Desconto" id="demo8"  name="valor_desconto" value="{{caixas.valor_desconto|formataDinheiro}}" >
                       </div>
                       <br/>
                       <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                        <span class="input-group-addon"><i class="fa fa-calendar">&nbsp;Vencimento</i></span>
                         <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Data de Vencimento" data-mask="99/99/9999" name="data_vencimento" placeholder="Vencimento" value="{{caixas.data_vencimento|date:"d/m/Y"}}">
                       </div>
                       <br/>
                       <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                        <span class="input-group-addon"><i class="fa fa-calendar">&nbsp;Data Pagto.</i></span>
                         <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Data de Pagamento" data-mask="99/99/9999"  name="data_pagamento" placeholder="Pagamento" value="{{caixas.data_pagamento|date:"d/m/Y"}}" >
                       </div>
                       <br/>
                       <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                        <span class="input-group-addon"><i class="fa fa-calendar">&nbsp;Data Boleto</i></span>
                         <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Data do boleto" data-mask="99/99/9999"  name="data_boleto" placeholder="Boleto" value="{{caixas.data_boleto|date:"d/m/Y"}}" >
                       </div>
                       <br/>
                       <div class="input-group">
-                          <span class="input-group-addon"><i class="fa fa-pencil-square-o"></i></span>
+                          <span class="input-group-addon"><i class="fa fa-pencil-square-o">&nbsp;Obs.</i></span>
                           <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Observações" name="observacao" placeholder="Observações" value="{{caixas.observacao}}">
                       </div>
                       <br/>

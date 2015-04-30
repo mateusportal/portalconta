@@ -2,6 +2,9 @@
 from django.shortcuts import render, HttpResponseRedirect
 from django.db.models import Q
 from empresas.models import Sistema,Pessoa
+from django.contrib.auth.decorators import login_required # USAR: @login_required
+from empresas.forms import PessoaForm
+from django.utils.translation import ugettext as _
 
 
 def listaSistema(request):
@@ -41,31 +44,65 @@ def preencherSistema(request,sisId):
 
     return render(request,'sistema/cadastroSistema.html',{'sistemas':sistemas})
 
-def listaPessoas(request):
+@login_required
+def pessoas(request):
     if request.method == 'POST':
-        pessoas = Pessoa.objects.filter(Q(nome__contains=request.POST.get('parametro',''))
+        pessoas = Pessoa.objects.filter(empresa_id=request.user.empresa.id & Q(nome__contains=request.POST.get('parametro',''))
             |Q(cpf__contains=request.POST.get('parametro',''))|Q(rg__contains=request.POST.get('parametro',''))
             |Q(telefone_celular__contains=request.POST.get('parametro',''))|Q(telefone_fixo__contains=request.POST.get('parametro',''))
             |Q(email_pessoal__contains=request.POST.get('parametro',''))|Q(email_empresarial__contains=request.POST.get('parametro',''))).order_by('nome')
-
-        print request.POST.get('parametro','')
-
     else:
-        pessoas = Pessoa.objects.filter(empresa_id=request.user.empresa.id,).order_by('nome')
+        pessoas = Pessoa.objects.filter(empresa_id=request.user.empresa.id).order_by('-data_cadastro')[0:12]
 
+    #IMPLEMENTAR PAGINAÇÃO, LISTAR DE 12 EM 12... (COM ORDENAÇÃO)
     return render(request,'sistema/pessoas.html',{'pessoas':pessoas})
 
-def excluirPessoas(request,pessoaId):
+@login_required
+def pessoas_excluir(request,pessoaId):
     Pessoa.objects.get(id=pessoaId).delete()
     return HttpResponseRedirect('/sistema/pessoas/')
 
-def preencherPessoas(request,pessoaId):
-    pessoas = Pessoa.objects.get(id=pessoaId)
-    tipos = Sistema.objects.filter(ativo='SIM', tipo='TIPO PESSOA', empresa_id=request.user.empresa.id).order_by('tipo')
+@login_required
+def pessoas_formulario(request,pessoaId):
+    try:
+        if pessoaId:
+            pessoa = Pessoa.objects.get(ativo='SIM', pk=pessoaId, empresa_id=request.user.empresa.id)
+            form = PessoaForm(instance=pessoa)
+        else:
+            form = PessoaForm()
+    except:
+        form = PessoaForm()
 
-    return render(request,'sistema/cadastroPessoas.html',{'pessoas':pessoas,'tipos':tipos})
+    tipos = Sistema.objects.filter(ativo='SIM', tipo='TIPO PESSOA', empresa_id=request.user.empresa.id).order_by('nome')
 
-def gravarPessoas(request):
+    return render(request,'sistema/pessoas_formulario.html',{'form':form, 'tipos':tipos})
+
+@login_required
+def pessoas_gravar(request):
+    if request.method == 'POST':
+        tipos = Sistema.objects.filter(ativo='SIM', tipo='TIPO PESSOA', empresa_id=request.user.empresa.id).order_by('nome')
+
+        try:
+            pessoa = Pessoa.objects.get(pk=request.POST.get('id','0'), ativo='SIM', empresa_id=request.user.empresa.id)
+        except:
+            pessoa = Pessoa()
+
+        form = PessoaForm(request.POST, instance=pessoa)
+        if form.is_valid():
+            pessoa = form.save(commit=False)  
+            pessoa.save()
+
+            return render(request,'sistema/pessoas.html',{'msg':_(u'Pessoa salva com sucesso!')})
+        else:
+            return render(request,'sistema/pessoas_formulario.html',{'form':form, 'tipos':tipos})
+    else:
+        return HttpResponseRedirect('/sistema/pessoas/')
+
+
+
+
+
+'''
     if request.method == 'POST':
         try:
             pessoa = Pessoa.objects.get(id=request.POST.get('pessoaId'),empresa_id=request.user.empresa.id,
@@ -103,6 +140,7 @@ def gravarPessoas(request):
     
         return HttpResponseRedirect('/sistema/pessoas/')
     return HttpResponseRedirect('/')
+    '''
 
 
 

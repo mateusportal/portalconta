@@ -77,8 +77,6 @@ def gravarCheque(request):
     data_compensado = datetime.strptime(str(request.POST.get('data_compensado')), '%d/%m/%Y').date()
     data_recebido = datetime.strptime(str(request.POST.get('data_recebido')), '%d/%m/%Y').date()
 
-    
-
     cheque.numero_cheque = request.POST.get('numero_cheque')
     cheque.valor = (request.POST.get('valor').replace('.','')).replace(',','.')
     cheque.data_compensar = data_compensar.strftime('%Y-%m-%d')

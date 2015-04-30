@@ -8,12 +8,6 @@ class LoginForm(forms.Form):
 class UsuarioForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput)
 
-    def __init__(self, *args, **kwargs):
-        super(UsuarioForm, self).__init__(*args, **kwargs)
-
-        self.fields['last_login'].widget = forms.HiddenInput()
-        self.fields['date_joined'].widget = forms.HiddenInput()
-
     class Meta:
         model = Usuario
 

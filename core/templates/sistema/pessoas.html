@@ -1,11 +1,11 @@
 {% extends "sistema/template.html" %}
-{% block titulo %} Portal Contas - Listagem de Pessoas {% endblock %}
+{% block titulo %}Formulário de Pessoas{% endblock %}
 
 {% block container %}     
 <section class="content">
   <div class="row">
     <div class="col-xs-12">
-      <form method="POST" action="/sistema/pessoas/buscar/"> {% csrf_token %}
+      <form method="POST" action="/sistema/pessoas/"> {% csrf_token %}
         <div class="input-group">
           <input class="form-control" placeholder="Sua pesquisa aqui..." name="parametro" type="text" />
           <div class="input-group-btn">
@@ -21,7 +21,7 @@
       <div class="box">
         <div class="box-header">
           <h3 class="box-title">Listagem de Pessoas</h3><br/><br/>
-          <a href="/sistema/pessoas/editor/"><button class="btn btn-default"><i class="fa fa-plus"></i>&nbsp;&nbsp;Adicionar novo</button></a>
+          <a href="/sistema/pessoas/formulario/0"><button class="btn btn-default"><i class="fa fa-plus"></i>&nbsp;&nbsp;Adicionar novo</button></a>
           <div class="box-tools pull-right">
             <ul class="pagination pagination-sm inline">
               <li><a href="#">&laquo;</a></li>
@@ -43,8 +43,8 @@
             <!-- small box -->
             <div class="small-box bg-gray">
               <div class="inner">
-                <h5><a href="/sistema/pessoas/editor/{{pessoa.id}}"><i class="fa fa-pencil-square fa-2x"></i></a>
-                  &nbsp;<b><a href="/sistema/pessoas/editor/{{pessoa.id}}">{{pessoa.nome|truncatechars:35}}</a></b></h5>
+                <h5><a href="/sistema/pessoas/formulario/{{pessoa.id}}"><i class="fa fa-pencil-square fa-2x"></i></a>
+                  &nbsp;<b><a href="/sistema/pessoas/formulario/{{pessoa.id}}">{{pessoa.nome|truncatechars:35}}</a></b></h5>
                   
                   <a href="tel:{{pessoa.telefone_celular}}"><i class="fa fa-phone-square fa-2x"></i></a>
                   &nbsp;
@@ -85,7 +85,7 @@
 
         </div><!-- /.box -->
         <div class="box-footer clearfix no-border">
-          <a href="/sistema/pessoas/editor"><button class="btn btn-default"><i class="fa fa-plus"></i>&nbsp;&nbsp;Adicionar novo</button></a>
+          <a href="/sistema/pessoas/formulario/0"><button class="btn btn-default"><i class="fa fa-plus"></i>&nbsp;&nbsp;Adicionar novo</button></a>
           <div class="box-tools pull-right">
             <ul class="pagination pagination-sm inline">
               <li><a href="#">&laquo;</a></li>

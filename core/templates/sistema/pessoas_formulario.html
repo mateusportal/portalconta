@@ -1,60 +1,50 @@
 {% extends "sistema/template.html" %}
-{% block js %}
-    <script src="/static/sistema/js/jasny-bootstrap.min.js"></script>
-{% endblock %}
+{% load i18n %}
 
-{% block titulo %} Portal Contas - Pessoas {% endblock %}
+{% block titulo %}{% trans "Listagem de Pessoas" %}{% endblock %}
+{% block container_titulo %}<i class="fa fa-street-view"></i> {% trans "Formulário de Pessoas" %}{% endblock %}  
 
 {% block container %}  
 <section class="content">
     <form method="POST" action="/sistema/pessoas/gravar/"> {% csrf_token %}
+    <input type="hidden" name="id" value="{{ form.initial.id }}">
+    <input type="hidden" name="empresa" value="{{ user.empresa_id }}">
+    <input type="hidden" name="ativo" value="{{ form.ativo.value }}">
+    <input type="hidden" name="usuario" value="{{ user.id }}">
+
     <div class="row">    
         <div class="col-md-12">           
             <div class="box box-info">
                 <div class="box-header">
-                    <h3 class="box-title">Dados Pessoais</h3>
+                    <h3 class="box-title">{% trans "Dados Pessoais" %}</h3>
                 </div>
                 <div class="box-body">
                     <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-cog"></i></span>
-                        <select class="form-control" data-toggle="tooltip" data-placement="top" title="Tipo de Pessoa" placeholder="Tipo" name="tipo">
-                          <option>ESCOLHA UM TIPO DE PESSOA</option>
+                    <span class="input-group-addon"><i class="fa fa-cog"> {% trans "Tipo" %}</i></span>
+                        <select class="form-control" data-toggle="tooltip" data-placement="top" title="{% trans 'Tipo de Pessoa' %}" placeholder="{% trans 'Tipo de Pessoa' %}" name="tipo">
+                          <option>{% trans "Escolher o Tipo de Pessoa" %}</option>
                           {% for tipo in tipos %}
-                          <option value="{{tipo.pk}}" {% if pessoas.tipo.nome == tipo.nome %} SELECTED {% endif %} >{{tipo.nome}}</option>
+                            <option value="{{tipo.pk}}" {% if form.tipo.value == tipo.pk %} SELECTED {% endif %} >{{tipo.nome}}</option>
                           {% endfor%}
                         </select>           
                     </div>
                     <br/>
                     <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Nome" placeholder="Nome" name="nome" value="{{pessoas.nome}}">
+                        <span class="input-group-addon"><i class="fa fa-user">&nbsp;Nome</i></span>
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Nome" placeholder="Nome" name="nome" value="{{ form.nome.value|default_if_none:'' }}">
                     </div>
                     <br/>
                     <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-edit"></i></span>
-                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="CPF" data-mask="999.999.999-99" id="cpf" placeholder="cpf" name="cpf" value="{{pessoas.cpf}}" >
+                        <span class="input-group-addon"><i class="fa fa-edit">&nbsp;CPF</i></span>
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="CPF" data-mask="999.999.999-99" id="cpf" placeholder="CPF" name="cpf" value="{{ form.cpf.value|default_if_none:'' }}" >
                     </div>
                     <br/>
                     <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-edit"></i></span>
-                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="RG" placeholder="RG" name="rg" value="{{pessoas.rg}}">                     
+                        <span class="input-group-addon"><i class="fa fa-edit">&nbsp;RG</i></span>
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="RG" placeholder="RG" name="rg" value="{{ form.rg.value|default_if_none:'' }}">                     
                     </div>
                     <br />
-                    <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-bank"></i></span>
-                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Banco" placeholder="Banco" name="conta_banco" value="{{pessoas.conta_banco}}">
-                    </div>
-                    <br/>
-                    <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-table"></i></span>
-                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Conta Corrente" placeholder="Conta Corrente" name="conta_corrente" value="{{pessoas.conta_corrente}}">
-                    </div>
-                    <br/>
-                    <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-bank"></i></span>
-                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Agência" placeholder="Agência" name="conta_agencia" value="{{pessoas.conta_agencia}}">
-                    </div>                    
-                    <br/>
+                   
                     <div class="input-group">
                             <button type="submit" class="btn btn-success">Gravar</button>
                     </div>    
@@ -71,46 +61,75 @@
                 </div>
                 <div class="box-body">           
                     <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-home"></i></span>
+                        <span class="input-group-addon"><i class="fa fa-home">&nbsp;Endereço</i></span>
                         <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Endereço" placeholder="Endereço" name="endereco_rua" value="{{pessoas.endereco_rua}}">
                     </div>
                     <br/>
                     <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-edit"></i></span>
+                        <span class="input-group-addon"><i class="fa fa-edit">&nbsp;Número</i></span>
                         <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Numero" placeholder="Número" name="endereco_numero" value="{{pessoas.endereco_numero}}">
                     </div>
                     <br/>
                     <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-home"></i></span>
+                        <span class="input-group-addon"><i class="fa fa-home">&nbsp;Complemento</i></span>
                         <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Complemento" placeholder="Complemento" name="endereco_complemento" value="{{pessoas.endereco_complemento}}">                     
                     </div>
                     <br />
                     <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-globe"></i></span>
+                        <span class="input-group-addon"><i class="fa fa-globe">&nbsp;Bairro</i></span>
                         <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Bairro" placeholder="Bairro" name="endereco_bairro" value="{{pessoas.endereco_bairro}}">
                     </div>
                     <br/>
                     <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-globe"></i></span>
+                        <span class="input-group-addon"><i class="fa fa-globe">&nbsp;Cidade</i></span>
                         <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Cidade" placeholder="Cidade" name="endereco_cidade" value="{{pessoas.endereco_cidade}}">
                     </div>
                     <br/>
                     <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-globe"></i></span>
+                        <span class="input-group-addon"><i class="fa fa-globe">&nbsp;Estado</i></span>
                         <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Estado" placeholder="Estado" name="endereco_estado" value="{{pessoas.endereco_estado}}">
                     </div>                    
                     <br/>
                     <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-globe"></i></span>
+                        <span class="input-group-addon"><i class="fa fa-globe">&nbsp;Pais</i></span>
                         <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Pais" placeholder="País" name="endereco_pais" value="{{pessoas.endereco_pais}}">
                     </div>                    
                     <br/>
                     <div class="input-group">
                             <button type="submit" class="btn btn-success">Gravar</button>
-                        </div>    
+                    </div>    
                 </div><!-- /.box-body -->
             </div><!-- /.box -->
         </div><!--/.col  -->
+        </div><!--/.row  -->
+        <div class="row">    
+            <div class="col-md-12">           
+                <div class="box box-info">
+                    <div class="box-header">
+                        <h3 class="box-title">Dados Bancarios</h3>
+                    </div>
+                    <div class="box-body">           
+                        <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-bank">&nbsp;Banco</i></span>
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Banco" placeholder="Banco" name="conta_banco" value="{{pessoas.conta_banco}}">
+                    </div>
+                    <br/>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-table">&nbsp;Conta Corrente</i></span>
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Conta Corrente" placeholder="Conta Corrente" name="conta_corrente" value="{{pessoas.conta_corrente}}">
+                    </div>
+                    <br/>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-bank">&nbsp;Agência</i></span>
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Agência" placeholder="Agência" name="conta_agencia" value="{{pessoas.conta_agencia}}">
+                    </div>                    
+                    <br/>
+                        <div class="input-group">
+                            <button type="submit" class="btn btn-success">Gravar</button>
+                        </div>                    
+                    </div><!-- /.box-body -->
+                </div><!-- /.box -->
+            </div><!--/.col  -->             
         </div>   <!-- /.row -->
         <div class="row">    
             <div class="col-md-12">           
@@ -120,23 +139,22 @@
                     </div>
                     <div class="box-body">           
                         <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+                            <span class="input-group-addon"><i class="fa fa-phone">&nbsp;Telefone Fixo</i></span>
                             <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Telefone" placeholder="Telefone" name="telefone_fixo" value="{{pessoas.telefone_fixo}}">
-                            <input type="hidden" name="pessoaId" value="{{pessoas.id}}">
                         </div>
                         <br/>
                         <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-mobile"></i></span>
+                            <span class="input-group-addon"><i class="fa fa-mobile">&nbsp;Celular</i></span>
                             <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Celular" placeholder="Celular" name="telefone_celular" value="{{pessoas.telefone_celular}}" >
                         </div>
                         <br/>
                         <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
+                            <span class="input-group-addon"><i class="fa fa-envelope-o">&nbsp;Email</i></span>
                             <input type="email" class="form-control" data-toggle="tooltip" data-placement="top" title="Email Pessoal" placeholder="E-mail" name="email_pessoal" value="{{pessoas.email_pessoal}}">               
                         </div>
                         <br />
                         <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
+                            <span class="input-group-addon"><i class="fa fa-envelope-o">&nbsp;Email Empresarial</i></span>
                             <input type="email" class="form-control" data-toggle="tooltip" data-placement="top" title="Email Empresarial" placeholder="E-mail Empresarial" name="email_empresarial" value="{{pessoas.email_empresarial}}">
                         </div>
                         <br/>
@@ -155,22 +173,22 @@
                     </div>
                     <div class="box-body">           
                         <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-facebook"></i></span>
+                            <span class="input-group-addon"><i class="fa fa-facebook">&nbsp;Facebook</i></span>
                             <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Facebook" placeholder="Facebook" name="facebook" value="{{pessoas.facebook}}">
                         </div>
                         <br/>
                         <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-twitter"></i></span>
+                            <span class="input-group-addon"><i class="fa fa-twitter">&nbsp;Twitter</i></span>
                             <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Twitter" placeholder="Twitter" name="twitter" value="{{pessoas.twitter}}">
                         </div>
                         <br/>
                         <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-skype"></i></span>
+                            <span class="input-group-addon"><i class="fa fa-skype">&nbsp;Skype</i></span>
                             <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Skype" placeholder="Skype" name="skype" value="{{pessoas.skype}}">             
                         </div>
                         <br />
                         <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-google-plus"></i></span>
+                            <span class="input-group-addon"><i class="fa fa-google-plus">&nbsp;Google +</i></span>
                             <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Google Plus" placeholder="Google Plus" name="googleplus" value="{{pessoas.googleplus}}">             
                         </div> 
                         <br/>

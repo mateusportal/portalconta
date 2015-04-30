@@ -149,3 +149,7 @@
 .skin-blue.layout-top-nav .main-header > .logo:hover {
   background: #3b8ab8;
 }
+
+.progress-bar-fuchsia {
+  background-color:#f012be;
+}
