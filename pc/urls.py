@@ -11,7 +11,7 @@ urlpatterns = patterns('',
     url(r'^cadastro/$', 'core.views.cadastro', name='cadastro'),
     url(r'^valida_cadastro/$', 'core.views.valida_cadastro', name='valida_cadastro'),
 
-    url(r'^sistema/$', 'core.views.sistema', name='sistema'),
+    url(r'^sistema/(?P<empresaId>\d+)/$', 'core.views.sistema', name='sistema'),
     url(r'^sistema/calendario/$', 'core.views.calendario', name='calendario'),
     url(r'^sistema/empresa/$', 'core.views.cadastroEmpresa', name='cadastroEmpresa'),  
 
