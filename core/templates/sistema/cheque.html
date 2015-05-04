@@ -16,7 +16,7 @@
       <!-- Main content -->
       <section class="content">
         <!-- Info boxes -->
-        <form method="POST" action="/sistema/cheque/buscar/"> {% csrf_token %}
+        <form method="POST" action="/sistema/cheque/"> {% csrf_token %}
           <div class="input-group">
             <input class="form-control" placeholder="Sua pesquisa aqui..." name="parametro" type="text" />
             <div class="input-group-btn">
@@ -29,7 +29,7 @@
           <div class="box-header">
             <i class="ion ion-clipboard"></i>
             <h3 class="box-title">Configurações cadastradas</h3><br/><br/>
-            <a href="/sistema/cheque/editor/"><button class="btn btn-default"><i class="fa fa-plus"></i>&nbsp;&nbsp;Adicionar novo</button></a>
+            <a href="/sistema/cheque/formulario/0"><button class="btn btn-default"><i class="fa fa-plus"></i>&nbsp;&nbsp;Adicionar novo</button></a>
             <div class="box-tools pull-right">
               <ul class="pagination pagination-sm inline">
                 <li><a href="#">&laquo;</a></li>
@@ -47,7 +47,7 @@
                 <!-- small box -->
                 <div class="small-box bg-orange">
                   <div class="inner" >
-                    <a href="/sistema/cheque/editor/{{cheque.id}}" style="color:#FFFFFF;">
+                    <a href="/sistema/cheque/formulario/{{cheque.id}}" style="color:#FFFFFF;">
                     <h4><b>{{cheque.nome}}</b></h4>
                     <p>${{cheque.valor}}</p>
                     <p>{{cheque.data_compensar|date:"d/m/Y"}}</p>
@@ -81,7 +81,7 @@
             </div><!-- /.row -->
           </div><!-- /.box-body-->
           <div class="box-footer clearfix no-border">
-            <a href="/sistema/cheque/editor/"><button class="btn btn-default"><i class="fa fa-plus"></i>&nbsp;&nbsp;Adicionar novo</button></a>
+            <a href="/sistema/cheque/formulario/0"><button class="btn btn-default"><i class="fa fa-plus"></i>&nbsp;&nbsp;Adicionar novo</button></a>
             <div class="box-tools pull-right">
               <ul class="pagination pagination-sm inline">
                 <li><a href="#">&laquo;</a></li>

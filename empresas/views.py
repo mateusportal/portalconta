@@ -7,7 +7,7 @@ from empresas.forms import PessoaForm
 from django.utils.translation import ugettext as _
 
 
-def listaSistema(request):
+def sistema(request):
     if request.method == 'POST':
         sistemas = Sistema.objects.filter(Q(nome__contains=request.POST.get('parametro','')) | Q(tipo__contains=request.POST.get('parametro',''))).order_by('tipo','nome')    
 
@@ -18,7 +18,7 @@ def listaSistema(request):
 
     return render(request,'sistema/sistema.html',{'sistemas':sistemas})
 
-def gravarSistema(request):
+def sistema_gravar(request):
     if request.method == 'POST':
         try:
             sistema = Sistema.objects.get(id=request.POST.get('sisID'),empresa_id=request.user.empresa.id)
@@ -35,14 +35,17 @@ def gravarSistema(request):
     
         return HttpResponseRedirect('/sistema/sistema/')
 
-def excluirSistema(request,sisId):
+def sistema_excluir(request,sisId):
     Sistema.objects.get(id=sisId).delete()
     return HttpResponseRedirect('/sistema/sistema/')
 
-def preencherSistema(request,sisId):
-    sistemas = Sistema.objects.get(id=sisId)
+def sistema_formulario(request,sisId):
+    try:
+        sistemas = Sistema.objects.get(id=sisId)
+    except:
+        sistemas = Sistema()
 
-    return render(request,'sistema/cadastroSistema.html',{'sistemas':sistemas})
+    return render(request,'sistema/sistema_formulario.html',{'sistemas':sistemas})
 
 @login_required
 def pessoas(request):
