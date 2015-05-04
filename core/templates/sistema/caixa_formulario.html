@@ -66,13 +66,13 @@
                       <br/>
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-pencil-square-o">&nbsp;Descrição</i></span>
-                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Descrição" name="descricao" placeholder="Descrição" value="{{caixas.descricao}}">
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Descrição" name="descricao" placeholder="Descrição" value="{{caixas.descricao|default_if_none:''}}">
                       </div>
                       <br/>
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-user">&nbsp;Pessoa</i></span>
                         <input class="form-control" data-toggle="tooltip" data-placement="top" title="Pessoa" placeholder="Pessoa" id="Pessoa" name="pessoa_id"
-                        value="{{caixas.pessoa.nome}}">
+                        value="{{caixas.pessoa.nome|default_if_none:''}}">
                         <input type="hidden" name="caixaId" value="{{caixas.id}}">
                         <div class="input-group-btn">
                           <button type="submit" class="btn btn-info"><i class="fa fa-search"><b></b></i></button>
@@ -81,42 +81,42 @@
                       <br />
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-money">&nbsp;Valor</i></span>
-                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Valor Bruto" placeholder="Valor Bruto" id="demo8"  name="valor_bruto" value="{{caixas.valor_bruto|formataDinheiro}}" >
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Valor Bruto" placeholder="Valor Bruto" id="demo8"  name="valor_bruto" value="{{caixas.valor_bruto|formataDinheiro|default_if_none:''}}" >
                       </div>
                       <br/>
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-money">&nbsp;Multa</i></span>
-                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Valor Multa" placeholder="Valor Multa" id="demo8"  name="valor_multa" value="{{caixas.valor_multa|formataDinheiro}}" >
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Valor Multa" placeholder="Valor Multa" id="demo8"  name="valor_multa" value="{{caixas.valor_multa|formataDinheiro|default_if_none:''}}" >
                       </div>
                       <br/>
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-money">&nbsp;Juros</i></span>
-                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Valor Juros" placeholder="Valor Juros" id="demo8"  name="valor_juros" value="{{caixas.valor_juros|formataDinheiro}}">
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Valor Juros" placeholder="Valor Juros" id="demo8"  name="valor_juros" value="{{caixas.valor_juros|formataDinheiro|default_if_none:''}}">
                       </div>
                       <br/>
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-money">&nbsp;Desconto</i></span>
-                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Valor Desconto" placeholder="Valor Desconto" id="demo8"  name="valor_desconto" value="{{caixas.valor_desconto|formataDinheiro}}" >
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Valor Desconto" placeholder="Valor Desconto" id="demo8"  name="valor_desconto" value="{{caixas.valor_desconto|formataDinheiro|default_if_none:''}}" >
                       </div>
                       <br/>
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-calendar">&nbsp;Vencimento</i></span>
-                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Data de Vencimento" data-mask="99/99/9999" name="data_vencimento" placeholder="Vencimento" value="{{caixas.data_vencimento|date:"d/m/Y"}}">
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Data de Vencimento" data-mask="99/99/9999" name="data_vencimento" placeholder="Vencimento" value="{{caixas.data_vencimento|date:"d/m/Y"|default_if_none:''}}">
                       </div>
                       <br/>
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-calendar">&nbsp;Data Pagto.</i></span>
-                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Data de Pagamento" data-mask="99/99/9999"  name="data_pagamento" placeholder="Pagamento" value="{{caixas.data_pagamento|date:"d/m/Y"}}" >
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Data de Pagamento" data-mask="99/99/9999"  name="data_pagamento" placeholder="Pagamento" value="{{caixas.data_pagamento|date:"d/m/Y"|default_if_none:''}}" >
                       </div>
                       <br/>
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-calendar">&nbsp;Data Boleto</i></span>
-                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Data do boleto" data-mask="99/99/9999"  name="data_boleto" placeholder="Boleto" value="{{caixas.data_boleto|date:"d/m/Y"}}" >
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Data do boleto" data-mask="99/99/9999"  name="data_boleto" placeholder="Boleto" value="{{caixas.data_boleto|date:"d/m/Y"|default_if_none:''}}" >
                       </div>
                       <br/>
                       <div class="input-group">
                           <span class="input-group-addon"><i class="fa fa-pencil-square-o">&nbsp;Obs.</i></span>
-                          <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Observações" name="observacao" placeholder="Observações" value="{{caixas.observacao}}">
+                          <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Observações" name="observacao" placeholder="Observações" value="{{caixas.observacao|default_if_none:''}}">
                       </div>
                       <br/>
                       <button type="submit" class="btn btn-success">Gravar</button>
