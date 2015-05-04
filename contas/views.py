@@ -74,7 +74,7 @@ def cheque_formulario(request,chequeId):
     except:
         cheque = Cheque()
 
-    return render(request,'sistema/cheque_cadastro.html',{'cheques':cheque})
+    return render(request,'sistema/cheque_formulario.html',{'cheques':cheque})
 
 def cheque_gravar(request):
     try:
