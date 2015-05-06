@@ -1,5 +1,5 @@
 from django import forms
-from empresas.models import Usuario, Pessoa, Empresa
+from empresas.models import Usuario, Pessoa, Empresa,Sistema
 
 class LoginForm(forms.Form):
     username = forms.CharField(max_length='200', required=True)
@@ -20,3 +20,8 @@ class EmpresaForm(forms.ModelForm):
 
     class Meta:
         model = Empresa
+
+class SistemaForm(forms.ModelForm):
+
+    class Meta:
+        model = Sistema

@@ -28,35 +28,35 @@
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-cog">&nbsp;Tipo</i></span>
                         <select class="form-control" data-toggle="tooltip" data-placement="top" title="Tipo" placeholder="Tipo" id="tipo" name="tipo">
-                          <option {% if sistemas.tipo == '' %}
+                          <option {% if form.tipo.value == '' %}
                             SELECTED
                           {% endif %} >ESCOLHA UM TIPO DE CARACTERÍSTICA</option>
                           <option 
-                          {% if sistemas.tipo == 'CATEGORIA' %}
+                          {% if form.tipo.value == 'CATEGORIA' %}
                             SELECTED
                           {% endif %}  >CATEGORIA</option>
                           <option 
-                          {% if sistemas.tipo == 'GRUPO' %}
+                          {% if form.tipo.value == 'GRUPO' %}
                             SELECTED
                           {% endif %} >GRUPO</option>
-                          <option {% if sistemas.tipo == 'SUB-GRUPO' %}
+                          <option {% if form.tipo.value == 'SUB-GRUPO' %}
                             SELECTED
                           {% endif %} >SUB-GRUPO</option>
-                          <option {% if sistemas.tipo == 'TIPO PESSOA' %}
+                          <option {% if form.tipo.value == 'TIPO PESSOA' %}
                             SELECTED
                           {% endif %} >TIPO PESSOA</option>
                         </select>
                       </div>
                       <br />
-                      <input type="hidden" value="{{sistemas.id}}" name="sisID" id ="sisID" >
+                      <input type="hidden" value="{{form.id.value}}" name="sisID" id ="sisID" >
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-wrench">&nbsp;Nome</i></span>
-                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Nome" placeholder="Nome" id="nome" name="nome" value="{{sistemas.nome|default_if_none:''}}">
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Nome" placeholder="Nome" id="nome" name="nome" value="{{form.nome.value|default_if_none:''}}">
                       </div>
                       <br/>
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-cogs">&nbsp;Descrição</i></span>
-                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Descrição" placeholder="Descrição" id="descricao" name="descricao" value="{{sistemas.descricao|default_if_none:''}}">
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Descrição" placeholder="Descrição" id="descricao" name="descricao" value="{{form.descricao.value|default_if_none:''}}">
                       </div>
                       <br/>
                       <button type="submit" class="btn btn-success">Gravar</button>
