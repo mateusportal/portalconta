@@ -9,6 +9,8 @@
 # DESCOBRIR ERROS NO SERVIDOR HEROKU: heroku run python ./manage.py collectstatic --noinput
 # LIMPAR BANCO HEROKU: heroku pg:reset DATABASE
 # CRIAR NOVAMENTE O BANCO REMOTO: heroku run python manage.py syncdb
+# RODAR O HEROKU LOCAL
+# use o comando "foremans" = http://elweb.co/how-to-fix-foremans-missing-output-issue-on-python-projects/
 
 import os
 import cloudinary
