@@ -9,4 +9,9 @@ def formataDinheiro(dinheiro):
     if dinheiro == '':
         return ''
     else:
-        return  intcomma(Decimal(dinheiro).quantize(Decimal('1.00')))
+    	try:
+    		return intcomma(Decimal(dinheiro).quantize(Decimal('1.00')))
+    	except:
+    		return ''
+    		
+        

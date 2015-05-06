@@ -6,21 +6,24 @@ from datetime import datetime
 #d = datetime.strptime('2007-07-18 10:03:19', '%Y-%m-%d %H:%M:%S')
 #day_string = d.strftime('%Y-%m-%d')
 #Trabalhando com datas
-def preencherCaixa(request,caixaId):
-    caixa = Caixa.objects.get(id=caixaId)
+def caixa_formulario(request,caixaId):
+    try:
+        caixa = Caixa.objects.get(id=caixaId)
+    except:
+        caixa = Caixa()
+
     grupo = Sistema.objects.filter(ativo='SIM', tipo='GRUPO', empresa_id=request.user.empresa.id).order_by('nome')
     subgrupo = Sistema.objects.filter(ativo='SIM', tipo='SUB-GRUPO', empresa_id=request.user.empresa.id).order_by('nome')
     categoria = Sistema.objects.filter(ativo='SIM', tipo='CATEGORIA', empresa_id=request.user.empresa.id).order_by('nome')
 
+    return render(request,'sistema/caixa_formulario.html',{'caixas':caixa,'grupos':grupo,'subgrupos':subgrupo,'categorias':categoria})
 
-    return render(request,'sistema/cadastroCaixa.html',{'caixas':caixa,'grupos':grupo,'subgrupos':subgrupo,'categorias':categoria})
-
-def listarCaixa(request):
+def caixa(request):
     caixa = Caixa.objects.filter(empresa_id=int(request.user.empresa.id)).order_by('data_vencimento')
 
     return render(request,'sistema/caixa.html',{'caixas':caixa})
 
-def gravarCaixa(request):
+def caixa_gravar(request):
     try:
         caixa = Caixa.objects.get(empresa_id=request.user.empresa.id,id=request.POST.get('caixaId'),usuario_id=request.user.id)
     except:
@@ -52,22 +55,28 @@ def gravarCaixa(request):
 
     return HttpResponseRedirect('/sistema/caixa/')
 
-def excluirCaixa(request,caixaId):
+def caixa_excluir(request,caixaId):
     caixa = Caixa.objects.get(empresa_id=request.user.empresa.id,id=caixaId,usuario_id=request.user.id).delete()
 
     return HttpResponseRedirect('/sistema/caixa/')
 
-def listarCheque(request):
-    cheque = Cheque.objects.filter(empresa_id=int(request.user.empresa.id)).order_by('data_compensar')
+def cheque(request):
+    if request.method == 'POST':
+        cheque = Cheque.objects.filter(valor=request.POST.get('parametro'),empresa_id=int(request.user.empresa.id)).order_by('data_compensar')
+    else:
+        cheque = Cheque.objects.filter(empresa_id=int(request.user.empresa.id)).order_by('data_compensar')
 
     return render(request,'sistema/cheque.html',{'cheques':cheque})
 
-def preencherCheque(request,chequeId):
-    cheque = Cheque.objects.get(id=chequeId)
+def cheque_formulario(request,chequeId):
+    try:
+        cheque = Cheque.objects.get(id=chequeId)
+    except:
+        cheque = Cheque()
 
-    return render(request,'sistema/cadastroCheque.html',{'cheques':cheque})
+    return render(request,'sistema/cheque_formulario.html',{'cheques':cheque})
 
-def gravarCheque(request):
+def cheque_gravar(request):
     try:
         cheque = Cheque.objects.get(id=request.POST.get('chequeId'),empresa_id=request.user.empresa.id)
     except:
@@ -76,8 +85,6 @@ def gravarCheque(request):
     data_compensar = datetime.strptime(str(request.POST.get('data_compensar')), '%d/%m/%Y').date()
     data_compensado = datetime.strptime(str(request.POST.get('data_compensado')), '%d/%m/%Y').date()
     data_recebido = datetime.strptime(str(request.POST.get('data_recebido')), '%d/%m/%Y').date()
-
-    
 
     cheque.numero_cheque = request.POST.get('numero_cheque')
     cheque.valor = (request.POST.get('valor').replace('.','')).replace(',','.')
@@ -94,7 +101,7 @@ def gravarCheque(request):
     return HttpResponseRedirect('/sistema/cheque/')
 
 
-def excluirCheque(request,chequeId):
+def cheque_excluir(request,chequeId):
     cheque = Cheque.objects.get(id=chequeId,empresa_id=request.user.empresa.id).delete()
 
     return HttpResponseRedirect('/sistema/cheque/')

@@ -16,7 +16,7 @@
       <!-- Main content -->
       <section class="content">
         <!-- Info boxes -->
-        <form method="POST" action="/sistema/caixa/buscar/"> {% csrf_token %}
+        <form method="POST" action="/sistema/caixa/"> {% csrf_token %}
           <div class="input-group">
             <input class="form-control" placeholder="Sua pesquisa aqui..." name="parametro" type="text" />
             <div class="input-group-btn">
@@ -29,7 +29,7 @@
           <div class="box-header">
             <i class="ion ion-clipboard"></i>
             <h3 class="box-title">Configurações cadastradas</h3><br/><br/>
-            <a href="/sistema/caixa/editor/"><button class="btn btn-default"><i class="fa fa-plus"></i>&nbsp;&nbsp;Adicionar novo</button></a>
+            <a href="/sistema/caixa/formulario/0"><button class="btn btn-default"><i class="fa fa-plus"></i>&nbsp;&nbsp;Adicionar novo</button></a>
             <div class="box-tools pull-right">
               <ul class="pagination pagination-sm inline">
                 <li><a href="#">&laquo;</a></li>
@@ -47,7 +47,7 @@
                 <!-- small box -->
                 <div class="small-box bg-{% if caixa.tipo == 'E' %}green{% elif caixa.tipo == 'S' %}blue{% endif %}">
                   <div class="inner" >
-                    <a href="/sistema/caixa/editor/{{caixa.id}}" style="color:#FFFFFF;">
+                    <a href="/sistema/caixa/formulario/{{caixa.id}}" style="color:#FFFFFF;">
                     <h4><b>{{caixa.descricao}} </b></h4>
                     <p>${{caixa.valor_bruto|formataDinheiro}}</p>
                     <p>{{caixa.pessoa.nome}}</p>
@@ -82,7 +82,7 @@
             </div><!-- /.row -->
           </div><!-- /.box-body-->
           <div class="box-footer clearfix no-border">
-            <a href="/sistema/caixa/editor/"><button class="btn btn-default"><i class="fa fa-plus"></i>&nbsp;&nbsp;Adicionar novo</button></a>
+            <a href="/sistema/caixa/formulario/0"><button class="btn btn-default"><i class="fa fa-plus"></i>&nbsp;&nbsp;Adicionar novo</button></a>
             <div class="box-tools pull-right">
               <ul class="pagination pagination-sm inline">
                 <li><a href="#">&laquo;</a></li>

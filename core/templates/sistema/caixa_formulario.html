@@ -27,18 +27,24 @@
                  {% csrf_token %}
                     <div class="box-body">
                       <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-cog"></i></span>
+                        <span class="input-group-addon"><i class="fa fa-cog">&nbsp;Tipo</i></span>
                           <select class="form-control" data-toggle="tooltip" data-placement="top" title="{% trans 'Tipo' %}" placeholder="" name="tipo">
-                            <option>{% trans "Tipo" %}</option>
-                            <option value="E" {% if caixas.tipo == 'E' %} SELECTED {% endif %} >{% trans "ENTRADA" %}</option>
-                            <option value="S" {% if caixas.tipo == 'S' %} SELECTED {% endif %} >{% trans "SAIDA" %}</option>
+                            <option>{% trans 'Tipo' %}</option>
+                            <option value="E" {% if caixas.tipo == 'E' %} SELECTED {% endif %} >ENTRADA</option>
+                            <option value="S" {% if caixas.tipo == 'S' %} SELECTED {% endif %} >SAIDA</option>
                           </select>           
                       </div>
                       <br/>
                       <div class="input-group">
+
                         <span class="input-group-addon"><i class="fa fa-cog"></i></span>
                           <select class="form-control" data-toggle="tooltip" data-placement="top" title="{% trans 'Categoria' %}" placeholder="" name="categoria_id">
                             <option>{% trans "Categoria" %}</option>
+
+                        <span class="input-group-addon"><i class="fa fa-cog">&nbsp;Categoria</i></span>
+                          <select class="form-control" data-toggle="tooltip" data-placement="top" title="Categoria" placeholder="" name="categoria_id">
+                            <option>Categoria</option>
+
                             {% for categoria in categorias %}
                             <option value="{{categoria.pk}}" {% if caixas.categoria.nome == categoria.nome %} SELECTED {% endif %} >{{categoria.nome}}</option>
                             {% endfor%}
@@ -46,9 +52,15 @@
                       </div>
                       <br/>
                       <div class="input-group">
+
                         <span class="input-group-addon"><i class="fa fa-cog"></i></span>
                           <select class="form-control" data-toggle="tooltip" data-placement="top" title="{% trans 'Grupo' %}" placeholder="{% trans 'Tipo' %}" name="grupo_id">
                             <option>{% trans "Grupo" %} {{caixa.grupo.nome}} </option>
+
+                        <span class="input-group-addon"><i class="fa fa-cog">&nbsp;Grupo</i></span>
+                          <select class="form-control" data-toggle="tooltip" data-placement="top" title="Grupo" placeholder="Tipo" name="grupo_id">
+                            <option>Grupo {{caixa.grupo.nome}} </option>
+
                             {% for grupo in grupos %}
                             <option value="{{grupo.pk}}" {% if caixas.grupo.nome == grupo.nome %} SELECTED {% endif %} >{{grupo.nome}}</option>
                             {% endfor%}
@@ -56,9 +68,15 @@
                       </div>
                       <br/>
                       <div class="input-group">
+
                         <span class="input-group-addon"><i class="fa fa-cog"></i></span>
                           <select class="form-control" data-toggle="tooltip" data-placement="top" title="{% trans 'Sub-Grupo' %}" placeholder="{% trans 'Tipo' %}" name="subgrupo_id">
                             <option>{% trans "Sub-Grupo" %}</option>
+
+                        <span class="input-group-addon"><i class="fa fa-cog">&nbsp;Sub Grupo</i></span>
+                          <select class="form-control" data-toggle="tooltip" data-placement="top" title="Sub-Grupo" placeholder="Tipo" name="subgrupo_id">
+                            <option>Sub-Grupo</option>
+
                             {% for subgrupo in subgrupos %}
                             <option value="{{subgrupo.pk}}" {% if caixas.subgrupo.nome == subgrupo.nome %} SELECTED {% endif %} >{{subgrupo.nome}}</option>
                             {% endfor%}
@@ -66,6 +84,7 @@
                       </div>
                       <br/>
                       <div class="input-group">
+
                         <span class="input-group-addon"><i class="fa fa-pencil-square-o"></i></span>
                         <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="{% trans 'Descrição' %}" name="descricao" placeholder="{% trans 'Descrição' %}" value="{{caixas.descricao}}">
                       </div>
@@ -74,6 +93,16 @@
                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
                         <input class="form-control" data-toggle="tooltip" data-placement="top" title="{% trans 'Pessoa' %}" placeholder="{% trans 'Pessoa' %}" id="Pessoa" name="pessoa_id"
                         value="{{caixas.pessoa.nome}}">
+
+                        <span class="input-group-addon"><i class="fa fa-pencil-square-o">&nbsp;Descrição</i></span>
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Descrição" name="descricao" placeholder="Descrição" value="{{caixas.descricao|default_if_none:''}}">
+                      </div>
+                      <br/>
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-user">&nbsp;Pessoa</i></span>
+                        <input class="form-control" data-toggle="tooltip" data-placement="top" title="Pessoa" placeholder="Pessoa" id="Pessoa" name="pessoa_id"
+                        value="{{caixas.pessoa.nome|default_if_none:''}}">
+
                         <input type="hidden" name="caixaId" value="{{caixas.id}}">
                         <div class="input-group-btn">
                           <button type="submit" class="btn btn-info"><i class="fa fa-search"><b></b></i></button>
@@ -81,6 +110,7 @@
                       </div>
                       <br />
                       <div class="input-group">
+
                         <span class="input-group-addon"><i class="fa fa-money"></i></span>
                         <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="{% trans 'Valor Bruto' %}" placeholder="{% trans 'Valor Bruto' %}" id="demo8"  name="valor_bruto" value="{{caixas.valor_bruto|formataDinheiro}}" >
                       </div>
@@ -118,6 +148,45 @@
                       <div class="input-group">
                           <span class="input-group-addon"><i class="fa fa-pencil-square-o"></i></span>
                           <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="{% trans 'Observações' %}" name="observacao" placeholder="{% trans 'Observações' %}" value="{{caixas.observacao}}">
+
+                        <span class="input-group-addon"><i class="fa fa-money">&nbsp;Valor</i></span>
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Valor Bruto" placeholder="Valor Bruto" id="demo8"  name="valor_bruto" value="{{caixas.valor_bruto|formataDinheiro|default_if_none:''}}" >
+                      </div>
+                      <br/>
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-money">&nbsp;Multa</i></span>
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Valor Multa" placeholder="Valor Multa" id="demo8"  name="valor_multa" value="{{caixas.valor_multa|formataDinheiro|default_if_none:''}}" >
+                      </div>
+                      <br/>
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-money">&nbsp;Juros</i></span>
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Valor Juros" placeholder="Valor Juros" id="demo8"  name="valor_juros" value="{{caixas.valor_juros|formataDinheiro|default_if_none:''}}">
+                      </div>
+                      <br/>
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-money">&nbsp;Desconto</i></span>
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Valor Desconto" placeholder="Valor Desconto" id="demo8"  name="valor_desconto" value="{{caixas.valor_desconto|formataDinheiro|default_if_none:''}}" >
+                      </div>
+                      <br/>
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-calendar">&nbsp;Vencimento</i></span>
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Data de Vencimento" data-mask="99/99/9999" name="data_vencimento" placeholder="Vencimento" value="{{caixas.data_vencimento|date:"d/m/Y"|default_if_none:''}}">
+                      </div>
+                      <br/>
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-calendar">&nbsp;Data Pagto.</i></span>
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Data de Pagamento" data-mask="99/99/9999"  name="data_pagamento" placeholder="Pagamento" value="{{caixas.data_pagamento|date:"d/m/Y"|default_if_none:''}}" >
+                      </div>
+                      <br/>
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-calendar">&nbsp;Data Boleto</i></span>
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Data do boleto" data-mask="99/99/9999"  name="data_boleto" placeholder="Boleto" value="{{caixas.data_boleto|date:"d/m/Y"|default_if_none:''}}" >
+                      </div>
+                      <br/>
+                      <div class="input-group">
+                          <span class="input-group-addon"><i class="fa fa-pencil-square-o">&nbsp;Obs.</i></span>
+                          <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Observações" name="observacao" placeholder="Observações" value="{{caixas.observacao|default_if_none:''}}">
+
                       </div>
                       <br/>
                       <button type="submit" class="btn btn-success">{% trans "Gravar" %}</button>
