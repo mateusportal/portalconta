@@ -1,6 +1,6 @@
 {% extends "index/template.html" %}
 {% load i18n %}
-{% block titulo %}Política de Privacidade{% endblock %}
+{% block titulo %}{% trans "Política de Privacidade" %}{% endblock %}
 
 {% block section1 %}
 <div class="container">
@@ -12,7 +12,7 @@
       </div>
       <div class="col-sm-4 text-center">
         <div class="row">
-          <div class="col-sm-10 col-sm-offset-1 text-center"><h3>POLÍTICA DE PRIVACIDADE</h3><p>Respeitamos suas informações.</p><i class="fa fa-check-square-o fa-5x"></i></div>
+          <div class="col-sm-10 col-sm-offset-1 text-center"><h3>{% trans "POLÍTICA DE PRIVACIDADE" %}</h3><p>{% trans "Respeitamos suas informações." %}</p><i class="fa fa-check-square-o fa-5x"></i></div>
         </div>
       </div>
       <div class="col-sm-4 text-center">
@@ -42,10 +42,11 @@
 
   <div class="row-fluid first terms-section ">
     <div class="span6 terms-long">
-      <div class="term-title">REVISAR E ARRUMAR DEPOIS</div>
+      <div class="term-title">{% trans "REVISAR E ARRUMAR DEPOIS" %}</div>
       
 
-Quando você se cadastra no ContaAzul para realizar a degustação gratuita de 15 dias, nós coletamos algumas informações pessoais:
+{% trans 
+"Quando você se cadastra no ContaAzul para realizar a degustação gratuita de 15 dias, nós coletamos algumas informações pessoais:
 
 Nome;
 Nome de sua empresa;
@@ -60,11 +61,12 @@ Caso você deseje alterar suas informações, basta entrar no sistema ContaAzul 
 
 Suas informações nunca serão fornecidas a nenhuma outra empresa que não a ContaAzul, mas se mesmo assim você desejar removê-la envie um email para suporte@contaazul.com a partir do email que você informou no cadastro ao ContaAzul com o assunto "Excluir minha conta". Sua conta será excluída juntamente com todos seus dados.
 
-Caso você queira parar de receber comunicações futuras simplesmente envie um email para suporte@contaazul.com a partir do email que você informou no cadastro ao ContaAzul com o assunto "Não entrar em contato".
+Caso você queira parar de receber comunicações futuras simplesmente envie um email para suporte@contaazul.com a partir do email que você informou no cadastro ao ContaAzul com o assunto "Não entrar em contato"."
+%}
 
 
 
-      </div>
+  </div>
 
     </div>
 </section>

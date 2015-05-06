@@ -13,7 +13,7 @@ body {
 }
 
 a {
-	color: #3C8DBC;
+	color: #f0f0f0;
 	text-decoration: none;
 }
 
@@ -23,9 +23,9 @@ a:hover {
 
 .main {
 	width: 95%;
-	max-width: 80em;
+	max-width: 69em;
 	margin: 0 auto;
-	padding: 0 1.875em 3.125em;
+	padding: 0;
 }
 
 .container > header nav a:hover:before {
@@ -40,7 +40,7 @@ a:hover {
 } 
 
 .cbp_tmtimeline > li {
-	height: 200px;
+	height: 100px;
 	max-height: 200px;
 	position: relative;
 	border-bottom: 1px solid #afdcf8;
