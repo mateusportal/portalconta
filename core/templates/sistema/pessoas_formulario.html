@@ -1,13 +1,24 @@
 {% extends "sistema/template.html" %}
 {% load i18n %}
+<<<<<<< HEAD:core/templates/sistema/cadastroPessoas.html
 {% block js %}
     <script src="/static/sistema/js/jasny-bootstrap.min.js"></script>
 {% endblock %}
 {% block titulo %} {% trans "Portal Contas - Pessoas" %} {% endblock %}
+=======
+
+{% block titulo %}{% trans "Listagem de Pessoas" %}{% endblock %}
+{% block container_titulo %}<i class="fa fa-street-view"></i> {% trans "Formulário de Pessoas" %}{% endblock %}  
+>>>>>>> 456499a896fc22cd97beb1200f3e0f4cde079edb:core/templates/sistema/pessoas_formulario.html
 
 {% block container %}  
 <section class="content">
     <form method="POST" action="/sistema/pessoas/gravar/"> {% csrf_token %}
+    <input type="hidden" name="id" value="{{ form.initial.id }}">
+    <input type="hidden" name="empresa" value="{{ user.empresa_id }}">
+    <input type="hidden" name="ativo" value="{{ form.ativo.value }}">
+    <input type="hidden" name="usuario" value="{{ user.id }}">
+
     <div class="row">    
         <div class="col-md-12">           
             <div class="box box-info">
@@ -16,28 +27,46 @@
                 </div>
                 <div class="box-body">
                     <div class="input-group">
+<<<<<<< HEAD:core/templates/sistema/cadastroPessoas.html
                     <span class="input-group-addon"><i class="fa fa-cog"></i></span>
                         <select class="form-control" data-toggle="tooltip" data-placement="top" title="{% trans 'Tipo de Pessoa' %}" placeholder="{% trans 'Tipo' %}" name="tipo">
                           <option>{% trans "ESCOLHA UM TIPO DE PESSOA" %}</option>
+=======
+                    <span class="input-group-addon"><i class="fa fa-cog"> {% trans "Tipo" %}</i></span>
+                        <select class="form-control" data-toggle="tooltip" data-placement="top" title="{% trans 'Tipo de Pessoa' %}" placeholder="{% trans 'Tipo de Pessoa' %}" name="tipo">
+                          <option>{% trans "Escolher o Tipo de Pessoa" %}</option>
+>>>>>>> 456499a896fc22cd97beb1200f3e0f4cde079edb:core/templates/sistema/pessoas_formulario.html
                           {% for tipo in tipos %}
-                          <option value="{{tipo.pk}}" {% if pessoas.tipo.nome == tipo.nome %} SELECTED {% endif %} >{{tipo.nome}}</option>
+                            <option value="{{tipo.pk}}" {% if form.tipo.value == tipo.pk %} SELECTED {% endif %} >{{tipo.nome}}</option>
                           {% endfor%}
                         </select>           
                     </div>
                     <br/>
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
+<<<<<<< HEAD:core/templates/sistema/cadastroPessoas.html
                         <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="{% trans 'Nome' %}" placeholder="{% trans 'Nome' %}" name="nome" value="{{pessoas.nome}}">
+=======
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Nome" placeholder="Nome" name="nome" value="{{ form.nome.value|default_if_none:'' }}">
+>>>>>>> 456499a896fc22cd97beb1200f3e0f4cde079edb:core/templates/sistema/pessoas_formulario.html
                     </div>
                     <br/>
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-edit"></i></span>
+<<<<<<< HEAD:core/templates/sistema/cadastroPessoas.html
                         <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="{% trans 'CPF' %}" data-mask="999.999.999-99" id="cpf" placeholder="{% trans 'cpf' %}" name="cpf" value="{{pessoas.cpf}}" >
+=======
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="CPF" data-mask="999.999.999-99" id="cpf" placeholder="cpf" name="cpf" value="{{ form.cpf.value|default_if_none:'' }}" >
+>>>>>>> 456499a896fc22cd97beb1200f3e0f4cde079edb:core/templates/sistema/pessoas_formulario.html
                     </div>
                     <br/>
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-edit"></i></span>
+<<<<<<< HEAD:core/templates/sistema/cadastroPessoas.html
                         <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="{% trans 'RG' %}" placeholder="{% trans 'RG' %}" name="rg" value="{{pessoas.rg}}">                     
+=======
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="RG" placeholder="RG" name="rg" value="{{ form.rg.value|default_if_none:'' }}">                     
+>>>>>>> 456499a896fc22cd97beb1200f3e0f4cde079edb:core/templates/sistema/pessoas_formulario.html
                     </div>
                     <br />
                     <div class="input-group">
@@ -121,8 +150,12 @@
                     <div class="box-body">           
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+<<<<<<< HEAD:core/templates/sistema/cadastroPessoas.html
                             <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="{% trans 'Telefone' %}" placeholder="{% trans 'Telefone' %}" name="telefone_fixo" value="{{pessoas.telefone_fixo}}">
                             <input type="hidden" name="pessoaId" value="{{pessoas.id}}">
+=======
+                            <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Telefone" placeholder="Telefone" name="telefone_fixo" value="{{pessoas.telefone_fixo}}">
+>>>>>>> 456499a896fc22cd97beb1200f3e0f4cde079edb:core/templates/sistema/pessoas_formulario.html
                         </div>
                         <br/>
                         <div class="input-group">

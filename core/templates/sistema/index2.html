@@ -1,9 +1,102 @@
 {% extends "sistema/template.html" %}
 {% load i18n %}
 
-{% block titulo %}{% trans "Portal Contas - Administrativo" %}{% endblock %}
+{% block titulo %}{% trans "Painel Central" %}{% endblock %}
 
-{% block container_titulo %}<i class="fa fa-user"></i> {% trans "Meu Perfil" %}{% endblock %}  
+{% block container_titulo %}<i class="fa fa-university"></i> {% trans "Painel Central" %}{% endblock %}  
+
+{% block js %}
+<!-- FACEBOOK COMENTARIOS -->
+<div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/{{ fb_lang }}/sdk.js#xfbml=1&version=v2.3&appId=1591680294408903";
+    fjs.parentNode.insertBefore(js, fjs);
+    }
+    (document, 'script', 'facebook-jssdk'));
+</script>
+<!-- FIM FACEBOOK COMENTARIOS -->
+
+<!-- GRAFICO ANUAL-->
+ <script>
+  var salesChartCanvas = $("#painelAnual").get(0).getContext("2d");
+  var salesChart = new Chart(salesChartCanvas);
+
+  var salesChartData = {
+    labels: ["{% trans 'Janeiro' %}", "{% trans 'Fevereiro' %}", "{% trans 'Março' %}", "{% trans 'Abril' %}", "{% trans 'Maio' %}", "{% trans 'Junho' %}", "{% trans 'Julho' %}", "{% trans 'Agosto' %}", "{% trans 'Setembro' %}", "{% trans 'Outubro' %}", "{% trans 'Novembro' %}", "{% trans 'Dezembro' %}"],
+    datasets: [
+      {
+        label: "{% trans 'Caixa Entrada' %}",
+        fillColor: "#00a65a",
+        strokeColor: "#000000",
+        pointColor: "#00a65a",
+        pointStrokeColor: "#ffffff",
+        pointHighlightFill: "#ffffff",
+        pointHighlightStroke: "#000000",
+        data: [0, 0, 30, 81, 60, 55, 0, 0, 0, 0, 0, 0]
+      },
+      {
+        label: "{% trans 'Caixa Saída' %}",
+        fillColor: "rgba(0,192, 239,0.9)",
+        strokeColor: "#000000",
+        pointColor: "#00c0ef",
+        pointStrokeColor: "#ffffff",
+        pointHighlightFill: "#ffffff",
+        pointHighlightStroke: "#000000",
+        data: [0, 48, 40, 19, 86, 27, 0, 0, 0, 0, 0, 0]
+      }
+    ]
+  };
+
+  var salesChartOptions = {
+    //Boolean - If we should show the scale at all
+    showScale: true,
+    //Boolean - Whether grid lines are shown across the chart
+    scaleShowGridLines: false,
+    //String - Colour of the grid lines
+    scaleGridLineColor: "rgba(0,0,0,.05)",
+    //Number - Width of the grid lines
+    scaleGridLineWidth: 1,
+    //Boolean - Whether to show horizontal lines (except X axis)
+    scaleShowHorizontalLines: true,
+    //Boolean - Whether to show vertical lines (except Y axis)
+    scaleShowVerticalLines: true,
+    //Boolean - Whether the line is curved between points
+    bezierCurve: true,
+    //Number - Tension of the bezier curve between points
+    bezierCurveTension: 0.3,
+    //Boolean - Whether to show a dot for each point
+    pointDot: false,
+    //Number - Radius of each point dot in pixels
+    pointDotRadius: 4,
+    //Number - Pixel width of point dot stroke
+    pointDotStrokeWidth: 1,
+    //Number - amount extra to add to the radius to cater for hit detection outside the drawn point
+    pointHitDetectionRadius: 20,
+    //Boolean - Whether to show a stroke for datasets
+    datasetStroke: true,
+    //Number - Pixel width of dataset stroke
+    datasetStrokeWidth: 2,
+    //Boolean - Whether to fill the dataset with a color
+    datasetFill: true,
+    //String - A legend template
+
+    //Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
+    maintainAspectRatio: false,
+    //Boolean - whether to make the chart responsive to window resizing
+    responsive: true
+  };
+
+  //Create the line chart
+  salesChart.Line(salesChartData, salesChartOptions);
+</script>  
+<!-- FIM GRAFICO ANUAL-->
+{% endblock %}
+
+
 
 {% block container %}     
           <!-- Info boxes -->
@@ -12,17 +105,19 @@
               <div class="info-box">
                 <span class="info-box-icon bg-green"><i class="fa fa-money"></i></span>
                 <div class="info-box-content">
-                  <span class="info-box-text">Entrada de Caixa</span>
-                  <span class="info-box-number"><small>R$&nbsp;</small>345,98</span>
+                  <span class="info-box-text">{% trans "Caixa Entrada" %}</span>
+                  <span class="info-box-number"><small>{% trans "R$" %}&nbsp;</small>345,98</span>
+                  <span class="info-box-number"><small>{% trans "Mensal de" %} {% now "F" %}</small></span>
                 </div><!-- /.info-box-content -->
               </div><!-- /.info-box -->
             </div><!-- /.col -->
             <div class="col-md-3 col-sm-6 col-xs-12">
               <div class="info-box">
-                <span class="info-box-icon bg-red"><i class="fa fa-money"></i></span>
+                <span class="info-box-icon bg-aqua"><i class="fa fa-money"></i></span>
                 <div class="info-box-content">
-                  <span class="info-box-text">Saída de Caixa</span>
-                  <span class="info-box-number"><small>R$&nbsp;</small>45,81</span>
+                  <span class="info-box-text">{% trans "Caixa Saída" %}</span>
+                  <span class="info-box-number"><small>{% trans "R$" %}&nbsp;</small>45,81</span>
+                  <span class="info-box-number"><small>{% trans "Mensal de" %} {% now "F" %}</small></span>
                 </div><!-- /.info-box-content -->
               </div><!-- /.info-box -->
             </div><!-- /.col -->
@@ -32,19 +127,21 @@
 
             <div class="col-md-3 col-sm-6 col-xs-12">
               <div class="info-box">
-                <span class="info-box-icon bg-aqua"><i class="fa fa-bank"></i></span>
+                <span class="info-box-icon bg-fuchsia"><i class="fa fa-usd"></i></span>
                 <div class="info-box-content">
-                  <span class="info-box-text">Total</span>
-                  <span class="info-box-number"><small>R$&nbsp;</small>300,17</span>
+                  <span class="info-box-text">{% trans "Total Realizado" %}</span>
+                  <span class="info-box-number"><small>{% trans "R$" %}&nbsp;</small>300,17</span>
+                  <span class="info-box-number"><small>{% trans "Mensal de" %} {% now "F" %}</small></span>
                 </div><!-- /.info-box-content -->
               </div><!-- /.info-box -->
             </div><!-- /.col -->
             <div class="col-md-3 col-sm-6 col-xs-12">
               <div class="info-box">
-                <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
+                <span class="info-box-icon bg-purple"><i class="fa fa-bar-chart"></i></span>
                 <div class="info-box-content">
-                  <span class="info-box-text">Novos Usuários</span>
-                  <span class="info-box-number">2,000</span>
+                  <span class="info-box-text">{% trans "Total Previsto" %}</span>
+                  <span class="info-box-number"><small>{% trans "R$" %}&nbsp;</small>400,17</span>
+                  <span class="info-box-number"><small>{% trans "Geral até hoje" %}</small></span>
                 </div><!-- /.info-box-content -->
               </div><!-- /.info-box -->
             </div><!-- /.col -->
@@ -54,52 +151,45 @@
             <div class="col-md-12">
               <div class="box">
                 <div class="box-header with-border">
-                  <h3 class="box-title">Entradas e Saídas do mês</h3>
+                  <h3 class="box-title">{% trans "Entradas & Saídas" %}</h3>
                   <div class="box-tools pull-right">
-                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                    <div class="btn-group">
-                      <button class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown"><i class="fa fa-wrench"></i></button>
-                      <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">Ação</a></li>                        
-                      </ul>
-                    </div>
-                    <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                    <a href="#" target="_blank">{% trans "Gerar Relatório" %}</a>
                   </div>
                 </div><!-- /.box-header -->
                 <div class="box-body">
                   <div class="row">
                     <div class="col-md-8">
                       <p class="text-center">
-                        <strong>Vendas: 1 Jan, 2014 - 30 Jul, 2014</strong>
+                        <strong>{% trans "Gráfico Anual" %} {% now "Y" %}</strong>
                       </p>
                       <div class="chart-responsive">
                         <!-- Sales Chart Canvas -->
-                        <canvas id="salesChart" height="180"></canvas>
+                        <canvas id="painelAnual" height="180"></canvas>
                       </div><!-- /.chart-responsive -->
                     </div><!-- /.col -->
                     <div class="col-md-4">
                       <p class="text-center">
-                        <strong>Resumo Mensal</strong>
+                        <strong>{% trans "Resumo" %}</strong>
                       </p>
                       <div class="progress-group">
-                        <span class="progress-text">Entrada de Caixa</span>
-                        <span class="progress-number"><b>160</b>/200</span>
+                        <span class="progress-text">{% trans "Caixa Entrada R$" %}</span>
+                        <span class="progress-number"><b>18.7460,00</b>/2.234.400.00</span>
                         <div class="progress sm">
-                          <div class="progress-bar progress-bar-green" style="width: 80%"></div>
+                          <div class="progress-bar progress-bar-green" style="width: 70%"></div>
                         </div>
                       </div><!-- /.progress-group -->
                       <div class="progress-group">
-                        <span class="progress-text">Saída de Caixa</span>
-                        <span class="progress-number"><b>310</b>/400</span>
-                        <div class="progress sm">
-                          <div class="progress-bar progress-bar-red" style="width: 80%"></div>
-                        </div>
-                      </div><!-- /.progress-group -->
-                      <div class="progress-group">
-                        <span class="progress-text">Total</span>
-                        <span class="progress-number"><b>480</b>/800</span>
+                        <span class="progress-text">{% trans "Caixa Saída R$" %}</span>
+                        <span class="progress-number"><b>310.00</b>/400.00</span>
                         <div class="progress sm">
                           <div class="progress-bar progress-bar-aqua" style="width: 80%"></div>
+                        </div>
+                      </div><!-- /.progress-group -->
+                      <div class="progress-group">
+                        <span class="progress-text">{% trans "Totais R$" %}</span>
+                        <span class="progress-number"><b>480.00</b>/800.00</span>
+                        <div class="progress sm">
+                          <div class="progress-bar progress-bar-fuchsia" style="width: 90%"></div>
                         </div>
                       </div><!-- /.progress-group -->                      
                     </div><!-- /.col -->
@@ -524,62 +614,17 @@
               <!-- PRODUCT LIST -->
               <div class="box box-primary">
                 <div class="box-header with-border">
-                  <h3 class="box-title">Produtos Adicionados Recentemente</h3>
-                  <div class="box-tools pull-right">
-                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                    <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                  </div>
+                  <h3 class="box-title">Recados & Comentários</h3>
                 </div><!-- /.box-header -->
                 <div class="box-body">
                   <ul class="products-list product-list-in-box">
-                    <li class="item">
-                      <div class="product-img">
-                        <img src="http://placehold.it/50x50/d2d6de/ffffff" alt="Product Image"/>
-                      </div>
-                      <div class="product-info">
-                        <a href="javascript::;" class="product-title">Samsung TV <span class="label label-warning pull-right">R$1800</span></a>
-                        <span class="product-description">
-                          Samsung 32" 1080p 60Hz LED Smart HDTV.
-                        </span>
-                      </div>
-                    </li><!-- /.item -->
-                    <li class="item">
-                      <div class="product-img">
-                        <img src="/static/sistema/img/default-50x50.gif" alt="Product Image"/>
-                      </div>
-                      <div class="product-info">
-                        <a href="javascript::;" class="product-title">Bicicleta<span class="label label-info pull-right">R$700</span></a>
-                        <span class="product-description">
-                          26" Mongoose Dolomite Men's 7-speed, Navy Blue.
-                        </span>
-                      </div>
-                    </li><!-- /.item -->
-                    <li class="item">
-                      <div class="product-img">
-                        <img src="/static/sistema/img/default-50x50.gif" alt="Product Image"/>
-                      </div>
-                      <div class="product-info">
-                        <a href="javascript::;" class="product-title">Xbox One <span class="label label-danger pull-right">R$350</span></a>
-                        <span class="product-description">
-                          Xbox One Console Bundle with Halo Master Chief Collection.
-                        </span>
-                      </div>
-                    </li><!-- /.item -->
-                    <li class="item">
-                      <div class="product-img">
-                        <img src="/static/sistema/img/default-50x50.gif" alt="Product Image"/>
-                      </div>
-                      <div class="product-info">
-                        <a href="javascript::;" class="product-title">PlayStation 4 <span class="label label-success pull-right">R$399</span></a>
-                        <span class="product-description">
-                          PlayStation 4 500GB Console (PS4)
-                        </span>
-                      </div>
-                    </li><!-- /.item -->
+                    
+                   <div class="fb-comments" data-href="{{ request.build_absolute_uri }}" data-width="100%" data-numposts="5" data-colorscheme="light"></div> 
+              
                   </ul>
                 </div><!-- /.box-body -->
                 <div class="box-footer text-center">
-                  <a href="javascript::;" class="uppercase">Ver Todos os Produtos</a>
+                  Para realizar 
                 </div><!-- /.box-footer -->
               </div><!-- /.box -->
             </div><!-- /.col -->

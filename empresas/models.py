@@ -3,12 +3,12 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import AbstractUser, User
 from cloudinary.models import CloudinaryField
+from django.db.models import signals
 
 #Campos Varchar
 #Pequenos : 50
 #Medios   : 150
 #Grandes  : 250
-
 
 class Empresa(models.Model):
     logo = models.CharField(default='semfoto.png', max_length=100, blank=True, null=True)
@@ -41,6 +41,18 @@ class Empresa(models.Model):
     data_alteracao = models.DateTimeField(auto_now=True, auto_now_add=True)
     tags = models.CharField(max_length=250, blank=True, null=True)
     ativo = models.CharField(default="SIM", max_length=50, blank=False)
+
+def empresa_formatacao(signal, instance, sender, **kwargs):
+    if instance.razao_social:
+        instance.razao_social = instance.razao_social.title().strip()
+    if instance.nome_fantasia:
+        instance.nome_fantasia = instance.nome_fantasia.upper().strip()
+    if instance.email_contato:
+        instance.email_contato = instance.email_contato.lower().strip()
+    if instance.email_financeiro:
+        instance.email_financeiro = instance.email_financeiro.lower().strip()
+
+signals.pre_save.connect(empresa_formatacao, sender=Empresa)
 
     
 
@@ -75,6 +87,21 @@ class Usuario(AbstractUser):
     def __unicode__(self):
         return u'{username} ({email})'.format(username=self.username, email=self.email)
 
+def usuario_formatacao(signal, instance, sender, **kwargs):
+    if instance.first_name:
+        instance.first_name = instance.first_name.title().strip()
+    if instance.last_name:
+        instance.last_name = instance.last_name.title().strip()
+    if instance.email:
+        instance.email = instance.email.lower().strip()
+    if instance.password:
+        instance.password = instance.password.strip()
+
+    instance.is_staff = False
+    instance.is_superuser = False
+
+signals.pre_save.connect(usuario_formatacao, sender=Usuario)
+
 class Sistema(models.Model):
     tipo = models.CharField(max_length=50, blank=True, null=True)
     nome = models.CharField(max_length=150, blank=True, null=True)
@@ -86,6 +113,16 @@ class Sistema(models.Model):
 
     def __unicode__(self):
         return u'{nome}'.format(nome=self.nome)
+
+def sistema_formatacao(signal, instance, sender, **kwargs):
+    if instance.tipo:
+        instance.tipo = instance.tipo.upper().strip()
+    if instance.nome:
+        instance.nome = instance.nome.upper().strip()
+    if instance.tags:
+        instance.tags = instance.tags.upper().strip()
+
+signals.pre_save.connect(sistema_formatacao, sender=Sistema)
 
 
 class Pessoa(models.Model):
@@ -123,3 +160,9 @@ class Pessoa(models.Model):
 
     def __unicode__(self):
         return u'{nome} ({email_pessoal})'.format(nome=self.nome, email_pessoal=self.email_pessoal)
+
+def pessoa_formatacao(signal, instance, sender, **kwargs):
+    instance.nome = instance.nome.title().strip()
+    instance.endereco_rua = instance.endereco_rua.title().strip()
+
+signals.pre_save.connect(pessoa_formatacao, sender=Pessoa)

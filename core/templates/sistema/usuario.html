@@ -11,7 +11,8 @@
 <input name="last_login"  value="{{ form.last_login.value|date:'Y-m-d H:i' }}" type="hidden">
 <input name="date_joined"  value="{{ form.date_joined.value|date:'Y-m-d H:i' }}" type="hidden">
 <input name="password" value="{{ form.password.value }}" type="hidden">
-<input name="empresa_id" value="{{ user.empresa_id }}" type="hidden">
+<input name="empresa" value="{{ user.empresa_id }}" type="hidden">
+<input name="id" value="{{ user.id }}" type="hidden">
 
     <div class="row">    
         <div class="col-md-12">           
