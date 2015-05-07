@@ -73,8 +73,11 @@
                       Deseja mesmo excluir o registro : {{pessoa.nome}} ?
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
-                      <a href="/sistema/pessoas/excluir/{{pessoa.id}}"><button type="button" class="btn btn-primary">Sim</button></a>
+                      <form method="POST" action="/sistema/pessoas/excluir/">{% csrf_token %}
+                        <input type="hidden" value="{{pessoa.id}}" name="id">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
+                        <button type="Submit" class="btn btn-primary">Sim</button>
+                      </form>
                     </div>
                   </div>
                 </div>

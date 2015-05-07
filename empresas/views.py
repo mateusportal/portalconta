@@ -62,20 +62,28 @@ def sistema_formulario(request,sisId):
 @login_required
 def pessoas(request):
     if request.method == 'POST':
-        pessoas = Pessoa.objects.filter(Q(empresa_id=request.user.empresa.id) & Q(nome__contains=request.POST.get('parametro',''))
+        pessoas = Pessoa.objects.filter((Q(empresa_id=request.user.empresa.id) & Q(ativo='SIM')) & Q(nome__contains=request.POST.get('parametro',''))
             |Q(cpf__contains=request.POST.get('parametro',''))|Q(rg__contains=request.POST.get('parametro',''))
             |Q(telefone_celular__contains=request.POST.get('parametro',''))|Q(telefone_fixo__contains=request.POST.get('parametro',''))
             |Q(email_pessoal__contains=request.POST.get('parametro',''))|Q(email_empresarial__contains=request.POST.get('parametro',''))).order_by('nome')
     else:
-        pessoas = Pessoa.objects.filter(empresa_id=request.user.empresa.id).order_by('-data_cadastro')[0:12]
+        pessoas = Pessoa.objects.filter(empresa_id=request.user.empresa.id,ativo='SIM').order_by('-data_cadastro')[0:12]
 
     #IMPLEMENTAR PAGINAÇÃO, LISTAR DE 12 EM 12... (COM ORDENAÇÃO)
     return render(request,'sistema/pessoas.html',{'pessoas':pessoas})
 
 @login_required
-def pessoas_excluir(request,pessoaId):
-    Pessoa.objects.get(id=pessoaId).delete()
-    return HttpResponseRedirect('/sistema/pessoas/')
+def pessoas_excluir(request):
+    if request.method == 'POST':
+        pessoa = Pessoa.objects.get(id=request.POST.get('id'),empresa_id=request.user.empresa_id)
+
+        pessoa.ativo = 'NAO'
+
+        pessoa.save()
+
+        return HttpResponseRedirect('/sistema/pessoas/')
+    else:
+        return HttpResponseRedirect('/sistema/sistema/') # msg de erro 
 
 @login_required
 def pessoas_formulario(request,pessoaId):
