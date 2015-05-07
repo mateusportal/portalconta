@@ -27,83 +27,45 @@
                  {% csrf_token %}
                     <div class="box-body">
                       <div class="input-group">
-
-                          <span class="input-group-addon"><i class="fa fa-pencil-square-o"></i></span>
-                          <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="{% trans 'Numero do Cheque' %}" name="numero_cheque" placeholder="{% trans 'Numero do Cheque' %}" value="{{cheques.numero_cheque}}">
-                      </div>
-                      <br/>
-                      <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-pencil-square-o"></i></span>
-                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="{% trans 'nome' %}" name="nome" placeholder="{% trans 'Descrição' %}" value="{{cheques.nome}}">
-                      </div>
-                      <br/>
-                      <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-money"></i></span>
-                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="{% trans 'Valor' %}" placeholder="{% trans 'Valor' %}" id="demo8"  name="valor" value="{{cheques.valor|formataDinheiro}}" >
-                      </div>
-                      <br/>
-                      <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="{% trans 'Data de Recebimento' %}" data-mask="99/99/9999" name="data_recebido" placeholder="{% trans 'Data de Recebimento' %}" value="{{cheques.data_recebido|date:"d/m/Y"}}">
-                      </div>
-                      <br/>
-                      <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="{% trans 'Data para Compensar' %}" data-mask="99/99/9999"  name="data_compensar" placeholder="{% trans 'Data para Compensar' %}" value="{{cheques.data_compensar|date:"d/m/Y"}}" >
-
                           <span class="input-group-addon"><i class="fa fa-pencil-square-o">&nbsp;Numero Cheque</i></span>
-                          <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Numero do Cheque" name="numero_cheque" placeholder="Numero do Cheque" value="{{cheques.numero_cheque|default_if_none:''}}">
+                          <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="{% trans 'Numero do Cheque' %}" name="numero_cheque" placeholder="{% trans 'Numero do Cheque' %}" value="{{cheques.numero_cheque|default_if_none:''}}">
                       </div>
                       <br/>
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-pencil-square-o">&nbsp;Nome</i></span>
-                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="nome" name="nome" placeholder="Nome" value="{{cheques.nome|default_if_none:''}}">
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="{% trans 'nome' %}" name="nome" placeholder="{% trans 'Nome' %}" value="{{cheques.nome|default_if_none:''}}">
                       </div>
                       <br/>
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-money">&nbsp;Valor</i></span>
-                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Valor" placeholder="Valor" id="demo8"  name="valor" value="{{cheques.valor|formataDinheiro|default_if_none:''}}" >
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="{% trans 'Valor' %}" placeholder="{% trans 'Valor' %}" id="demo8"  name="valor" value="{{cheques.valor|formataDinheiro|default_if_none:''}}" >
                       </div>
                       <br/>
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-calendar">&nbsp;Recebimento</i></span>
-                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Data de Recebimento" data-mask="99/99/9999" name="data_recebido" placeholder="Data de Recebimento" value="{{cheques.data_recebido|date:"d/m/Y"|default_if_none:''}}">
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="{% trans 'Data de Recebimento' %}" data-mask="99/99/9999" name="data_recebido" placeholder="{% trans 'Data de Recebimento' %}" value="{{cheques.data_recebido|date:"d/m/Y"|default_if_none:''}}">
                       </div>
                       <br/>
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-calendar">&nbsp;Compensar</i></span>
-                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Data para Compensar" data-mask="99/99/9999"  name="data_compensar" placeholder="Data para Compensar" value="{{cheques.data_compensar|date:"d/m/Y"|default_if_none:''}}" >
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="{% trans 'Data para Compensar' %}" data-mask="99/99/9999"  name="data_compensar" placeholder="{% trans 'Data para Compensar' %}" value="{{cheques.data_compensar|date:"d/m/Y"|default_if_none:''}}" >
 
                         <input type="hidden" name="chequeId" value="{{cheques.id}}">
                       </div>
                       <br/>
                       <div class="input-group">
-
-                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="{% trans 'Data Compensado' %}" data-mask="99/99/9999"  name="data_compensado" placeholder="{% trans 'Data Compensado' %}" value="{{cheques.data_compensado|date:"d/m/Y"}}" >
-                      </div>
-                      <br/>
-                      <div class="input-group">
-                          <span class="input-group-addon"><i class="fa fa-pencil-square-o"></i></span>
-                          <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="{% trans 'Banco' %}" name="banco" placeholder="{% trans 'Banco' %}" value="{{cheques.banco}}">
-                      </div>
-                      <br/>
-                      <div class="input-group">
-                          <span class="input-group-addon"><i class="fa fa-pencil-square-o"></i></span>
-                          <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="{% trans 'Agência' %}" name="agencia" placeholder="{% trans 'Agência' %}" value="{{cheques.agencia}}">
-
                         <span class="input-group-addon"><i class="fa fa-calendar">&nbsp;Compensado</i></span>
-                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Data Compensado" data-mask="99/99/9999"  name="data_compensado" placeholder="Data Compensado" value="{{cheques.data_compensado|date:"d/m/Y"|default_if_none:''}}" >
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="{% trans 'Data Compensado' %}" data-mask="99/99/9999"  name="data_compensado" placeholder="{% trans 'Data Compensado' %}" value="{{cheques.data_compensado|date:"d/m/Y"|default_if_none:''}}" >
                       </div>
                       <br/>
                       <div class="input-group">
                           <span class="input-group-addon"><i class="fa fa-pencil-square-o">&nbsp;Banco</i></span>
-                          <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Banco" name="banco" placeholder="Banco" value="{{cheques.banco|default_if_none:''}}">
+                          <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="{% trans 'Banco' %}" name="banco" placeholder="{% trans 'Banco' %}" value="{{cheques.banco|default_if_none:''}}">
                       </div>
                       <br/>
                       <div class="input-group">
                           <span class="input-group-addon"><i class="fa fa-pencil-square-o">&nbsp;Agência</i></span>
-                          <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Agência" name="agencia" placeholder="Agência" value="{{cheques.agencia|default_if_none:''}}">
+                          <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="{% trans 'Agência' %}" name="agencia" placeholder="{% trans 'Agência' %}" value="{{cheques.agencia|default_if_none:''}}">
 
                       </div>
                       <br/>
