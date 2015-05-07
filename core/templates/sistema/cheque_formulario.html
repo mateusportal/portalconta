@@ -1,0 +1,89 @@
+{% extends "sistema/template.html" %}
+{% load i18n %}
+{% load minhas_tags %}
+{% block titulo %}{% trans "Cadastro de Sistema"%}{% endblock %}
+
+{% block container %} 
+    <!-- Content Header (Page header) -->
+    <!--    <section class="content-header">
+          <h1>
+            Configurações de Sistema       
+          </h1>
+          <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Configurações de Sistema</li>
+          </ol>
+        </section>
+    -->
+        <!-- Main content -->
+        <section class="content">
+          <!-- Info boxes -->
+          <div class="box box-primary">
+            <div class="box-header">
+                <i class="ion ion-clipboard"></i>
+                <h3 class="box-title">{% trans "Cadastro de Contas" %}</h3>
+            </div><!-- /.box-header -->
+                 <form role="form" method="POST" action="/sistema/cheque/gravar/">
+                 {% csrf_token %}
+                    <div class="box-body">
+                      <div class="input-group">
+                          <span class="input-group-addon"><i class="fa fa-pencil-square-o">&nbsp;Numero Cheque</i></span>
+                          <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="{% trans 'Numero do Cheque' %}" name="numero_cheque" placeholder="{% trans 'Numero do Cheque' %}" value="{{cheques.numero_cheque|default_if_none:''}}">
+                      </div>
+                      <br/>
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-pencil-square-o">&nbsp;Nome</i></span>
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="{% trans 'nome' %}" name="nome" placeholder="{% trans 'Nome' %}" value="{{cheques.nome|default_if_none:''}}">
+                      </div>
+                      <br/>
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-money">&nbsp;Valor</i></span>
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="{% trans 'Valor' %}" placeholder="{% trans 'Valor' %}" id="demo8"  name="valor" value="{{cheques.valor|formataDinheiro|default_if_none:''}}" >
+                      </div>
+                      <br/>
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-calendar">&nbsp;Recebimento</i></span>
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="{% trans 'Data de Recebimento' %}" data-mask="99/99/9999" name="data_recebido" placeholder="{% trans 'Data de Recebimento' %}" value="{{cheques.data_recebido|date:"d/m/Y"|default_if_none:''}}">
+                      </div>
+                      <br/>
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-calendar">&nbsp;Compensar</i></span>
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="{% trans 'Data para Compensar' %}" data-mask="99/99/9999"  name="data_compensar" placeholder="{% trans 'Data para Compensar' %}" value="{{cheques.data_compensar|date:"d/m/Y"|default_if_none:''}}" >
+
+                        <input type="hidden" name="chequeId" value="{{cheques.id}}">
+                      </div>
+                      <br/>
+                      <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-calendar">&nbsp;Compensado</i></span>
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="{% trans 'Data Compensado' %}" data-mask="99/99/9999"  name="data_compensado" placeholder="{% trans 'Data Compensado' %}" value="{{cheques.data_compensado|date:"d/m/Y"|default_if_none:''}}" >
+                      </div>
+                      <br/>
+                      <div class="input-group">
+                          <span class="input-group-addon"><i class="fa fa-pencil-square-o">&nbsp;Banco</i></span>
+                          <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="{% trans 'Banco' %}" name="banco" placeholder="{% trans 'Banco' %}" value="{{cheques.banco|default_if_none:''}}">
+                      </div>
+                      <br/>
+                      <div class="input-group">
+                          <span class="input-group-addon"><i class="fa fa-pencil-square-o">&nbsp;Agência</i></span>
+                          <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="{% trans 'Agência' %}" name="agencia" placeholder="{% trans 'Agência' %}" value="{{cheques.agencia|default_if_none:''}}">
+
+                      </div>
+                      <br/>
+                      <button type="submit" class="btn btn-success">Gravar</button>
+                  </div><!-- /.box-body -->
+                </form>
+          </div><!-- /.box -->
+        </section><!-- /.content --> 
+{% endblock %}
+{% block js %}
+    <script src="/static/sistema/js/jasny-bootstrap.min.js"></script>
+    <script src="/static/sistema/js/jquery.maskMoney.min.js"></script>
+    <script type="text/javascript">
+      $("#demo8").maskMoney({thousands:'.', decimal:',', affixesStay: true});
+    </script>
+    <script type="text/javascript">
+        $(function () {
+          $('[data-toggle="tooltip"]').tooltip();
+        })
+    </script>
+{% endblock %}

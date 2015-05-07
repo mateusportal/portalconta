@@ -121,7 +121,7 @@ def sistema_formatacao(signal, instance, sender, **kwargs):
         instance.nome = instance.nome.upper().strip()
     if instance.tags:
         instance.tags = instance.tags.upper().strip()
-
+        
 signals.pre_save.connect(sistema_formatacao, sender=Sistema)
 
 

@@ -3,12 +3,12 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>{% block titulo %}{% endblock %} - PortalContas</title>
+    <title>{% block titulo %}{% trans "- PortalContas - Administrativo" %}{% endblock %} </title>
     <meta charset="UTF-8">    
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <link href="/static/sistema/css/bootstrap.min.css" rel="stylesheet" type="text/css" />    
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />    
-    <link href="http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet" type="text/css" />           
+    <link href="/static/sistema/css/font-awesome.css" rel="stylesheet" type="text/css" />    
+    <link href="/static/sistema/css/ionicons.css" rel="stylesheet" type="text/css" />           
     <link href="/static/sistema/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />   
     <link href="/static/sistema/css/skin-blue.css" rel="stylesheet" type="text/css" />
     <!--[if lt IE 9]>
@@ -283,7 +283,7 @@
         </nav>
     </header>
     <!-- Left side column. contains the logo and sidebar -->
-      <aside class="main-sidebar">
+    <aside class="main-sidebar">
         <!-- sidebar: style can be found in sidebar.less -->
         <section class="sidebar">
           <!-- Sidebar user panel -->
@@ -311,18 +311,18 @@
           <ul class="sidebar-menu">
             <li class="header">MENU DE NAVEGAÇÃO</li>
             <li class="treeview">
-              <a href="/sistema/pessoas/">
-                <i class="fa fa-user"></i>
-                <span>Pessoas</span>
-                <i class="fa fa-angle-left pull-right"></i>
-              </a>
+                <a href="/sistema/pessoas/">
+                    <i class="fa fa-user"></i>
+                    <span>Pessoas</span>
+                     <i class="fa fa-angle-left pull-right"></i>
+                </a>
             </li>
             <li class="treeview">
-              <a href="/sistema/caixa">
-                <i class="fa fa-pencil-square-o"></i>
-                <span>Contas</span>
-                <i class="fa fa-angle-left pull-right"></i>
-              </a>
+                <a href="/sistema/caixa">
+                    <i class="fa fa-pencil-square-o"></i>
+                    <span>Contas</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
             </li>
             <li class="treeview">
               <a href="#">
@@ -364,36 +364,33 @@
           </ul>
         </section>
         <!-- /.sidebar -->
-      </aside>
+    </aside>
     
-      <div class="content-wrapper">
-      <!-- Content Header (Page header) -->
-          <section class="content-header">
-            <h1>
-              {% block container_titulo %}Título da Página{% endblock %}            
-            </h1>
-          </section>
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>{% block container_titulo %}Título da Página{% endblock %}</h1>
+        </section>
 
-          <!-- Main content -->
-          <section class="content">  
+        <!-- Main content -->
+        <section class="content">
+            {% if msg %}
+                <div class="alert alert-info alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                    <strong>Mensagem!</strong> {{ msg }}
+                </div>
+            {% endif %}
 
-          {% if msg %}
-          <div class="alert alert-info alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
-            <strong>Mensagem!</strong> {{ msg }}
-          </div>
-          {% endif %}
+            {% if form.errors %}
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                    <strong>Erros!</strong> {{ form.errors.as_text }}
+                </div>
+            {% endif %}
 
-          {% if form.errors %}
-          <div class="alert alert-danger alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
-            <strong>Erros!</strong> {{ form.errors.as_text }}
-          </div>
-          {% endif %}
-
-          {% block container %}{% endblock %}   
-          </section><!-- /.content -->
-      </div><!-- /.content-wrapper -->  
+            {% block container %}{% endblock %}   
+        </section><!-- /.content -->
+    </div><!-- /.content-wrapper -->  
 
     <!-- Footer -->
     <footer class="main-footer">

@@ -16,7 +16,7 @@
         <!-- Main content -->
         <section class="content">
           <!-- Info boxes -->
-          <form method="POST" action="/sistema/sistema/buscar/"> {% csrf_token %}
+          <form method="POST" action="/sistema/sistema/"> {% csrf_token %}
             <div class="input-group">
                 <input class="form-control" placeholder="Sua pesquisa aqui..." name="parametro" type="text" />
               <div class="input-group-btn">
@@ -29,7 +29,7 @@
                 <div class="box-header">
                   <i class="ion ion-clipboard"></i>
                   <h3 class="box-title">Configurações cadastradas</h3><br/><br/>
-                  <a href="/sistema/sistema/editor/"><button class="btn btn-default"><i class="fa fa-plus"></i>&nbsp;&nbsp;Adicionar novo</button></a>
+                  <a href="/sistema/sistema/formulario/0"><button class="btn btn-default"><i class="fa fa-plus"></i>&nbsp;&nbsp;Adicionar novo</button></a>
                   <div class="box-tools pull-right">
                     <ul class="pagination pagination-sm inline">
                       <li><a href="#">&laquo;</a></li>
@@ -45,7 +45,7 @@
                    {% for sistema in sistemas %}
                     <li>
                       <!-- drag handle -->
-                      <a href="/sistema/sistema/editor/{{sistema.id}}" >
+                      <a href="/sistema/sistema/formulario/{{sistema.id}}" >
                       <span class="handle">
                         <i class="fa fa-ellipsis-v"></i>
                         <i class="fa fa-ellipsis-v"></i>
@@ -92,7 +92,10 @@
                               </div>
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
-                                <a href="/sistema/sistema/excluir/{{sistema.id}}"><button type="button" class="btn btn-primary">Sim</button></a>
+                                <form method="POST" action="/sistema/sistema/excluir/">
+                                  <input type="hidden" value="{{sistema.id}}" name="id">
+                                  <button type="Submit" class="btn btn-primary">Sim</button>
+                                </form>
                               </div>
                             </div>
                           </div>
@@ -103,7 +106,7 @@
                     </ul>
                 </div><!-- /.box-body-->
                 <div class="box-footer clearfix no-border">
-                      <a href="/sistema/sistema/editor/"><button class="btn btn-default"><i class="fa fa-plus"></i>&nbsp;&nbsp;Adicionar novo</button></a>
+                      <a href="/sistema/sistema/formulario/0"><button class="btn btn-default"><i class="fa fa-plus"></i>&nbsp;&nbsp;Adicionar novo</button></a>
                       <div class="box-tools pull-right">
                         <ul class="pagination pagination-sm inline">
                           <li><a href="#">&laquo;</a></li>

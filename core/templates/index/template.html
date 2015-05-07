@@ -6,11 +6,10 @@
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 		<meta charset="utf-8">
 		<title>{% block titulo %}{% endblock %} - PortalContas</title>
-    <meta name="description" content="Sistema financeiro gratuito!" />
-    <meta name="keywords" content="Financeiro, Finanças, Contabilidade, Dinheiro, Controle, Controle Pessoal, Micro empresas, Empresas, Finanças" />
+    <meta name="description" content="{% trans 'Sistema financeiro gratuito!' %}" />
+    <meta name="keywords" content="{% trans 'Financeiro, Finanças, Contabilidade, Dinheiro, Controle, Controle Pessoal, Micro empresas, Empresas, Finanças' %}" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-		<link href="/static/index/css/bootstrap.min.css" rel="stylesheet">
-		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+		<link href="/static/index/css/bootstrap.min.css" rel="stylesheet">		
 		<!--[if lt IE 9]>
 			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
@@ -19,9 +18,9 @@
 
     <meta property="og:locale" content="pt_BR">
     <meta property="og:url" content="http://portalconta.herokuapp.com">
-    <meta property="og:title" content="PortalContas - Nunca foi tão fácil cobrar.">
+    <meta property="og:title" content="{% trans 'PortalContas - Nunca foi tão fácil cobrar.' %}">
     <meta property="og:site_name" content="PortalContas">
-    <meta property="og:description" content="Simplifique seu financeiro e facilite sua vida financeira.">
+    <meta property="og:description" content="{% trans 'Simplifique seu financeiro e facilite sua vida financeira.' %}">
     <meta property="og:image" content="http://portalconta.herokuapp.com/static/index/img/promo1.jpg">
     <meta property="og:image:type" content="image/jpeg">
     <meta property="og:image:width" content="1024">
@@ -46,7 +45,7 @@
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapsible">
-        <span class="sr-only">Navegação Móvel</span>
+        <span class="sr-only">{% trans "Navegação Móvel" %}</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -55,12 +54,11 @@
     </div>
     <div class="navbar-collapse collapse" id="navbar-collapsible">
       <ul class="nav navbar-nav navbar-left">
-        <li><a href="/cadastro/">Cadastrar</a></li>
-        <li><a href="/login/">Entrar</a></li>
+        <li><a href="/cadastro/">{% trans "Cadastrar" %}</a></li>
+        <li><a href="/login/">{% trans "Entrar" %}</a></li>
         <li>&nbsp;</li>
       </ul>
-
-    </div>
+    </div>    
   </div>
 </nav>
 
@@ -70,14 +68,14 @@
     {% if msg %}
       <div class="alert alert-info alert-dismissible" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
-        <strong>Mensagem!</strong> {{ msg }}
+        <strong>{% trans "Mensagem!" %}</strong> {{ msg }}
       </div>
     {% endif %}
 
     {% if form.errors %}
       <div class="alert alert-danger alert-dismissible" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
-        <strong>Erros!</strong> {{ form.errors.as_text }}
+        <strong>{% trans "Erros!" %}</strong> {{ form.errors.as_text }}
       </div>
     {% endif %}
 
@@ -98,16 +96,16 @@
   <div class="container">
     <div class="row">
       <div class="col-xs-6 col-sm-6 col-md-3 column">
-          <h4>Informações</h4>
+          <h4>{% trans "Informações" %}</h4>
           <ul class="nav">
-            <li><a href="/cadastro/">Como me cadastrar?</a></li>
-            <li><a href="/login/">Já tenho cadastro, como entrar?</a></li>
-            <li><a href="#">Ajuda</a></li>
-            <li><a href="#">Sobre Nós</a></li>
+            <li><a href="/cadastro/">{% trans "Como me cadastrar?" %}</a></li>
+            <li><a href="/login/">{% trans "Já tenho cadastro, como entrar?" %}</a></li>
+            <li><a href="#">{% trans "Ajuda" %}</a></li>
+            <li><a href="#">{% trans "Sobre Nós" %}</a></li>
           </ul>
         </div>
       <div class="col-xs-6 col-md-3 column">
-          <h4>Siga-nos</h4>
+          <h4>{% trans "Siga-nos" %}</h4>
           <ul class="nav">
             <li><a target="_blank" href="https://twitter.com/PortalContas">Twitter</a></li>
             <li><a target="_blank" href="https://www.facebook.com/PortalContas">Facebook</a></li>
@@ -116,14 +114,15 @@
           </ul>
       </div>
       <div class="col-xs-6 col-md-3 column">
-          <h4>Sobre o PortalContas</h4>
+          <h4>{% trans "Sobre o PortalContas" %}</h4>
           <ul class="nav">
-            <li><a href="/termos-de-uso/">Termos de Uso</a></li>
-            <li><a href="/politica-de-privacidade/">Política de Privacidade</a></li>
+            <li><a href="/termos-de-uso/">{% trans "Termos de Uso" %}</a></li>
+            <li><a href="/politica-de-privacidade/">{% trans "Política de Privacidade" %}</a></li>
           </ul>
       </div>
       <div class="col-xs-6 col-md-3 column">
-				<div class="fb-like-box" data-href="https://www.facebook.com/PortalContas" data-width="200" data-height="190" data-colorscheme="dark" data-show-faces="true" data-header="false" data-stream="false" data-show-border="false"></div>
+				<div class="fb-like-box" data-href="https://www.facebook.com/PortalContas" data-width="200" data -height="190" data-colorscheme="dark" data-show-faces="true" data-header="false" data-stream="  false" data-show-border="false">          
+        </div>
 			</div>
     </div><!--/row-->
   </div>

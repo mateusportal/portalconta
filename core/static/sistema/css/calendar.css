@@ -1,15 +1,18 @@
 @font-face {
   font-family: 'fontawesome-selected';
-  src: url("/static/sistema/fonts/fontawesome-selected.eot");
-  src: url("/static/sistema/fonts/fontawesome-selected.eot?#iefix") format('embedded-opentype'), url("/static/sistema/fonts/fontawesome-selected.woff") format('woff'), url("/static/sistema/fonts/fontawesome-selected.ttf") format('truetype'), url("/static/sistema/fonts/fontawesome-selected.svg#fontawesome-selected") format('svg');
+  src: url("../fonts/fontawesome-selected.eot");
+  src: url("../fonts/fontawesome-selected.eot?#iefix") format('embedded-opentype'),
+   url("../fonts/fontawesome-selected.woff") format('woff'), 
+   url("../fonts/fontawesome-selected.ttf") format('truetype'),
+    url("../fonts/fontawesome-selected.svg#fontawesome-selected") format('svg');
   font-weight: normal;
   font-style: normal;
 }
 
 .fc-calendar-container {
 	position: relative;
-	height: 400px;
-	width: 400px;
+	height: 200px;
+	width: 200px;
 }
 
 .fc-calendar {

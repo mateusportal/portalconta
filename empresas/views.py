@@ -3,54 +3,69 @@ from django.shortcuts import render, HttpResponseRedirect
 from django.db.models import Q
 from empresas.models import Sistema,Pessoa
 from django.contrib.auth.decorators import login_required # USAR: @login_required
-from empresas.forms import PessoaForm
+from empresas.forms import PessoaForm, SistemaForm
 from django.utils.translation import ugettext as _
 
 @login_required
-def listaSistema(request):
+def sistema(request):
     if request.method == 'POST':
-        sistemas = Sistema.objects.filter(Q(nome__contains=request.POST.get('parametro','')) | Q(tipo__contains=request.POST.get('parametro',''))).order_by('tipo','nome')    
+        sistemas = Sistema.objects.filter(Q(empresa_id=request.user.empresa_id) & Q(ativo='SIM') & (Q(nome__contains=request.POST.get('parametro','')) | Q(tipo__contains=request.POST.get('parametro','')))).order_by('tipo','nome')    
 
         print request.POST.get('parametro','')
 
     else:
-        sistemas = Sistema.objects.filter(empresa_id=request.user.empresa.id).order_by('tipo','nome')
+        sistemas = Sistema.objects.filter(empresa_id=request.user.empresa_id, ativo='SIM').order_by('tipo','nome')
 
     return render(request,'sistema/sistema.html',{'sistemas':sistemas})
 
+
 @login_required
-def gravarSistema(request):
+def sistema_gravar(request):
     if request.method == 'POST':
         try:
-            sistema = Sistema.objects.get(id=request.POST.get('sisID'),empresa_id=request.user.empresa.id)
-
+            sistema = Sistema.objects.get(id=request.POST.get('sisID'),empresa_id=request.user.empresa_id)
         except:
             sistema = Sistema()
 
-        sistema.tipo = request.POST.get('tipo', '').upper()
-        sistema.nome = request.POST.get('nome', '').upper()
-        sistema.descricao = request.POST.get('descricao','').upper()
-        sistema.empresa_id = request.user.empresa.id
+        form = SistemaForm(request.POST, instance=sistema)
+        if form.is_valid():
+            sistema = form.save(commit=True)
+            print sistema.__dict__
 
-        sistema.save()
-    
+            return render(request,'sistema/sistema_formulario.html',{'form':form,'msg':_(u'Configuração salva com sucesso!')})
+        else:
+            return render(request,'sistema/sistema_formulario.html',{'form':form,'msg':_(u'Configuração falhou ao salvar!')})
+    else:
         return HttpResponseRedirect('/sistema/sistema/')
 
 @login_required
-def excluirSistema(request,sisId):
-    Sistema.objects.get(id=sisId).delete()
-    return HttpResponseRedirect('/sistema/sistema/')
+def sistema_excluir(request):
+    if request.method == 'POST':
+        sistema = Sistema.objects.get(ativo='SIM',pk=request.POST.get('id'),empresa_id=request.user.empresa_id)
+        sistema.ativo = 'NAO'
+        sistema.save
+
+        return HttpResponseRedirect('/sistema/sistema/')
+    else:
+        return HttpResponseRedirect('/sistema/sistema/') # msg de erro    
 
 @login_required
-def preencherSistema(request,sisId):
-    sistemas = Sistema.objects.get(id=sisId)
-
-    return render(request,'sistema/cadastroSistema.html',{'sistemas':sistemas})
+def sistema_formulario(request,sisId):
+    try:
+        if sisId:
+            sistemas = Sistema.objects.get(id=sisId)
+            form = SistemaForm(instance=sistemas)
+    except:
+        form = SistemaForm()
+    return render(request,'sistema/sistema_formulario.html',{'form':form})
 
 @login_required
 def pessoas(request):
     if request.method == 'POST':
-        pessoas = Pessoa.objects.filter(empresa_id=request.user.empresa.id, nome__contains=request.POST.get('parametro','')).order_by('nome')
+        pessoas = Pessoa.objects.filter(Q(empresa_id=request.user.empresa.id) & Q(nome__contains=request.POST.get('parametro',''))
+            |Q(cpf__contains=request.POST.get('parametro',''))|Q(rg__contains=request.POST.get('parametro',''))
+            |Q(telefone_celular__contains=request.POST.get('parametro',''))|Q(telefone_fixo__contains=request.POST.get('parametro',''))
+            |Q(email_pessoal__contains=request.POST.get('parametro',''))|Q(email_empresarial__contains=request.POST.get('parametro',''))).order_by('nome')
     else:
         pessoas = Pessoa.objects.filter(empresa_id=request.user.empresa.id).order_by('-data_cadastro')[0:12]
 
@@ -89,17 +104,14 @@ def pessoas_gravar(request):
 
         form = PessoaForm(request.POST, instance=pessoa)
         if form.is_valid():
-            pessoa = form.save(commit=False)  
+            pessoa = form.save(commit=False)
             pessoa.save()
 
-            return render(request,'sistema/pessoas.html',{'msg':_(u'Pessoa salva com sucesso!')})
+            return render(request,'sistema/pessoas_formulario.html',{'msg':_(u'Pessoa salva com sucesso!'),'form':form, 'tipos':tipos})
         else:
             return render(request,'sistema/pessoas_formulario.html',{'form':form, 'tipos':tipos})
     else:
         return HttpResponseRedirect('/sistema/pessoas/')
-
-
-
 
 
 '''
