@@ -3,9 +3,11 @@ from django.db.models import Q
 from contas.models import Caixa, Cheque
 from empresas.models import Sistema
 from datetime import datetime
+from django.contrib.auth.decorators import login_required
 #d = datetime.strptime('2007-07-18 10:03:19', '%Y-%m-%d %H:%M:%S')
 #day_string = d.strftime('%Y-%m-%d')
 #Trabalhando com datas
+@login_required
 def preencherCaixa(request,caixaId):
     caixa = Caixa.objects.get(id=caixaId)
     grupo = Sistema.objects.filter(ativo='SIM', tipo='GRUPO', empresa_id=request.user.empresa.id).order_by('nome')
@@ -15,11 +17,13 @@ def preencherCaixa(request,caixaId):
 
     return render(request,'sistema/cadastroCaixa.html',{'caixas':caixa,'grupos':grupo,'subgrupos':subgrupo,'categorias':categoria})
 
+@login_required
 def listarCaixa(request):
     caixa = Caixa.objects.filter(empresa_id=int(request.user.empresa.id)).order_by('data_vencimento')
 
     return render(request,'sistema/caixa.html',{'caixas':caixa})
 
+@login_required
 def gravarCaixa(request):
     try:
         caixa = Caixa.objects.get(empresa_id=request.user.empresa.id,id=request.POST.get('caixaId'),usuario_id=request.user.id)

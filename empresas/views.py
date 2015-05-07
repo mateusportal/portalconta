@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required # USAR: @login_require
 from empresas.forms import PessoaForm
 from django.utils.translation import ugettext as _
 
-
+@login_required
 def listaSistema(request):
     if request.method == 'POST':
         sistemas = Sistema.objects.filter(Q(nome__contains=request.POST.get('parametro','')) | Q(tipo__contains=request.POST.get('parametro',''))).order_by('tipo','nome')    
@@ -18,6 +18,7 @@ def listaSistema(request):
 
     return render(request,'sistema/sistema.html',{'sistemas':sistemas})
 
+@login_required
 def gravarSistema(request):
     if request.method == 'POST':
         try:
@@ -35,10 +36,12 @@ def gravarSistema(request):
     
         return HttpResponseRedirect('/sistema/sistema/')
 
+@login_required
 def excluirSistema(request,sisId):
     Sistema.objects.get(id=sisId).delete()
     return HttpResponseRedirect('/sistema/sistema/')
 
+@login_required
 def preencherSistema(request,sisId):
     sistemas = Sistema.objects.get(id=sisId)
 

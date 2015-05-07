@@ -39,7 +39,7 @@
                           <select class="form-control" data-toggle="tooltip" data-placement="top" title="Categoria" placeholder="" name="categoria_id">
                             <option>Categoria</option>
                             {% for categoria in categorias %}
-                            <option value="{{categoria.pk}}" {% if caixas.categoria.nome == categoria.nome %} SELECTED {% endif %} >{{categoria.nome}}</option>
+                            <option value="{{categoria.pk}}" {% if caixas.categoria.pk == categoria.pk %} SELECTED {% endif %} >{{categoria.nome}}</option>
                             {% endfor%}
                           </select>           
                       </div>
@@ -101,17 +101,17 @@
                       <br/>
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Data de Vencimento" data-mask="99/99/9999" name="data_vencimento" placeholder="Vencimento" value="{{caixas.data_vencimento|date:"Y/m/d"}}">
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Data de Vencimento" data-mask="99/99/9999" name="data_vencimento" placeholder="Vencimento" value="{{caixas.data_vencimento|date:"d/m/Y"}}">
                       </div>
                       <br/>
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Data de Pagamento" data-mask="99/99/9999"  name="data_pagamento" placeholder="Pagamento" value="{{caixas.data_pagamento|date:"Y/m/d"}}" >
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Data de Pagamento" data-mask="99/99/9999"  name="data_pagamento" placeholder="Pagamento" value="{{caixas.data_pagamento|date:"d/m/Y"}}" >
                       </div>
                       <br/>
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Data do boleto" data-mask="99/99/9999"  name="data_boleto" placeholder="Boleto" value="{{caixas.data_boleto|date:"Y/m/d"}}" >
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Data do boleto" data-mask="99/99/9999"  name="data_boleto" placeholder="Boleto" value="{{caixas.data_boleto|date:"d/m/Y"}}" >
                       </div>
                       <br/>
                       <div class="input-group">
