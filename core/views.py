@@ -45,7 +45,7 @@ def valida_login(request):
                 else:
                     return render(request, 'index/login.html', {'form': form, 'msg':_(u'Usuário desativado do sistema! Cadastre-se novamente.')})
             else:
-                return render(request, 'index/login.html', {'form': form, 'msg':_(u'Falha ao retornar o objeto do banco.')})  
+                return render(request, 'index/login.html', {'form': form, 'msg':_(u'Nome de usuário e senha não conferem.')})  
         else:
             return render(request, 'index/login.html', {'form': form})    
     else:
