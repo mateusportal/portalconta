@@ -1,6 +1,5 @@
 {% extends "sistema/template.html" %}
 {% load i18n %}
-
 {% block titulo %}{% trans "Listagem de Pessoas" %}{% endblock %}
 {% block container_titulo %}<i class="fa fa-street-view"></i> {% trans "Formulário de Pessoas" %}{% endblock %}  
 
@@ -30,8 +29,8 @@
                     </div>
                     <br/>
                     <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-user">&nbsp;Nome</i></span>
-                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Nome" placeholder="Nome" name="nome" value="{{ form.nome.value|default_if_none:'' }}">
+                        <span class="input-group-addon"><i class="fa fa-user">{% trans 'Nome' %}</i></span>
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="{% trans 'Nome' %}" placeholder="{% trans 'Nome' %}" name="{% trans 'Nome' %}" value="{{ form.nome.value|default_if_none:'' }}">
                     </div>
                     <br/>
                     <div class="input-group">
@@ -41,12 +40,11 @@
                     <br/>
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-edit">&nbsp;RG</i></span>
-                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="RG" placeholder="RG" name="rg" value="{{ form.rg.value|default_if_none:'' }}">                     
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="RG" placeholder="RG" name="rg" value="{{ form.rg.value|default_if_none:'' }}">         
                     </div>
                     <br />
-                   
                     <div class="input-group">
-                            <button type="submit" class="btn btn-success">Gravar</button>
+                            <button type="submit" class="btn btn-success">{% trans "Gravar" %}</button>
                     </div>    
                 </div><!-- /.box-body -->
 
@@ -57,9 +55,9 @@
         <div class="col-md-12">           
             <div class="box box-info">
                 <div class="box-header">
-                    <h3 class="box-title">Endereço</h3>
+                    <h3 class="box-title">{% trans "Endereço" %}</h3>
                 </div>
-                <div class="box-body">           
+                <div class="box-body">              
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-home">&nbsp;Endereço</i></span>
                         <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Endereço" placeholder="Endereço" name="endereco_rua" value="{{form.endereco_rua.value|default_if_none:''}}">
@@ -98,6 +96,7 @@
                     <div class="input-group">
                             <button type="submit" class="btn btn-success">Gravar</button>
                     </div>    
+
                 </div><!-- /.box-body -->
             </div><!-- /.box -->
         </div><!--/.col  -->
@@ -135,7 +134,7 @@
             <div class="col-md-12">           
                 <div class="box box-info">
                     <div class="box-header">
-                        <h3 class="box-title">Contatos</h3>
+                        <h3 class="box-title">{% trans "Contatos" %}</h3>
                     </div>
                     <div class="box-body">           
                         <div class="input-group">
@@ -159,7 +158,7 @@
                         </div>
                         <br/>
                         <div class="input-group">
-                            <button type="submit" class="btn btn-success">Gravar</button>
+                            <button type="submit" class="btn btn-success">{% trans "Gravar" %}</button>
                         </div>    
                     </div><!-- /.box-body -->
                 </div><!-- /.box -->
@@ -169,7 +168,7 @@
             <div class="col-md-12">           
                 <div class="box box-info">
                     <div class="box-header">
-                        <h3 class="box-title">Redes Sociais</h3>
+                        <h3 class="box-title">{% trans "Redes Sociais" %}</h3>
                     </div>
                     <div class="box-body">           
                         <div class="input-group">
@@ -193,7 +192,7 @@
                         </div> 
                         <br/>
                         <div class="input-group">
-                            <button type="submit" class="btn btn-success">Gravar</button>
+                            <button type="submit" class="btn btn-success">{% trans "Gravar" %}</button>
                         </div>                    
                     </div><!-- /.box-body -->
                 </div><!-- /.box -->
