@@ -92,7 +92,10 @@
                               </div>
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
-                                <a href="/sistema/sistema/excluir/{{sistema.id}}"><button type="button" class="btn btn-primary">Sim</button></a>
+                                <form method="POST" action="/sistema/sistema/excluir/">
+                                  <input type="hidden" value="{{sistema.id}}" name="id">
+                                  <button type="Submit" class="btn btn-primary">Sim</button>
+                                </form>
                               </div>
                             </div>
                           </div>

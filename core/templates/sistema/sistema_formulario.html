@@ -25,6 +25,11 @@
             </div><!-- /.box-header -->
                  <form role="form" method="POST" action="/sistema/sistema/gravar/">
                  {% csrf_token %}
+
+                      <input type="hidden" name="id" value="{{ form.initial.id }}">
+                      <input type="hidden" name="empresa" value="{{ user.empresa_id }}">
+                      <input type="hidden" name="ativo" value="{{ form.ativo.value|default_if_none:True }}">
+
                     <div class="box-body">
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-cog">&nbsp;Tipo</i></span>
@@ -49,7 +54,6 @@
                         </select>
                       </div>
                       <br />
-                      <input type="hidden" value="{{form.id.value}}" name="sisID" id ="sisID" >
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-wrench">&nbsp;Nome</i></span>
                         <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="Nome" placeholder="Nome" id="nome" name="nome" value="{{form.nome.value|default_if_none:''}}">

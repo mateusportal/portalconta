@@ -33,7 +33,7 @@ urlpatterns = patterns('',
     url(r'^sistema/sistema/$', 'empresas.views.sistema', name='sistema'),
     url(r'^sistema/sistema/formulario/(?P<sisId>\d+)/$', 'empresas.views.sistema_formulario', name='sistema_formulario'),
     url(r'^sistema/sistema/gravar/$', 'empresas.views.sistema_gravar', name='sistema_gravar'),
-    url(r'^sistema/sistema/excluir/(?P<sisId>\d+)/$', 'empresas.views.sistema_excluir', name='sistema_excluir'),
+    url(r'^sistema/sistema/excluir/$', 'empresas.views.sistema_excluir', name='sistema_excluir'),
 
     url(r'^sistema/usuario/$', 'core.views.usuario', name='usuario'),
     url(r'^sistema/usuario/gravar/$', 'core.views.usuario_gravar', name='usuario_gravar'),

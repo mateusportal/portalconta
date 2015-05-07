@@ -9,35 +9,40 @@ from django.utils.translation import ugettext as _
 
 def sistema(request):
     if request.method == 'POST':
-        sistemas = Sistema.objects.filter(Q(empresa_id=request.user.empresa.pk) & Q(nome__contains=request.POST.get('parametro','')) | Q(tipo__contains=request.POST.get('parametro',''))).order_by('tipo','nome')    
+        sistemas = Sistema.objects.filter(Q(empresa_id=request.user.empresa_id) & Q(ativo='SIM') & (Q(nome__contains=request.POST.get('parametro','')) | Q(tipo__contains=request.POST.get('parametro','')))).order_by('tipo','nome')    
 
         print request.POST.get('parametro','')
 
     else:
-        sistemas = Sistema.objects.filter(empresa_id=request.user.empresa.id).order_by('tipo','nome')
+        sistemas = Sistema.objects.filter(empresa_id=request.user.empresa_id, ativo='SIM').order_by('tipo','nome')
 
     return render(request,'sistema/sistema.html',{'sistemas':sistemas})
 
 def sistema_gravar(request):
     if request.method == 'POST':
         try:
-            sistema = Sistema.objects.get(id=request.POST.get('sisID'),empresa_id=request.user.empresa.id)
+            sistema = Sistema.objects.get(id=request.POST.get('sisID'),empresa_id=request.user.empresa_id)
         except:
             sistema = Sistema()
 
         form = SistemaForm(request.POST, instance=sistema)
         if form.is_valid():
-            sistema = form.save(commit=False)
-            sistema.save
+            sistema = form.save(commit=True)
+            print sistema.__dict__
 
-            return render(request,'sistema/sistema_cadastro.html',{'form':form,'msg':_(u'Configuração salva com sucesso!')})
+            return render(request,'sistema/sistema_formulario.html',{'form':form,'msg':_(u'Configuração salva com sucesso!')})
         else:
-            return HttpResponseRedirect('/sistema/sistema/')
+            return render(request,'sistema/sistema_formulario.html',{'form':form,'msg':_(u'Configuração falhou ao salvar!')})
     else:
         return HttpResponseRedirect('/sistema/sistema/')
 
-def sistema_excluir(request,sisId):
-    Sistema.objects.get(id=sisId).delete()
+def sistema_excluir(request):
+    sistema = Sistema.objects.get(id=request.POST.get('id'),empresa_id=request.user.empresa_id)
+
+    sistema.ativo = 'NAO'
+
+    sistema.save
+
     return HttpResponseRedirect('/sistema/sistema/')
 
 def sistema_formulario(request,sisId):
