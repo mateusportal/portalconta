@@ -91,9 +91,10 @@
                                 Deseja mesmo excluir o registro : {{sistema.tipo}} : {{sistema.nome}}
                               </div>
                               <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
-                                <form method="POST" action="/sistema/sistema/excluir/">
+                                
+                                <form method="POST" action="/sistema/sistema/excluir/">{% csrf_token %}
                                   <input type="hidden" value="{{sistema.id}}" name="id">
+                                  <button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
                                   <button type="Submit" class="btn btn-primary">Sim</button>
                                 </form>
                               </div>

@@ -9,10 +9,8 @@ from django.utils.translation import ugettext as _
 @login_required
 def sistema(request):
     if request.method == 'POST':
-        sistemas = Sistema.objects.filter(Q(empresa_id=request.user.empresa_id) & Q(ativo='SIM') & (Q(nome__contains=request.POST.get('parametro','')) | Q(tipo__contains=request.POST.get('parametro','')))).order_by('tipo','nome')    
-
-        print request.POST.get('parametro','')
-
+        print 1
+        #sistemas = Sistema.objects.filter((Q(empresa_id=request.user.empresa_id) & Q(ativo='SIM')) & (Q(nome__contains=request.POST.get('parametro','')) | Q(tipo__contains=request.POST.get('parametro','')))).order_by('tipo','nome')    
     else:
         sistemas = Sistema.objects.filter(empresa_id=request.user.empresa_id, ativo='SIM').order_by('tipo','nome')
 
@@ -43,7 +41,9 @@ def sistema_excluir(request):
     if request.method == 'POST':
         sistema = Sistema.objects.get(ativo='SIM',pk=request.POST.get('id'),empresa_id=request.user.empresa_id)
         sistema.ativo = 'NAO'
-        sistema.save
+
+        print sistema.nome + ' ' + sistema.ativo
+        sistema.save()
 
         return HttpResponseRedirect('/sistema/sistema/')
     else:
