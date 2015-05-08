@@ -1,5 +1,5 @@
 from django import forms
-from contas.models import Caixa, Vinculo, Sistema, Cheque
+from contas.models import Caixa, Vinculo, Cheque
 
 class CaixaForm(forms.ModelForm):
 
@@ -10,11 +10,6 @@ class VinculoForm(forms.ModelForm):
 
     class Meta:
         model = Vinculo
-
-class SistemaForm(forms.ModelForm):
-
-    class Meta:
-        model = Sistema
 
 class ChequeForm(forms.ModelForm):
 

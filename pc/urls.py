@@ -26,7 +26,7 @@ urlpatterns = patterns('',
     url(r'^sistema/pessoas/gravar/$', 'empresas.views.pessoas_gravar', name='pessoas_gravar'),
   
     url(r'^sistema/cheque/$', 'contas.views.cheque', name='cheque'),
-    url(r'^sistema/cheque/formulario/(?P<chequeId>\d+)$', 'contas.views.cheque_formulario', name='cheque_formulario'),
+    url(r'^sistema/cheque/formulario/(?P<chequeId>\d+)/$', 'contas.views.cheque_formulario', name='cheque_formulario'),
     url(r'^sistema/cheque/gravar/$', 'contas.views.cheque_gravar', name='cheque_gravar'),
     url(r'^sistema/cheque/excluir/(?P<chequeId>\d+)$', 'contas.views.cheque_excluir', name='cheque_excluir'),
 

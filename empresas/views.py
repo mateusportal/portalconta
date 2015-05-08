@@ -61,9 +61,6 @@ def sistema_formulario(request,sisId):
 @login_required
 def pessoas(request):
     if request.method == 'POST':
-
-        print 'foi post'
-
         pessoas = Pessoa.objects.filter(Q(empresa_id=request.user.empresa.id) & Q(ativo='SIM') & (Q(nome__contains=request.POST.get('parametro',''))
             |Q(cpf__contains=request.POST.get('parametro',''))|Q(rg__contains=request.POST.get('parametro',''))
             |Q(telefone_celular__contains=request.POST.get('parametro',''))|Q(telefone_fixo__contains=request.POST.get('parametro',''))

@@ -1,5 +1,6 @@
 from django.db import models
 from empresas.models import Empresa, Sistema, Pessoa
+from django.db.models import signals
 
 # = models.CharField(max_length=50, blank=True, null=True)
 # = models.CharField(max_length=150, blank=True, null=False)
@@ -16,6 +17,15 @@ class Cheque(models.Model):
     data_compensado = models.DateField(auto_now=False, auto_now_add=False)
     tags = models.CharField(max_length=250, blank=True, null=True)
     empresa = models.ForeignKey(Empresa,related_name="cheque_empresa_id")
+    ativo = models.CharField(default="SIM", max_length=50, blank=False)
+
+def cheque_formatacao(signal, instance, sender, **kwargs):
+    if instance.valor:
+        print instance.valor
+        #instance.valor = (valor.replace('.','')).replace(',','.')
+   
+signals.pre_save.connect(cheque_formatacao, sender=Cheque)
+
 
 class Caixa(models.Model):
     pessoa = models.ForeignKey(Pessoa,related_name="caixa_pessoa_id")

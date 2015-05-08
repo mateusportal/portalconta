@@ -1,9 +1,12 @@
 from django.shortcuts import render, HttpResponseRedirect
 from django.db.models import Q
 from contas.models import Caixa, Cheque
+from contas.forms import ChequeForm
 from empresas.models import Sistema
 from datetime import datetime
 from django.contrib.auth.decorators import login_required
+from django.utils.translation import ugettext as _
+
 #d = datetime.strptime('2007-07-18 10:03:19', '%Y-%m-%d %H:%M:%S')
 #day_string = d.strftime('%Y-%m-%d')
 #Trabalhando com datas
@@ -74,14 +77,36 @@ def cheque(request):
     return render(request,'sistema/cheque.html',{'cheques':cheque})
 
 def cheque_formulario(request,chequeId):
-    try:
-        cheque = Cheque.objects.get(id=chequeId)
+    try:  
+        cheque = Cheque.objects.get(pk=chequeId)
+        form = ChequeForm(instance=cheque)
     except:
-        cheque = Cheque()
+        form = ChequeForm()
 
-    return render(request,'sistema/cheque_formulario.html',{'cheques':cheque})
+    return render(request,'sistema/cheque_formulario.html',{'form':form})
 
 def cheque_gravar(request):
+    if request.method == 'POST':
+        try:
+            cheque = Cheque.objects.get(pk=request.POST.get('id','0'),empresa_id=request.user.empresa_id)
+            print cheque.nome
+        except:
+            cheque = Cheque()
+
+        form = ChequeForm(request.POST,instance=cheque)
+        if form.is_valid():
+            form.save()
+            return render(request,'sistema/cheque_formulario.html',{'form':form,'msg':_(u'Cheque salvo com sucesso!')})
+        else:
+            return render(request,'sistema/cheque_formulario.html',{'form':form,'msg':_(u'Cheque falhou ao salvar!')})            
+
+    else:
+        return HttpResponseRedirect('/sistema/cheque/')
+
+
+
+
+''' Codigo Antigo
     try:
         cheque = Cheque.objects.get(id=request.POST.get('chequeId'),empresa_id=request.user.empresa.id)
     except:
@@ -104,7 +129,7 @@ def cheque_gravar(request):
     cheque.save()
 
     return HttpResponseRedirect('/sistema/cheque/')
-
+'''
 
 def cheque_excluir(request,chequeId):
     cheque = Cheque.objects.get(id=chequeId,empresa_id=request.user.empresa.id).delete()
