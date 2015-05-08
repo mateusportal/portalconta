@@ -9,8 +9,7 @@ from django.utils.translation import ugettext as _
 @login_required
 def sistema(request):
     if request.method == 'POST':
-        print 1
-        #sistemas = Sistema.objects.filter((Q(empresa_id=request.user.empresa_id) & Q(ativo='SIM')) & (Q(nome__contains=request.POST.get('parametro','')) | Q(tipo__contains=request.POST.get('parametro','')))).order_by('tipo','nome')    
+        sistemas = Sistema.objects.filter((Q(empresa_id=request.user.empresa_id) & Q(ativo='SIM')) & (Q(nome__contains=request.POST.get('parametro','')) | Q(tipo__contains=request.POST.get('parametro','')))).order_by('tipo','nome')    
     else:
         sistemas = Sistema.objects.filter(empresa_id=request.user.empresa_id, ativo='SIM').order_by('tipo','nome')
 
@@ -62,10 +61,13 @@ def sistema_formulario(request,sisId):
 @login_required
 def pessoas(request):
     if request.method == 'POST':
-        pessoas = Pessoa.objects.filter((Q(empresa_id=request.user.empresa.id) & Q(ativo='SIM')) & Q(nome__contains=request.POST.get('parametro',''))
+
+        print 'foi post'
+
+        pessoas = Pessoa.objects.filter(Q(empresa_id=request.user.empresa.id) & Q(ativo='SIM') & (Q(nome__contains=request.POST.get('parametro',''))
             |Q(cpf__contains=request.POST.get('parametro',''))|Q(rg__contains=request.POST.get('parametro',''))
             |Q(telefone_celular__contains=request.POST.get('parametro',''))|Q(telefone_fixo__contains=request.POST.get('parametro',''))
-            |Q(email_pessoal__contains=request.POST.get('parametro',''))|Q(email_empresarial__contains=request.POST.get('parametro',''))).order_by('nome')
+            |Q(email_pessoal__contains=request.POST.get('parametro',''))|Q(email_empresarial__contains=request.POST.get('parametro','')))).order_by('nome')
     else:
         pessoas = Pessoa.objects.filter(empresa_id=request.user.empresa.id,ativo='SIM').order_by('-data_cadastro')[0:12]
 

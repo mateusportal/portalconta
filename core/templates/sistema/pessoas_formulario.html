@@ -29,8 +29,8 @@
                     </div>
                     <br/>
                     <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-user">{% trans 'Nome' %}</i></span>
-                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="{% trans 'Nome' %}" placeholder="{% trans 'Nome' %}" name="{% trans 'Nome' %}" value="{{ form.nome.value|default_if_none:'' }}">
+                        <span class="input-group-addon"><i class="fa fa-user">{% trans 'Nome' %}{{form.nome.value}}</i></span>
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="{% trans 'Nome' %}" placeholder="{% trans 'Nome' %}" name="nome" value="{{ form.nome.value|default_if_none:'' }}">
                     </div>
                     <br/>
                     <div class="input-group">
