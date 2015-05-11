@@ -27,7 +27,7 @@
                  {% csrf_token %}
 
                       <input type="hidden" name="id" value="{{ form.initial.id }}">
-                      <input type="hidden" name="empresa" value="{{ user.empresa_id }}">
+                      <input type="hidden" name="empresa_id" value="{{ user.empresa_id }}">
                       <input type="hidden" name="ativo" value="{{ form.ativo.value|default_if_none:True }}">
 
                     <div class="box-body">

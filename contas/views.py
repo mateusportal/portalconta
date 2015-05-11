@@ -88,23 +88,21 @@ def cheque_formulario(request,chequeId):
 def cheque_gravar(request):
     if request.method == 'POST':
         try:
-            cheque = Cheque.objects.get(pk=request.POST.get('id','0'),empresa_id=request.user.empresa_id)
-            print cheque.nome
+            cheque = Cheque.objects.get(pk=request.POST.get('id'),empresa_id=request.user.empresa_id)
         except:
             cheque = Cheque()
 
         form = ChequeForm(request.POST,instance=cheque)
         if form.is_valid():
             form.save()
+            print form['data_compensado']
+            print form['data_recebido']
             return render(request,'sistema/cheque_formulario.html',{'form':form,'msg':_(u'Cheque salvo com sucesso!')})
         else:
             return render(request,'sistema/cheque_formulario.html',{'form':form,'msg':_(u'Cheque falhou ao salvar!')})            
 
     else:
         return HttpResponseRedirect('/sistema/cheque/')
-
-
-
 
 ''' Codigo Antigo
     try:

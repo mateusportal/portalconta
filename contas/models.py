@@ -10,7 +10,7 @@ class Cheque(models.Model):
     banco = models.CharField(max_length=50, blank=True, null=True)
     agencia = models.CharField(max_length=50, blank=True, null=True)
     numero_cheque = models.CharField(max_length=50, blank=True, null=True)
-    valor = models.DecimalField(max_digits=7, decimal_places=2)
+    valor = models.DecimalField(max_digits=12, decimal_places=2)
     nome = models.CharField(max_length=150, blank=True, null=True)
     data_recebido = models.DateField(auto_now=False, auto_now_add=False)
     data_compensar = models.DateField(auto_now=False, auto_now_add=False)
@@ -21,8 +21,7 @@ class Cheque(models.Model):
 
 def cheque_formatacao(signal, instance, sender, **kwargs):
     if instance.valor:
-        print instance.valor
-        #instance.valor = (valor.replace('.','')).replace(',','.')
+        instance.valor = (valor.replace('.','')).replace(',','.')
    
 signals.pre_save.connect(cheque_formatacao, sender=Cheque)
 
