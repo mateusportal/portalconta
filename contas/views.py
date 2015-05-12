@@ -95,12 +95,9 @@ def cheque_gravar(request):
         form = ChequeForm(request.POST,instance=cheque)
         if form.is_valid():
             form.save()
-            print form['data_compensado']
-            print form['data_recebido']
             return render(request,'sistema/cheque_formulario.html',{'form':form,'msg':_(u'Cheque salvo com sucesso!')})
         else:
             return render(request,'sistema/cheque_formulario.html',{'form':form,'msg':_(u'Cheque falhou ao salvar!')})            
-
     else:
         return HttpResponseRedirect('/sistema/cheque/')
 

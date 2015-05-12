@@ -44,22 +44,22 @@
                       <br/>
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-money">&nbsp;Valor</i></span>
-                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="{% trans 'Valor' %}" placeholder="{% trans 'Valor' %}" id="#demo8"  name="valor" value="{{form.valor.value|formataDinheiro|default_if_none:'0,00'}}" >
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="{% trans 'Valor' %}" placeholder="{% trans 'Valor' %}" id="demo8"  name="valor" value="{{form.valor.value|formataDinheiro|default_if_none:'0,00'}}" >
                       </div>
                       <br/>
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-calendar">&nbsp;Recebimento</i></span>
-                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="{% trans 'Data de Recebimento' %}" data-mask="99/99/9999" name="data_recebido" placeholder="{% trans 'Data de Recebimento' %}" value="{{form.data_recebido.value|default_if_none:''|date:'d/m/Y'}}">
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="{% trans 'Data de Recebimento' %}" data-mask="99/99/9999" name="data_recebido" placeholder="{% trans 'Data de Recebimento' %}" value="{{form.data_recebido.value|date:'d/m/Y'}}">
                       </div>
                       <br/>
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-calendar">&nbsp;Compensar</i></span>
-                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="{% trans 'Data para Compensar' %}" data-mask="99/99/9999"  name="data_compensar" placeholder="{% trans 'Data para Compensar' %}" value="{{form.data_compensar.value|date:'d/m/Y'|default_if_none:''}}" >
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="{% trans 'Data para Compensar' %}" data-mask="99/99/9999"  name="data_compensar" placeholder="{% trans 'Data para Compensar' %}" value="{{form.data_compensar.value|date:'d/m/Y'}}" >
                       </div>
                       <br/>
                       <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-calendar">&nbsp;Compensado</i></span>
-                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="{% trans 'Data Compensado' %}" data-mask="99/99/9999"  name="data_compensado" placeholder="{% trans 'Data Compensado' %}" value="{{form.data_compensado.value|date:'d/m/Y'|default_if_none:''}}" >
+                        <input type="text" class="form-control" data-toggle="tooltip" data-placement="top" title="{% trans 'Data Compensado' %}" data-mask="99/99/9999"  name="data_compensado" placeholder="{% trans 'Data Compensado' %}" value="{{form.data_compensado.value|date:'d/m/Y'}}" >
                       </div>
                       <br/>
                       <div class="input-group">

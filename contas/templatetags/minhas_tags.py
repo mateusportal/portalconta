@@ -12,6 +12,6 @@ def formataDinheiro(dinheiro):
     	try:
     		return intcomma(Decimal(dinheiro).quantize(Decimal('1.00')))
     	except:
-    		return ''
+    		return '0.00'
     		
         
